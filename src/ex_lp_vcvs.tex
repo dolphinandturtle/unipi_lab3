@@ -1,11 +1,34 @@
 \section*{Lowpass VCVS}
-\paragraph{Richiesta (a)}
-Dimostrare, sulla base di semplici argomenti di natura qualitativa (ovvero prescindendo
-dall’espressione analitica della funzione di trasferimento) che il circuito proposto svolga
-effettivamente la funzione di filtro passa-basso, discutendone la risposta ai limiti del dominio
-delle frequenze reali e verificare il limite del guadagno a bassa frequenza ottenuto al punto
-1c.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (a)}
+    Dimostrare, sulla base di semplici argomenti di natura qualitativa (ovvero prescindendo
+    dall’espressione analitica della funzione di trasferimento) che il circuito proposto svolga
+    effettivamente la funzione di filtro passa-basso, discutendone la risposta ai limiti del dominio
+    delle frequenze reali e verificare il limite del guadagno a bassa frequenza ottenuto al punto
+    1c.
+  \end{minipage}
+}
 \paragraph{Risposta (a)}
+\begin{itemize}
+\item
+  \noindent\colorbox{blu}{
+    \begin{minipage}{.9\linewidth}
+      Per $f \to 0$
+      i condensatori agiscono da rami aperti, il circuito complessivo prende la forma di un amplificatore
+      invertente il cui guadagno \'e \underline{non} nullo.
+    \end{minipage}
+  }
+\item
+  \noindent\colorbox{blu}{
+    \begin{minipage}{.9\linewidth}
+      Per $f \to \infty$
+      i condensatori agiscono da \textit{corto-circuiti} e l'ingresso non invertente viene messo a terra,
+      la mancanza di componenti attive fra l'ingresso invertente e il nodo di tensione d'uscita \'e
+      sufficiente per dire che essa \'e nulla.
+    \end{minipage}
+  }
+\end{itemize}
 
 \paragraph{Richiesta (b)}
 Derivare analiticamente la trasformata di Laplace della funzione di trasferimento $A_v(s) =
@@ -15,6 +38,33 @@ R4=R5 (\textit{suggerimento: si determini la tensione nel punto A del circuito i
 $V_{OUT}$; si determini quindi la tensione all’ingresso non invertente dell’operazionale e
 l’ulteriore relazione tra $V_A$ e $V_{OUT}$ assumendo che l'operazionale funzioni in regime lineare}).
 \paragraph{Risposta (b)}
+\begin{itemize}
+\item
+  Nell'ipotesi di \textit{corto-circuito virtuale} $V_+ = V_-$
+\item
+  La tensione all'ingresso invertente risulta da un partitore di tensione, che in
+  questa esatta configurazione e propriamente un \textit{dimezzatore di tensione}
+  \begin{equation*}
+    V_- \equiv \frac{R_1}{R_1 + R_1}V_{OUT} = \frac12V_{OUT}
+  \end{equation*}
+\end{itemize}
+da cui
+\begin{equation*}
+  V_B = 2V_{OUT}
+\end{equation*}
+quest'ultimo appaiato con i succesivi vincoli sulle correnti fra i nodi
+\begin{equation*}
+  \begin{gathered}
+    \frac{V_B - V_A}{2R} + sCV_B = 0 \\
+    \frac{V_A - V_S}{R} + \frac{V_A}{R} + \frac{V_A - V_B}{2R} + sC(V_A - V_{OUT}) = 0
+  \end{gathered}
+\end{equation*}
+permette di ricavare la funzione di trasferimento dalla soluzione del sistema lineare
+\begin{equation}
+  \label{eq:lp-vcvs-tfunc}
+  \colorbox{blu}{\boxed{H(s) = \frac{1}{(1 + p^2)} \impliedby p \equiv sR_1C_1}}
+\end{equation}
+
 
 \paragraph{Richiesta (c)}
 Dalla funzione di trasferimento dedurre le caratteristiche del filtro osservate al punto 1)
