@@ -1,0 +1,123 @@
+\section*{Notch 2}
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (a)}
+    Utilizzando semplici argomenti di natura qualitativa (ovvero senza effettuare il calcolo
+    della funzione di trasferimento, come richiesto al punto successivo) mostrare che il
+    circuito svolga effettivamente la funzione di notch, discutendone la risposta ai limiti del
+    dominio delle frequenze reali e verificando che i limiti asintotici del guadagno (sia per
+    $f \to 0$ che per $f \to \infty$) coincidano con quanto osservato al punto 1b.
+  \end{minipage}
+} \smallskip \\
+\noindent\colorbox{blu}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Risposta (a)}
+    Qualitativamente il circuito si tratta di un amplificatore pilotato
+    dall'ingresso non invertente che viene preceduto da un nodo che
+    ridirige il flusso di corrente ad un blocco secondario da studiare
+    qualitativamente. Nei limiti di frequenze il sotto-circuito agisce
+    come se non esistesse. Il ramo in retroazione dell'ingresso invertente
+    agisce come un \textit{dimezzatore di tensione}, dunque se l'impedenza
+    effettiva del sotto-circuito equivale alla configurazione all'ingresso
+    invertente il guadagno differenziale sar\'a nullo e il filtro agira
+    come \textit{notch-filter}. Con uno studio quantitativo si potra calcolare
+    quanti notch sono presenti e dove sono disposti in funzione della frequenza.
+  \end{minipage}
+} \smallskip \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (b)}
+    Derivare analiticamente la funzione di trasferimento (in trasformata di Laplace) A(s)
+    nell'ipotesi di linearità (da giustificare a posteriori, vedi punto d) ed assumendo per
+    semplicità che R1=R2=R', R3=R=20kW, R4=R5=R/2, C1=C=1nF e C2=100 C.
+    Si suggerisce di procedere:
+    \begin{itemize}
+    \item[i]
+      ottenendo un'espressione dell'impedenza di ingresso ZIN della rete inserita nel
+      riquadro tratteggiato nello schema circuitale, ovvero quella vista dall'ingresso non
+      invertente dell'operazionale U1 (\textit{suggerimento: si determini un'espressione della
+        tensione all'ingresso non invertente dell'operazionale U1 in termini della corrente I1
+        indicata in figura e considerando la relazione tra quella corrente e I2});
+    \item[ii]
+      ricavando una relazione tra VOUT, VS, R e ZIN sulla base dello schema equivalente
+      riportato in calce ed infine calcolando il rapporto VOUT/VS in funzione di s (o, più
+      convenientemente, della variabile complessa adimensionale $\xi=sRC$).
+    \end{itemize}
+  \end{minipage}
+}
+\paragraph{Risposta (b.i)}
+\begin{itemize}
+\item
+  U2 \'e un voltage follower e di conseguenza $V_{+U2} = V_{U2}$.
+\item
+  U2 non assorbe corrente per ipotesi di idealit\'a degli opamp, di conseguenza $\boldsymbol{I_1} = I_{R_4}$,
+  da cui si ottiene $V_{+U2} - V_{R_4 \to R_5} = R_4\boldsymbol{I_1}$.
+\end{itemize}
+da cui si ottiene la prima relazione fondamentale che correla le tensioni $\boldsymbol{I_1}$ e $I_2$
+\begin{equation*}
+  I_2 = sC_2(V_{U2} - V_{R_4 \to R_5}) = sC_2(V_{+U2} - V_{R_4 \to R_5}) = sC_2R_4\boldsymbol{I_1} \implies \boldsymbol{I_2}(\boldsymbol{I_1})
+\end{equation*}
+da cui si ottiene direttamente il valore della tensione al nodo fra le resistenze $R_4$ e $R_5$
+per causa diretta della legge di Kirchoff sui nodi:
+\begin{equation*}
+  V_{R_4 \to R_5} = R_5I_{R_5} = R_5(\boldsymbol{I_1} + \boldsymbol{I_2}) = R_5\boldsymbol{I_1} + sR_4R_5C_2\boldsymbol{I_1} \implies \boldsymbol{V_{R_4 \to R_5}}(\boldsymbol{I_1})
+\end{equation*}
+l'analisi rimanente da fare
+\begin{equation*}
+  \begin{gathered}
+    \boldsymbol{I_1} = \frac{(V_{+U2} - \boldsymbol{V_{R_4\to R_5}})}{R_4} \implies V_{+U2} = (R_4 + R_5 + sR_4R_5C_2)\boldsymbol{I_1} \implies \boldsymbol{V_{+U2}}(\boldsymbol{I_1}) \\
+    \boldsymbol{I_1} = \frac{(V_{+U1} - \boldsymbol{V_{+U2}})}{\frac{1}{sC_1}} \implies V_{+U1} = \frac{\boldsymbol{I_1}}{sC_1} + (R_4 + R_5 + sR_4R_5C_2)\boldsymbol{I_1} \implies \boldsymbol{V_{+U1}}(\boldsymbol{I_1}) \\
+    \colorbox{blu}{\boxed{Z_{in} \equiv \frac{V_{+U1}(I_1)}{I_1} = \frac{1}{sC_1} + (R_4 + R_5 + sR_4R_5C_2)}}
+  \end{gathered}
+\end{equation*}
+\paragraph{Risposta (b.ii)}
+
+\begin{equation*}
+  H(s) = \frac{Z_{in} - R}{Z_{in} + R}
+\end{equation*}
+\begin{equation}
+  \label{eq:notch2-tfunc}
+  \colorbox{blu}{\boxed{H(s) = \frac{1 + 25\xi^2}{1 + 2\xi + 25\xi^2} \qquad \xi \equiv sRC}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (c)}
+    Verificare che l'espressione ottenuta per la funzione di trasferimento soddisfi la
+    condizione necessaria a garantire la stabilità del filtro in zona lineare.
+  \end{minipage}
+} \smallskip \\
+\paragraph{Risposta (c)}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (d)}
+    Dedurre i valori attesi (senza incertezze) per i parametri del filtro (frequenza centrale,
+    larghezza di banda e fattore di merito) e confrontarli con le misure di cui al punto 1b (si
+    consiglia di esprimere la funzione di trasferimento sul dominio delle frequenze reali in
+    termini della grandezza adimensionale u = wRC).
+  \end{minipage}
+} \smallskip \\
+\paragraph{Risposta (d)}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (e)}
+    Discutere gli andamenti osservati nei plot di Bode di cui al punto 1a e
+    giustificarli alla luce delle proprietà di simmetria della funzione di trasferimento.
+  \end{minipage}
+} \smallskip \\
+\paragraph{Risposta (e)}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (f)}
+    Inviata in VS un'onda quadra di frequenza pari ad f0 ed ampiezza 500mV,
+    osservare all'oscilloscopio ingresso (C1), uscita (C2) e la loro differenza (a tale scopo
+    occorre aggiungere un ulteriore canale mediante il menù a tendina ``Add Channel →
+    Math → Simple (software)'' associando la differenza dei due canali) e discutere
+    qualitativamente e quantitativamente le caratteristiche di quest'ultima.
+  \end{minipage}
+} \smallskip \\
+\paragraph{Risposta (f)}
