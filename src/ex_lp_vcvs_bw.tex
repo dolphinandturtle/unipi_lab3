@@ -1,0 +1,81 @@
+\section*{Lowpass VCVS Butterworth}
+\paragraph{Richiesta (a)}
+Dimostrare, sulla base di semplici argomenti di natura qualitativa, che il circuito proposto
+svolga effettivamente la funzione di filtro passa-basso, discutendone la risposta ai limiti
+del dominio delle frequenze reali.
+\paragraph{Risposta (a)}
+
+\begin{itemize}
+\item Per $f \to 0$
+  i condensatori agiscono da rami aperti, le resistenze hanno impedenze infinite che vengono
+  assorbite dall'impedenze ideali all'ingresso dell'opamp. Questa \'e la configurazione di
+  un voltage follower. La tensione d'uscita \'e la tensione d'ingresso, il guadagno \'e unitario.
+  
+\item Per $f \to \infty$
+  i condensatori agiscono da cortocircuiti, l'ingresso non-invertente viene messo a terra,
+  l'ingresso invertente nell'ipotesi di corto-circuito virtuale deve eguagliare la tensione,
+  la tensione di uscita deve essere nulla.
+\end{itemize}
+
+\paragraph{Richiesta (b)}
+Derivare analiticamente la funzione di trasferimento complessa $A_v(s)=V_{OUT}(s)/V_S(s)$
+nell’ipotesi che l’operazionale sia ideale (suggerimento: si determini la tensione nel nodo
+A del circuito in termini di $V_S$ e $V_{OUT}$; quindi si esprima $V_A$ in termini di $V_{OUT}$ assumendo
+che l'opAmp funzioni in regime lineare ed utilizzando il principio di cortocircuito
+virtuale; si eguaglino infine le espressioni ottenute per ottenere la funzione di
+trasferimento). Per semplicit\'a di calcolo, si assuma inoltre (ipotesi compatibile con i
+valori e le incertezze nominali dei componenti) che R1=R2=R, C1=C, C2=2C.
+\paragraph{Risposta (b)}
+Ipotesi: l'operazionale \'e ideale ed opera in regime lineare.
+\begin{itemize}
+\item
+  Tra $V_-$ e $V_{OUT}$ i rami sono corto-circuiti, di conseguenza $V_- = V_{OUT}$.
+\item
+  Applico il principio di \textit{cortocircuito virtuale} e di conseguenza $V_+ = V_-$.
+\end{itemize}
+di conseguenza
+\begin{equation*}
+  V_B = V_{OUT}
+\end{equation*}
+le successive equazioni nodali appaiate con il risultato precedente permettono di
+ottenere la funzione di trasferimento corretta
+\begin{equation*}
+  \begin{gathered}
+    sCV_B = \frac{V_A - V_B}{R} \\
+    \frac{V_A - V_S}{R} + \frac{V_A - V_{OUT}}{R} + 2sC(V_A - V_{OUT})= 0
+  \end{gathered}
+\end{equation*}
+da cui
+\begin{equation}
+  \label{eq:lp-vcvs-butterworth-tfunc}
+  \boxed{H(s) = \frac{1}{2p^2 + 2p + 1}} \impliedby p \equiv sR_1C_1
+\end{equation}
+
+\paragraph{Richiesta (c)}
+Dalla funzione di trasferimento dedurre le caratteristiche del filtro osservate al punto 1)
+(guadagno a centro-banda, frequenza di taglio, andamento di modulo/fase in funzione
+della frequenza) e confrontarle con quanto misurato ai punti 1c, 1d, 1e.
+\paragraph{Risposta (c)}
+Guadagno a centro banda ???
+Frequenza di taglio.
+\begin{equation}
+  \label{eq:lp-vcvs-butterworth-fcut}
+  |H(j\omega)| = \frac{\max|H(j\omega)|}{\sqrt2} = \frac{1}{\sqrt2} \implies f_0 = \frac{1}{2\pi\sqrt2 RC}
+\end{equation}
+
+Modulo della funzione di trasferimento in funzione della frequenza. ???
+\begin{equation}
+  \label{eq:lp-vcvs-butterworth-gain}
+  |H(j\omega)| = \frac{1}{\sqrt{1 + 4\omega^2R^4C^4}}
+\end{equation}
+
+Fase della funzione di trasferimento in funzione della frequenza.
+\begin{equation}
+  \label{eq:lp-vcvs-butterworth-gain}
+  \angle H(j\omega) = -\arctan\left(\frac{2\omega RC}{1 - 2\omega^2R^2C^2}\right)
+\end{equation}
+
+\paragraph{Richiesta (d)}
+Dare un’interpretazione qualitativa (e se possibile quantitativa) delle caratteristiche del
+segnale di uscita osservato al punto 1f. Che tipo di segnale appare? A quale ampiezza?
+\paragraph{Risposta (d)}

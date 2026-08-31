@@ -1,0 +1,140 @@
+01) Rete logica:
+   - Definizione
+   - Enumerazione delle funzioni
+   - Funzioni comuni e simboli circuitali (ID, NOT, NOR, XOR, NAND, AND, OR)
+
+02) Circuito di abilitazione presa dati (esercizio)
+
+03) Circuito calcolatore di parita'
+   - Cosa e' la parita'?
+   - Circuito
+
+04) Caratteristiche fisiche delle porte logiche
+
+05) Implementazione della porta NOT
+   - Versione "naif"
+   - Versione TTL
+   - Immunita' al rumore dell'elettronica digitale
+
+06) Nomenclatura delle porte logiche
+
+07) Proprieta' fisiche delle porte logiche
+   - Fan out
+   - Tempo di risposta
+
+08) Assiomi dell'algebra di (George) Boole
+   - Proprieta' commutativa
+   - Proprieta' associativa
+   - Proprieta' distributiva
+
+09) Teoremi fondamentali
+   - Proprieta' del duale
+   - Teorema della semplificazione
+   - Teorema della moltiplicazione e fattorizzazione
+   - Leggi di De Morgan
+
+10) Forma canonica
+    - Dalla tabella di verita' al circuito
+    - Minterm, la prima forma canconica e il circuito
+    - Maxterm, la seconda forma canonica e il circuito
+
+11) Mappe di Karnaugh
+
+12) Codifica binaria
+    - Conversione binario-decimale
+    - "Binary code decimal"
+
+13) Display a 7 segmenti e don't cares
+
+14) Sommatore di numeri binari
+    - Semi-sommatore fra due bit (half adder RCA)
+    - Sommatore fra due bit (full adder RCA "ripple-carry adder")
+    - Sommatore per numeri a 4 bit
+    - Circuito di CLA "carry lookahead adder"
+
+15) Numeri negativi in binario
+    - Rappresentazioni con complemento a 'r' o 'r-1'
+    - Numeri negativi usando il complemento a 1
+    - Numeri negativi usando il complemento a 2
+
+16) Sottrattore e sommatore per numeri a 4 bit
+    - Come si calcola il bit di errore?
+
+17) Codice gray
+    - Conversione binario-gray
+
+18) Codice ASCII
+
+19) Dalla logica combinatoria alla logica sequenziale
+    - Il 'latch'
+    - Tabella di verita'
+    - Stato proibito
+
+20) Il LATCH-RS NAND/NOR
+    - Funzione caratteristica
+    - Abilitazione
+    - Funzione caratteristica con abilitazione
+
+21) Il LATCH-D e la sua funzione caratteristica
+
+22) Simboli circuitali per i LATCH
+
+23) Flip flop
+    - Implementazione di D-FF con tecnica 'master-slave'
+    - Implementazione di D-FF con tecnica 'triggered edge'
+    - Dinamica con il metodo 'triggered edge'
+    - Ingressi sincroni e asincroni
+    - Funzione caratteristica JK-FF
+
+24) Primo utilizzo dei FF
+    - Registro per la conversione dei segnali
+
+25) Registri a scorrimento
+
+26) Datasheet del 74LS74
+
+27) Contatori
+    - Contatore binario crescente
+    - Contatore sincrono
+    - Contatore a 8 bit
+
+28) Divisori di frequenza
+    - Divisore di frequenza con 'clear' sincrono
+    - Divisore di frequenza con 'load' sincrono
+
+29) Contatore ad anello
+    - Contatore ad anello 'twisted' (Johnson counter)
+
+30) Generatori di sequenze pseudo-casuali
+
+31) Macchine a stati finiti
+    - Architettura di Moore
+    - Architettura di Mealy
+
+32) Macchina a stati finiti: dal diagramma di stato alla progettazione
+    - L'insegna luminosa
+    - Macchina distributrice del caffe'
+
+33) Read only memory (ROM)
+    - Decodificatore (encoder)
+    - Codificatore (decoder)
+    - Decoder esempio a 3bit d'ingresso
+
+34) Codificatore: proggettazione della tastiera (e il PLA)
+
+35) Multipexer (MUX)
+    - De-Multipexer (DEMUX)
+
+36) Universal shift register (USR)
+
+37) Digital to analogue converter (DAC)
+    - Funzione di trasferimento del DAC
+    - Caratteristiche del DAC
+    - DAC a sommatore
+    - Conversione Analogica-Digitale
+
+38) Analogue to digital converter (ADC)
+    - Funzionamento dell'ADC a gradinata
+    - ADC ad approssimazioni successive
+    - Flash ADC
+    - Errore di quantizzazione ADC nell'AD2

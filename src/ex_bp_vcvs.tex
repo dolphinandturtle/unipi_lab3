@@ -1,0 +1,97 @@
+\section*{Bandpass VCVS}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (a)}
+    Dimostrare, sulla base di semplici argomenti di natura qualitativa, che il circuito proposto
+    svolga effettivamente la funzione di filtro passa-banda, discutendone la risposta ai limiti
+    del dominio delle frequenze reali.
+  \end{minipage}
+} \smallskip \\
+\noindent\colorbox{blu}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Risposta (a)}
+    La tensione d'ingresso $V_S$ attraversa un arrangiamento di partitori configurati come
+    un filtro passa basso (passivo) e un filtro passa alto (passivo) collegati a cascata;
+    il filtro passa basso ha un ramo in comune con la retroazione dell'opamp.
+    L'opamp segue lo schema non invertente.
+  
+    Al limite del dominio delle frequenze reali si manifestano le seguenti condizioni
+    \begin{itemize}
+    \item
+      Per frequenze $f \to 0$ i condensatori si comportanto come rami aperti. Lo schema
+      del circuito pu\'o essere ricondotto allo schema di un amplificatore invertente.
+    \item
+      Per frequenze $f \to \infty$ i condensatori si comportanto come corto-circuiti.
+      La corrente \'e banalmente diretta verso terra. Il guadagno \'e zero.
+    \end{itemize}
+  \end{minipage}
+} \smallskip \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (b)}
+    Derivare analiticamente la funzione di trasferimento complessa Av(s)=VOUT(s)/VS(s)
+    nell’ipotesi che l’operazionale sia ideale (\textit{suggerimento: si determini la tensione nel
+      punto A del circuito in termini di VS e VOUT; indipendentemente, si esprimano VB e quindi
+      VA in termini di Vout assumendo che l'opAmp funzioni in regime lineare ed utilizzando il
+      principio di cortocircuito virtuale; si eguaglino infine le espressioni ottenute per ottenere
+      la funzione di trasferimento}). Per semplicit\'a di calcolo, si assuma inoltre (ipotesi
+    compatibile con i valori e le incertezze nominali dei componenti) che R1 = R3 = R, R2 =
+    2 R, C1 = C2 = C, $R_B$ = 5/3 $R_A$.
+  \end{minipage}
+} \smallskip \\
+\noindent\colorbox{blu}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Risposta (b)}
+    \begin{equation}
+      \label{eq:bp-vcvs-tfunc}
+      \boxed{H(s) = \frac{8p}{3p^2 + p + 3}} \impliedby p \equiv sR_1C_1
+    \end{equation}
+  \end{minipage}
+} \smallskip \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (c)}
+    Dalla funzione di trasferimento dedurre i valori attesi per i parametri del filtro (frequenza
+    centrale, guadagno massimo e larghezza banda) e confrontarli con le misure di cui ai
+    punti 1a, 1b, 1c.
+  \end{minipage}
+} \smallskip \\
+\noindent\colorbox{blu}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Risposta (c)}
+    frequenza centrale
+    \begin{equation}
+      \label{eq:bp-vcvs-freq-centr}
+      \omega_0 = \frac{1}{RC} \quad f_0 = \frac{1}{2 \pi RC}
+    \end{equation}
+  
+    guadagno massimo
+    \begin{equation}
+      \label{eq:bp-vcvs-gain-max}
+      H(j\omega_0) = 8
+    \end{equation}
+  
+    larghezza di banda
+    \begin{equation}
+      \label{eq:bp-vcvs-bw}
+      ???
+    \end{equation}
+  \end{minipage}
+} \smallskip \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (d)}
+    Dare un’interpretazione qualitativa (e se possibile quantitativa) delle caratteristiche del
+    segnale di uscita osservato al punto 1d. Che tipo di segnale appare? A quale ampiezza?
+  \end{minipage}
+} \smallskip \\
+\noindent\colorbox{blu}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Risposta (d)}
+    Leggi punto 1d per rispondere a questa domanda. Tuttavia questo circuito si dovrebbe comportare come una selettore spettrale, ovvero seleziona un armonica di un segnale complesso esprimbile per combinazione lineare di sinusoidi.
+  \end{minipage}
+}

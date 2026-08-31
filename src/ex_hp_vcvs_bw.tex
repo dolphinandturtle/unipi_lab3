@@ -1,0 +1,70 @@
+\section*{Highpass VCVS Butterworth}
+\paragraph{Richiesta (a)}
+Dimostrare, discutendone la risposta ai limiti del dominio delle frequenze reali sulla base
+di semplici argomenti di natura qualitativa, che il circuito proposto svolga effettivamente
+la funzione di filtro passa-alto.
+\paragraph{Risposta (a)}
+
+\paragraph{Richiesta (b)}
+Nell’ipotesi di idealit\'a dell’operazionale ed assumendo C1 = C2 = C e R1=2, R2=2R,
+derivare analiticamente un’espressione della trasformata di Laplace della funzione di
+trasferimento $A_v(s)=V_{OUT}(s)/V_S(s)$.
+\paragraph{Risposta (b)}
+Ipotesi: l'operazionale \'e ideale ed opera in regime lineare.
+\begin{itemize}
+\item
+  Il ramo nell'ingresso invertente \'e un cortocircuito (equipotenziato) $V_- = V_{OUT}$.
+\item
+  Applico il principio di \textit{cortocircuito virtuale} e di conseguenza $V_+ = V_-$.
+\end{itemize}
+di conseguenza
+\begin{equation*}
+  V_B = V_+ = V_{OUT}
+\end{equation*}
+le successive equazioni nodali appaiate con il risultato precedente permettono di
+ottenere la funzione di trasferimento corretta
+\begin{equation*}
+  \begin{gathered}
+    sC(V_A - V_B) = \frac{V_B}{R_1} \\
+    sC(V_A - V_S) + sC(V_A - V_B) + \frac{V_A - V_B}{R_2} = 0
+  \end{gathered}
+\end{equation*}
+da cui
+\begin{equation}
+  \label{eq:hp-vcvs-butterworth-tfunc}
+  \boxed{H(s) = \frac{2p^2}{2p^2 + 2p + 1}} \impliedby p \equiv sR_2C_2
+\end{equation}
+
+\paragraph{Richiesta (c)}
+Descrivere le propriet\'a analitiche di $A_v(s)$ (ovvero calcolarne zeri e poli) e da queste
+dedurre la stabilit\'a del filtro.
+\paragraph{Risposta (c)}
+Il filtro \'e \textit{stabile} se tutti i poli della funzione $H(s)$ (la sua funzione di trasferimento)
+hanno \textit{parte reale negativa}.
+\begin{itemize}
+\item \'E presente uno zero del secondo ordine.
+\item Sono presenti due poli negativi del primo ordine entrambi con parte reale negativa.
+\end{itemize}
+di conseguenza il filtro \'e stabile. Inoltre lo zero del secondo ordine \'e indicativo
+della forte attenuazione delle basse frequenze.
+
+\paragraph{Richiesta (d)}
+Dalla funzione di trasferimento determinare i valori attesi per le caratteristiche del filtro
+(guadagno massimo, frequenza di taglio, andamento di modulo/fase in funzione della
+frequenza) e confrontarli con quanto misurato al punto 1c.
+\paragraph{Risposta (d)}
+Guadagno massimo.
+Frequenza/e di taglio.
+\begin{equation}
+  \label{eq:hp-vcvs-butterworth-fcut}
+  |H(j\omega)| = \frac{1}{\sqrt{2}}
+\end{equation}
+
+Modulo della funzione di trasferimento.
+Fase della funzione di trasferimento.
+
+
+\paragraph{Richiesta (e)}
+Dare un’interpretazione qualitativa (e se possibile quantitativa) delle caratteristiche del
+segnale di uscita osservato ai punti 1d, 1e.
+\paragraph{Risposta (e)}
