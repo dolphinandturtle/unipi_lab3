@@ -1,0 +1,81 @@
+Si assumano tutti gli operazionali ideali ed operanti in regime lineare. Si considerino i valori
+delle resistenze pari a quelli nominali.
+
+\paragraph{Richiesta (a)}
+Mostrare sulla base di semplici argomenti che i diodi D1 e D2 non possono essere
+simultaneamente nello stesso stato di polarizzazione (se cioè uno è in conduzione l’altro deve
+essere interdetto e viceversa).
+\paragraph{Risposta (a)}
+\begin{quote}
+  ``Entrambi i diodi sono entrambi in conduzione?''
+\end{quote}
+Assumendo senza perdita di generalit\'a una tensione d'ingresso \textit{positiva}
+sul canale $V_S$ allora la tensione fra le resistenze e i diodi dovranno essere di segno
+\textit{concorde} siccome gli elementi resistivi non possiedono reattanza. Assumendo per
+assurdo che entrambi i diodi siano in conduzione si ottiene uno schema di amplificatore
+\textit{invertente}, dunque la tensione all'uscita dell'amplificatore $V_{out}$ avr\'a
+segno \textit{discorde} rispetto tensione d'ingresso $V_S$. Il diodo ``al di sotto''
+dell'ingresso non-invertente non pu\'o essere messo in conduzione perch\'e all'ingresso
+avr\'a potenziale \textit{negativo} e all'uscita potenziale \textit{positivo}, una
+contraddizione (un argomento analogo viene fatto assumendo la tensione d'ingresso \textit{negativa}).
+
+\begin{quote}
+  ``Entrambi i diodi sono entrambi interdetti?''
+\end{quote}
+Se si assumesse invece che nessuno dei diodi \'e in conduzione allora la tensione all'uscita
+dell'amplificatore \'e nulla, quindi nuovamente almeno uno fra i diodi entra in conduzione
+(perch\'e la tensione d'ingresso \'e non nulla), un'altra contraddizione.
+\textit{Almeno uno} dei diodi dovr\'a essere in conduzione.
+
+\paragraph{Richiesta (b)}
+Alla luce del precedente argomento si giustifichino le identità tra le semi-onde di VA, VB, VS
+di cui al punto 1b.
+\paragraph{Risposta (b)}
+Siccome un diodo alla volta pu\'o entrare in conduzione le possibili tensioni all'uscite
+di $V_A$ e $V_B$ sono rispettivamente
+\begin{equation*}
+  \begin{gathered}
+    V_S > 0 \implies \frac{V_S - V_{-U1}}{R_1} = \frac{V_{-U1} - V_{+U3}}{R_2} \\
+    V_S < 0 \implies \frac{V_S - V_{-U1}}{R_1} = \frac{V_{-U1} - V_{+U4}}{R_3}
+  \end{gathered}
+\end{equation*}
+siccome $R_1 = R_2 = R_3$ e $V_{-U1} = V_{+U1} = 0$ allora
+\begin{equation*}
+  \begin{gathered}
+    V_S > 0 \implies
+    \begin{cases}
+      V_{+U3} = -V_S \\
+      V_{+U4} = 0
+    \end{cases} \\
+    V_S < 0 \implies
+    \begin{cases}
+      V_{+U3} = 0 \\
+      V_{+U4} = -V_S
+    \end{cases}
+  \end{gathered} \implies
+  V_{+U3} + V_{+U4} = -V_S
+\end{equation*}
+inoltre $V_{+U3}$ e $V_{+U4}$ sono entrambi delle tensioni d'ingresso a degli \textit{inseguitori}
+di tensione con rispettive uscite $V_A$ e $V_B$, infine dovr\'a valere (scritto in maniera elegante
+ma forse meno leggibile)
+\begin{equation*}
+  V_A = -\max\{V_S, 0\} \qquad V_B = -\min\{V_S, 0\} \qquad V_A + V_B = -V_S
+\end{equation*}
+
+\paragraph{Richiesta (c)}
+Determinare la funzione di trasferimento del secondo stadio del circuito (con ingressi VA e
+VB ed uscita VOUT, verificando che si tratti di un amplificatore differenziale a guadagno
+complesso).
+
+\paragraph{Richiesta (d)}
+Calcolare il modulo del guadagno di modo differenziale atteso nel limite di continua ($f\to 0$)
+e ad 1kHz.
+
+\paragraph{Richiesta (e)}
+Calcolare il valore atteso per il rapporto tra il livello di continua di VOUT e l’ampiezza di VS
+e lo si confronti con la pendenza della retta di best-fit ottenuta al punto 1d.
+
+\paragraph{Richiesta (f)}
+Si dia una stima del valore atteso percentuale dell’ampiezza della prima
+armonica di VOUT, ovvero del rapporto tra la sua escursione ed il suo valor medio, e lo si
+metta in relazione con le misura di ripple di cui al punto 1b.

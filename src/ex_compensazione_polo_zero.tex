@@ -1,0 +1,45 @@
+\paragraph{Richiesta (a)}
+Sulla base di semplici argomenti di natura qualitativa (ovvero discutendone la risposta ai
+limiti del dominio delle frequenze reali senza effettuare il calcolo della funzione di
+trasferimento, come richiesto invece al punto successivo), mostrare che sia il blocco 1
+che l’intero circuito svolgano effettivamente la funzione di filtro passa-basso e calcolare
+per ciascuno il guadagno nel limite di continua.
+
+\paragraph{Richiesta (b)}
+Derivare analiticamente le funzioni di trasferimento $A_1(s)=V_1(s)/V_S(s)$,
+$A_2(s)=V_2(s)/V_1(s)$ nonché la funzione di trasferimento complessiva $A(s)$,
+individuando per ciascuna poli e zeri (si assuma che gli operazionali siano
+ideali e per semplicit\'a che R1=R2=R3=R5=R=10kW, R2=R/10=1kW e C1=C2=C=100nF),
+e verificare che gli andamenti osservati al punto 1a siano in accordo.
+
+\paragraph{Risposta (b)}
+Un'amplificatore invertente con opamp e impedenze ha una soluzione ben nota
+\begin{equation*}
+  H_1(s) = -\frac{R_2 || \frac{1}{sC_1}}{R_1} = -\frac{1}{1 + sRC}
+\end{equation*}
+\begin{equation*}
+  H_2(s) = -\frac{R_5}{\left(R_3 || \frac{1}{sC_2}\right) + R_4} = -10\frac{1 + sRC}{11 + sRC}
+\end{equation*}
+\begin{equation}
+  \label{eq:tfunc-compensazione-polo-zero}
+  \colorbox{blu}{\boxed{H(s) = \frac{10}{11 + sRC}}}
+\end{equation}
+
+\paragraph{Richiesta (c)}
+Dalle espressioni ottenute dedurre i valori attesi per i parametri dei filtri realizzati
+rispettivamente dal blocco 1 e dall’intero circuito (frequenze di taglio, guadagno
+massimo) e confrontarli con le misure di cui al punto 1b.
+
+\paragraph{Richiesta (d)}
+Determinare l’andamento temporale atteso per i segnali in V1 e V2, verificando che
+descrivano con sufficiente accuratezza le forme d’onda osservate al punto 1c.
+
+\paragraph{Richiesta (e)}
+Calcolare i valori attesi per il tempo di discesa di V1 e di salita di V2 e confrontarli con
+quanto misurato al punto 1d.
+
+\paragraph{Richiesta (f)}
+Illustrare qualitativamente l’effetto, sia nel dominio temporale che delle frequenze,
+dell’applicazione del blocco 2 al segnale in V1.
+
+
