@@ -89,14 +89,13 @@ il guadagno \'e ottenuto per mezzo dell'esspressione \ref{eq:da-tfunc-a-gain}
   \label{eq:lp-vcvs-butterworth-gain}
   \colorbox{blu}{\boxed{G(f) = \frac{1}{\sqrt{1 + (64\pi^4R^4C^4)f^4}}}}
 \end{equation}
-per determinare la fase si usa \ref{eq:da-tfunc-a-fase} e siccome il semi-piano occupato \'e quello immaginario negativo
-allora l'opposto della parte immaginaria viene messa a denominatore
+per determinare la fase si usa \ref{eq:da-tfunc-a-fase-immaginario-negativo}
 \begin{equation*}
   \phi(\omega) = \arctan\left(\frac{1 - 2R^2C^2\omega^2}{2RC\omega}\right)
 \end{equation*}
 \begin{equation}
   \label{eq:lp-vcvs-butterworth-phase}
-  \colorbox{blu}{\boxed{\phi(f) = \arctan\left(\frac{1 - 8\pi^2R^2C^2f^2}{4\pi RCf}\right)}}
+  \colorbox{blu}{\boxed{\phi(f) = -\frac{\pi}{2} + \arctan\left(\frac{1 - 8\pi^2R^2C^2f^2}{4\pi RCf}\right)}}
 \end{equation}
 
 
@@ -108,7 +107,7 @@ Frequenza di taglio.
 \end{equation*}
 \begin{equation}
   \label{eq:lp-vcvs-butterworth-fcut}
-  \colorbox{blu}{\boxed{f = \frac{1}{2\sqrt2\cdot RC}}}
+  \colorbox{blu}{\boxed{f = \frac{1}{2\pi\sqrt2\cdot RC}}}
 \end{equation}
 
 \paragraph{Richiesta (d)}

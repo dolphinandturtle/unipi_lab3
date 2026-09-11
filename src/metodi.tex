@@ -32,10 +32,38 @@
 \end{equation}
 
 \paragraph{Fase}
-\begin{equation}
-  \label{eq:da-tfunc-a-fase}
-  \begin{gathered}
-    H(s) = \left(\sum_{i=0}^n sa_i\right)^{-1} \\
-    \implies \phi(\omega) = \frac{\mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N\mathcal{I}_{\omega}^D}{\mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N\mathcal{I}_{\omega}^D}
-  \end{gathered}
-\end{equation}
+\begin{itemize}
+\item Semipiano reale positivo $\mathcal{R}_{\omega}[H(s)] > 0$
+  \begin{equation}
+    \label{eq:da-tfunc-a-fase-reale-positivo}
+    \begin{gathered}
+      \mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N\mathcal{I}_{\omega}^D > 0 \\ \implies
+      \phi(\omega) = \arctan\left(\frac{\mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N\mathcal{I}_{\omega}^D}{\mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N\mathcal{I}_{\omega}^D}\right)
+    \end{gathered}
+  \end{equation}
+\item Semipiano immaginario positivo $\mathcal{I}_{\omega}[H(s)] > 0$
+  \begin{equation}
+    \label{eq:da-tfunc-a-fase-immaginario-positivo}
+    \begin{gathered}
+      \mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N\mathcal{I}_{\omega}^D > 0 \\ \implies
+      \phi(\omega) = \frac{\pi}{2} + \arctan\left(-\frac{\mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N\mathcal{I}_{\omega}^D}{\mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N\mathcal{I}_{\omega}^D}\right)
+    \end{gathered}
+  \end{equation}
+
+\item Semipiano reale negativo $\mathcal{R}_{\omega}[H(s)] < 0$
+  \begin{equation}
+    \label{eq:da-tfunc-a-fase-reale-negativo}
+    \begin{gathered}
+      \mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N\mathcal{I}_{\omega}^D < 0 \\ \implies
+      \phi(\omega) = \pm\pi + \arctan\left(\frac{\mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N\mathcal{I}_{\omega}^D}{\mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N\mathcal{I}_{\omega}^D}\right)
+    \end{gathered}
+  \end{equation}
+\item Semipiano immaginario negativo $\mathcal{I}_{\omega}[H(s)] < 0$
+  \begin{equation}
+    \label{eq:da-tfunc-a-fase-immaginario-negativo}
+    \begin{gathered}
+      \mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N\mathcal{I}_{\omega}^D < 0 \\ \implies
+      \phi(\omega) = -\frac{\pi}{2} + \arctan\left(-\frac{\mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N\mathcal{I}_{\omega}^D}{\mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N\mathcal{I}_{\omega}^D}\right)
+    \end{gathered}
+  \end{equation}
+\end{itemize}
