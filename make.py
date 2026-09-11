@@ -9,6 +9,7 @@ if len(sys.argv) < 2:
 elif sys.argv[1] == "clean":
     call(["rm", "-f", "main.aux"])
     call(["rm", "-f", "main.log"])
+    call(["rm", "-f", "main.out"])
     call(["rm", "-f", "main.pdf"])
 
 

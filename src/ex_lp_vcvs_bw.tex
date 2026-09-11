@@ -1,10 +1,15 @@
 \section*{Lowpass VCVS Butterworth}
-\paragraph{Richiesta (a)}
-Dimostrare, sulla base di semplici argomenti di natura qualitativa, che il circuito proposto
-svolga effettivamente la funzione di filtro passa-basso, discutendone la risposta ai limiti
-del dominio delle frequenze reali.
-\paragraph{Risposta (a)}
 
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (a)}
+    Dimostrare, sulla base di semplici argomenti di natura qualitativa, che il circuito proposto
+    svolga effettivamente la funzione di filtro passa-basso, discutendone la risposta ai limiti
+    del dominio delle frequenze reali.
+  \end{minipage}
+}
+
+\paragraph{Risposta (a)}
 \begin{itemize}
 \item Per $f \to 0$
   i condensatori agiscono da rami aperti, le resistenze hanno impedenze infinite che vengono
@@ -17,14 +22,20 @@ del dominio delle frequenze reali.
   la tensione di uscita deve essere nulla.
 \end{itemize}
 
-\paragraph{Richiesta (b)}
-Derivare analiticamente la funzione di trasferimento complessa $A_v(s)=V_{OUT}(s)/V_S(s)$
-nell’ipotesi che l’operazionale sia ideale (suggerimento: si determini la tensione nel nodo
-A del circuito in termini di $V_S$ e $V_{OUT}$; quindi si esprima $V_A$ in termini di $V_{OUT}$ assumendo
-che l'opAmp funzioni in regime lineare ed utilizzando il principio di cortocircuito
-virtuale; si eguaglino infine le espressioni ottenute per ottenere la funzione di
-trasferimento). Per semplicit\'a di calcolo, si assuma inoltre (ipotesi compatibile con i
-valori e le incertezze nominali dei componenti) che R1=R2=R, C1=C, C2=2C.
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (b)}
+    Derivare analiticamente la funzione di trasferimento complessa $A_v(s)=V_{OUT}(s)/V_S(s)$
+    nell’ipotesi che l’operazionale sia ideale (suggerimento: si determini la tensione nel nodo
+    A del circuito in termini di $V_S$ e $V_{OUT}$; quindi si esprima $V_A$ in termini di $V_{OUT}$ assumendo
+    che l'opAmp funzioni in regime lineare ed utilizzando il principio di cortocircuito
+    virtuale; si eguaglino infine le espressioni ottenute per ottenere la funzione di
+    trasferimento). Per semplicit\'a di calcolo, si assuma inoltre (ipotesi compatibile con i
+    valori e le incertezze nominali dei componenti) che R1=R2=R, C1=C, C2=2C.
+  \end{minipage}
+}
+
 \paragraph{Risposta (b)}
 Ipotesi: l'operazionale \'e ideale ed opera in regime lineare.
 \begin{itemize}
@@ -41,41 +52,65 @@ le successive equazioni nodali appaiate con il risultato precedente permettono d
 ottenere la funzione di trasferimento corretta
 \begin{equation*}
   \begin{gathered}
-    sCV_B = \frac{V_A - V_B}{R} \\
-    \frac{V_A - V_S}{R} + \frac{V_A - V_{OUT}}{R} + 2sC(V_A - V_{OUT})= 0
+    \frac{V_A - V_B}{R} = sCV_{OUT} \iff V_A = (1 + sRC)V_{OUT} \\
+    \frac{V_S - V_A}{R} = \frac{V_A - V_B}{R} + 2sC(V_A - V_{OUT}) \\
+    V_S - V_A = V_A - V_B + 2sRC(V_A - V_{OUT}) \\
+    V_S = (2 + 2sRC)V_A - (1 + 2sRC)V_{OUT} \\
+    V_S = \left[(2 + 2sRC)(1 + sRC) - (1 + 2sRC)\right]V_{OUT} \\
   \end{gathered}
 \end{equation*}
 da cui
 \begin{equation}
   \label{eq:lp-vcvs-butterworth-tfunc}
-  \boxed{H(s) = \frac{1}{2p^2 + 2p + 1}} \impliedby p \equiv sR_1C_1
+  \colorbox{blu}{\boxed{H(s) = \frac{1}{1 + 2RCs + 2R^2C^2s^2}}}
 \end{equation}
 
-\paragraph{Richiesta (c)}
-Dalla funzione di trasferimento dedurre le caratteristiche del filtro osservate al punto 1)
-(guadagno a centro-banda, frequenza di taglio, andamento di modulo/fase in funzione
-della frequenza) e confrontarle con quanto misurato ai punti 1c, 1d, 1e.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (c)}
+    Dalla funzione di trasferimento dedurre le caratteristiche del filtro osservate al punto 1)
+    (guadagno a centro-banda, frequenza di taglio, andamento di modulo/fase in funzione
+    della frequenza) e confrontarle con quanto misurato ai punti 1c, 1d, 1e.
+  \end{minipage}
+}
+
 \paragraph{Risposta (c)}
-Guadagno a centro banda ???
+il guadagno \'e ottenuto per mezzo dell'esspressione \ref{eq:da-tfunc-a-gain}
+\begin{equation*}
+  \begin{gathered}
+    \begin{cases}
+      \mathcal{R}_{\omega}^N = 1 & \mathcal{I}_{\omega}^N = 0 \\
+      \mathcal{R}_{\omega}^D = 1 - 2R^2C^2\omega^2 & \mathcal{I}_{\omega}^D = -2RC\omega
+    \end{cases} \\
+    G(\omega) = \frac{1}{\sqrt{(1 - 2R^2C^2\omega^2)^2 + (-2RC\omega)^2}} = \frac{1}{\sqrt{1 + (4R^4C^4)\omega^4}}
+  \end{gathered}
+\end{equation*}
+\begin{equation}
+  \label{eq:lp-vcvs-butterworth-gain}
+  \colorbox{blu}{\boxed{G(f) = \frac{1}{\sqrt{1 + (64\pi^4R^4C^4)f^4}}}}
+\end{equation}
+per determinare la fase si usa \ref{eq:da-tfunc-a-fase} e siccome il semi-piano occupato \'e quello immaginario negativo
+allora l'opposto della parte immaginaria viene messa a denominatore
+\begin{equation*}
+  \phi(\omega) = \arctan\left(\frac{1 - 2R^2C^2\omega^2}{2RC\omega}\right)
+\end{equation*}
+\begin{equation}
+  \label{eq:lp-vcvs-butterworth-phase}
+  \colorbox{blu}{\boxed{\phi(f) = \arctan\left(\frac{1 - 8\pi^2R^2C^2f^2}{4\pi RCf}\right)}}
+\end{equation}
+
+
 Frequenza di taglio.
+\begin{equation*}
+  \begin{gathered}
+    G(f) = \frac{\max\{G(\omega)\}}{\sqrt2} = \frac{1}{\sqrt2} \implies \frac{1}{\sqrt{1 + (64\pi^4R^4C^4)f^4}} = \frac{1}{\sqrt2} \\
+  \end{gathered}
+\end{equation*}
 \begin{equation}
   \label{eq:lp-vcvs-butterworth-fcut}
-  |H(j\omega)| = \frac{\max|H(j\omega)|}{\sqrt2} = \frac{1}{\sqrt2} \implies f_0 = \frac{1}{2\pi\sqrt2 RC}
-\end{equation}
-
-Modulo della funzione di trasferimento in funzione della frequenza. ???
-\begin{equation}
-  \label{eq:lp-vcvs-butterworth-gain}
-  |H(j\omega)| = \frac{1}{\sqrt{1 + 4\omega^2R^4C^4}}
-\end{equation}
-
-Fase della funzione di trasferimento in funzione della frequenza.
-\begin{equation}
-  \label{eq:lp-vcvs-butterworth-gain}
-  \angle H(j\omega) = -\arctan\left(\frac{2\omega RC}{1 - 2\omega^2R^2C^2}\right)
+  \colorbox{blu}{\boxed{f = \frac{1}{2\sqrt2\cdot RC}}}
 \end{equation}
 
 \paragraph{Richiesta (d)}
 Dare un’interpretazione qualitativa (e se possibile quantitativa) delle caratteristiche del
 segnale di uscita osservato al punto 1f. Che tipo di segnale appare? A quale ampiezza?
-\paragraph{Risposta (d)}

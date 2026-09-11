@@ -1,0 +1,41 @@
+\section*{Metodi}
+
+\begin{equation}
+  \begin{gathered}
+    p(s) = \sum_{i=0}^n a_is^i \implies
+    \begin{cases}
+      \mathcal{R}_{\omega}[p] \equiv \sum_{i=0}^{\lfloor n/2\rfloor} (-1)^ia_{2i}\omega^{2i} \\
+      \mathcal{I}_{\omega}[p] \equiv \sum_{i=1}^{\lfloor n/2\rfloor} (-1)^{i+1}a_{2i+1}\omega^{2i+1}
+    \end{cases}
+  \end{gathered}
+\end{equation}
+
+\paragraph{Forma canonica}
+\begin{equation}
+  \label{eq:forma-canonica}
+  \begin{gathered}
+    H(s) = \frac{\sum_i a_is^i}{\sum_i b_is^i} = \frac{N(s)}{D(s)} = \frac{\mathcal{R}_{\omega}^N + j\mathcal{I}_{\omega}^N}{\mathcal{R}_{\omega}^D + j\mathcal{I}_{\omega}^D} \\
+    = \frac{(\mathcal{R}_{\omega}^N + j\mathcal{I}_{\omega}^N)(\mathcal{R}_{\omega}^D - j\mathcal{I}_{\omega}^D)}{(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2} \\
+    = \left(\frac{(\mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N\mathcal{I}_{\omega}^D)}{(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2}\right) + j\left(\frac{(\mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N\mathcal{I}_{\omega}^D)}{(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2}\right)
+  \end{gathered}
+\end{equation}
+
+\paragraph{Guadagno}
+\begin{equation}
+  \label{eq:da-tfunc-a-gain}
+  \begin{gathered}
+    G(\omega)^2 \equiv |H(j\omega)|^2 = H(j\omega)\overline{H(j\omega)} = \\
+    \frac{(\mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N(\mathcal{I}_{\omega}^D))^2 + (\mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N(\mathcal{I}_{\omega}^D))^2}{((\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2)^2} =
+    \frac{(\mathcal{R}_{\omega}^N)^2(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^N)^2(\mathcal{I}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^N)^2(\mathcal{R}_{\omega}^D)^2 + (\mathcal{R}_{\omega}^N)^2(\mathcal{I}_{\omega}^D)^2}{((\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2)^2} = \\
+    \frac{((\mathcal{R}_{\omega}^N)^2 + (\mathcal{I}_{\omega}^N)^2)((\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2)}{((\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2)^2} = \frac{(\mathcal{R}_{\omega}^N)^2 + (\mathcal{I}_{\omega}^N)^2}{(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2}
+  \end{gathered}
+\end{equation}
+
+\paragraph{Fase}
+\begin{equation}
+  \label{eq:da-tfunc-a-fase}
+  \begin{gathered}
+    H(s) = \left(\sum_{i=0}^n sa_i\right)^{-1} \\
+    \implies \phi(\omega) = \frac{\mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N\mathcal{I}_{\omega}^D}{\mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N\mathcal{I}_{\omega}^D}
+  \end{gathered}
+\end{equation}
