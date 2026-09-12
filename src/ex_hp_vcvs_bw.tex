@@ -107,7 +107,8 @@ il filtro \'e \textbf{stabile} perch\'e entrambi i suoi poli hanno parte reale n
   \end{minipage}
 }
 \paragraph{Risposta (d)}
-Le parti reali ed immaginarie del filtro sono, rispettivamente
+Il guadagno si ottiene mediante \ref{eq:da-tfunc-a-gain}, calcolando le parti reali ed immaginarie del
+numeratore e denominatore della forma canonica della funzione di trasferimento $H(s)$ si ottiene
 \begin{equation*}
   \begin{gathered}
     \begin{cases}
@@ -115,27 +116,29 @@ Le parti reali ed immaginarie del filtro sono, rispettivamente
       \mathcal{I}_{\omega}^N = 0 \\
       \mathcal{R}_{\omega}^D = 1-2R^2C^2\omega^2 \\
       \mathcal{I}_{\omega}^D = 2RC\omega
-    \end{cases} \\ \implies
-    G(\omega) = \frac{\sqrt{(-2R^2C^2\omega^2)^2}}{\sqrt{(1-2R^2C^2\omega^2)^2 + (2RC\omega)^2}} = 
-    \frac{2R^2C^2\omega^2}{\sqrt{1+4R^4C^4\omega^4}}
+    \end{cases} \implies
+    G(\omega) = \sqrt{\frac{(-2R^2C^2\omega^2)^2}{(1-2R^2C^2\omega^2)^2 + (2RC\omega)^2}}
   \end{gathered}
 \end{equation*}
+semplificando l'espressione e sostituendo $\omega \to 2\pi f$ si ottiene il guadagno in funzione
+della frequenza
 \begin{equation}
   \label{eq:hp-vcvs-butterworth-gain}
   \colorbox{blu}{\boxed{G(f) = \frac{8\pi^2R^2C^2f^2}{\sqrt{1+64\pi^4R^4C^4f^4}}}}
 \end{equation}
 Per calcolare l'espressione della fase bisogna prima identificare il semi-piano
-di appartenenza
+di appartenenza, il segno della parte reale \'e determinata da
 \begin{equation*}
-  \begin{gathered}
-    \mathcal{R}_{\omega}[H(s)] = (-2R^2C^2\omega^2)(1-2R^2C^2\omega^2) \\
-    \mathcal{I}_{\omega}[H(s)] = -(-2R^2C^2\omega^2)(2RC\omega) = 4R^3C^3\omega^3 > 0
-  \end{gathered}
+  (-2R^2C^2\omega^2)(1-2R^2C^2\omega^2)
 \end{equation*}
-quindi la fase $\phi$ viene calcolata attraverso la \ref{eq:da-tfunc-a-fase-immaginario-positivo}
+il segno non \'e ben determinato per ogni $\omega \in [0, +\infty)$. Invece, il segno
+della parte immaginaria \'e determinata da
 \begin{equation*}
-  \phi(\omega) = \frac{\pi}{2} + \arctan\left(\frac{1-2R^2C^2\omega^2}{2RC\omega}\right)
+  -(-2R^2C^2\omega^2)(2RC\omega) = 4R^3C^3\omega^3 > 0
 \end{equation*}
+di conseguenza il semipiano \'e quello \textit{immaginario positivo} da cui
+la fase $\phi$ in funzione della frequenza viene calcolata attraverso la \ref{eq:da-tfunc-a-fase-immaginario-positivo}
+e la sostituzione $\omega \to 2\pi f$
 \begin{equation}
   \label{eq:hp-vcvs-butterworth-fase}
   \colorbox{blu}{\boxed{\phi(f) = \frac{\pi}{2} + \arctan\left(\frac{1-8\pi^2R^2C^2f^2}{4\pi RCf}\right)}}

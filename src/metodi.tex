@@ -15,8 +15,8 @@
   \label{eq:forma-canonica}
   \begin{gathered}
     H(s) = \frac{\sum_i a_is^i}{\sum_i b_is^i} = \frac{N(s)}{D(s)} = \frac{\mathcal{R}_{\omega}^N + j\mathcal{I}_{\omega}^N}{\mathcal{R}_{\omega}^D + j\mathcal{I}_{\omega}^D} \\
-    = \frac{(\mathcal{R}_{\omega}^N + j\mathcal{I}_{\omega}^N)(\mathcal{R}_{\omega}^D - j\mathcal{I}_{\omega}^D)}{(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2} \\
-    = \left(\frac{(\mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N\mathcal{I}_{\omega}^D)}{(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2}\right) + j\left(\frac{(\mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N\mathcal{I}_{\omega}^D)}{(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2}\right)
+    \mathcal{R}_{\omega}[H(s)] = \frac{(\mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N\mathcal{I}_{\omega}^D)}{(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2} \quad
+    \mathcal{I}_{\omega}[H(s)] = \frac{(\mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N\mathcal{I}_{\omega}^D)}{(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2}
   \end{gathered}
 \end{equation}
 
@@ -24,10 +24,7 @@
 \begin{equation}
   \label{eq:da-tfunc-a-gain}
   \begin{gathered}
-    G(\omega)^2 \equiv |H(j\omega)|^2 = H(j\omega)\overline{H(j\omega)} = \\
-    \frac{(\mathcal{R}_{\omega}^N\mathcal{R}_{\omega}^D + \mathcal{I}_{\omega}^N(\mathcal{I}_{\omega}^D))^2 + (\mathcal{I}_{\omega}^N\mathcal{R}_{\omega}^D - \mathcal{R}_{\omega}^N(\mathcal{I}_{\omega}^D))^2}{((\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2)^2} =
-    \frac{(\mathcal{R}_{\omega}^N)^2(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^N)^2(\mathcal{I}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^N)^2(\mathcal{R}_{\omega}^D)^2 + (\mathcal{R}_{\omega}^N)^2(\mathcal{I}_{\omega}^D)^2}{((\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2)^2} = \\
-    \frac{((\mathcal{R}_{\omega}^N)^2 + (\mathcal{I}_{\omega}^N)^2)((\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2)}{((\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2)^2} = \frac{(\mathcal{R}_{\omega}^N)^2 + (\mathcal{I}_{\omega}^N)^2}{(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2}
+    G(\omega)^2 \equiv H(j\omega)\overline{H(j\omega)} = \frac{(\mathcal{R}_{\omega}^N)^2 + (\mathcal{I}_{\omega}^N)^2}{(\mathcal{R}_{\omega}^D)^2 + (\mathcal{I}_{\omega}^D)^2}
   \end{gathered}
 \end{equation}
 
