@@ -7,26 +7,32 @@
     svolga effettivamente la funzione di filtro passa-banda, discutendone la risposta ai limiti
     del dominio delle frequenze reali.
   \end{minipage}
-} \smallskip \\
-\noindent\colorbox{blu}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Risposta (a)}
-    La tensione d'ingresso $V_S$ attraversa un arrangiamento di partitori configurati come
-    un filtro passa basso (passivo) e un filtro passa alto (passivo) collegati a cascata;
-    il filtro passa basso ha un ramo in comune con la retroazione dell'opamp.
-    L'opamp segue lo schema non invertente.
-  
-    Al limite del dominio delle frequenze reali si manifestano le seguenti condizioni
-    \begin{itemize}
-    \item
-      Per frequenze $f \to 0$ i condensatori si comportanto come rami aperti. Lo schema
-      del circuito pu\'o essere ricondotto allo schema di un amplificatore invertente.
-    \item
-      Per frequenze $f \to \infty$ i condensatori si comportanto come corto-circuiti.
-      La corrente \'e banalmente diretta verso terra. Il guadagno \'e zero.
-    \end{itemize}
-  \end{minipage}
-} \smallskip \\
+}
+\paragraph{Risposta (a)}
+La tensione d'ingresso $V_S$ attraversa un arrangiamento di partitori configurati come
+un filtro passa basso (passivo) e un filtro passa alto (passivo) collegati a cascata;
+il filtro passa basso ha un ramo in comune con la retroazione dell'opamp.
+L'opamp segue lo schema non invertente.
+
+Al limite del dominio delle frequenze reali si manifestano le seguenti condizioni
+\begin{itemize}
+\item
+  Per frequenze $f \to 0$ i condensatori si comportanto come rami aperti il nodo B
+  \'e messo a terra e nel regime di operazione lineare
+  \begin{equation*}
+    V_{OUT} = A_d(0-V_-) = A_d(0-kV_{OUT})
+  \end{equation*}
+  la tensione all'ingresso dell'ingresso invertente ha un fattore di partizione positivo
+  $k$ (non \'e necessario calcolarlo)
+  \begin{equation*}
+    A_d(0-kV_{OUT}) \implies V_{OUT} = \frac{1}{1+kA_d}
+  \end{equation*}
+  per guadagni differenziali elevati la tensione $\colorbox{blu}{\boxed{V_{OUT} \to 0}}$
+\item
+  Per frequenze $f \to \infty$ i condensatori si comportanto come corto-circuiti il nodo A
+  \'e messo a terra, la tensione al nodo B \'e nulla quindi, per un argomento analogo al caso
+  $f\to 0$, per guadagni differenziali elevati la tensione $\colorbox{blu}{\boxed{V_{OUT} \to 0}}$.
+\end{itemize}
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
@@ -40,16 +46,56 @@
     compatibile con i valori e le incertezze nominali dei componenti) che R1 = R3 = R, R2 =
     2 R, C1 = C2 = C, $R_B$ = 5/3 $R_A$.
   \end{minipage}
-} \smallskip \\
-\noindent\colorbox{blu}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Risposta (b)}
-    \begin{equation}
-      \label{eq:bp-vcvs-tfunc}
-      \boxed{H(s) = \frac{8p}{3p^2 + p + 3}} \impliedby p \equiv sR_1C_1
-    \end{equation}
-  \end{minipage}
-} \smallskip \\
+}
+\paragraph{Risposta (b)}
+La richiesta porta con se un suggerimento, seguendolo per il nodo A vale
+\begin{equation*}
+  \frac{V_S - V_A}{R} = sCV_A + sC(V_A - V_B) + \frac{V_A - V_{OUT}}{R}
+\end{equation*}
+quindi l'espressione della KCL per il nodo A include i termini $V_A$ e $V_{OUT}$
+successivamente, sempre seguendo le istruzioni date si trovano ulteriori
+relazioni per i nodi $V_A$ e $V_B$
+\begin{equation*}
+  sC(V_A - V_B) = \frac{V_B}{2R}
+\end{equation*}
+assumendo che l'opamp sia ideale e che operi in regime lineare si applica
+il principio di corto-circuito virtuale $V_+ = V_-$ da cui
+\begin{equation*}
+  \begin{gathered}
+    \begin{cases}
+      \frac{V_{OUT} - V_-}{2R} = \frac{V_-}{\frac65R} \\
+      V_B = V_+ = V_-
+    \end{cases} \implies
+    \frac{V_{OUT} - V_B}{2R} = \frac{V_B}{\frac65R} \\
+    V_B = \frac38V_{OUT}
+  \end{gathered}
+\end{equation*}
+ora $V_B$ \'e puramente espressione di $V_{OUT}$ questo permetter\'a
+di trovare una relazione analoga per $V_A$
+\begin{equation*}
+  \begin{gathered}
+    \begin{cases}
+      sC(V_A - V_B) = \frac{V_B}{2R} \\
+      V_B = \frac38V_{OUT}
+    \end{cases} \implies
+    sC\left(V_A - \frac38V_{OUT}\right) = \frac{\frac38V_{OUT}}{2R} \\
+    V_A = \frac38\left(\frac{1 + 2RCs}{2RCs}\right)V_{OUT}
+  \end{gathered}
+\end{equation*}
+ora $V_B$ e $V_A$ sono espressioni unicamente di $V_{OUT}$. Ora si riduce
+la prima equazione nodale trovata all'inizio di questa risposta
+\begin{equation*}
+  V_S = (2 + 2sRC)V_A - sRCV_B -V_{OUT}
+\end{equation*}
+e si sostituiscono $V_A$ e $V_B$ con le loro espressioni in termini di $V_{OUT}$
+\begin{equation*}
+  V_S = \left[\frac38(2 + 2sRC)\left(\frac{1 + 2RCs}{2RCs}\right) - 1 - \frac38sRC\right]V_{OUT}
+\end{equation*}
+l'espressione finale per la funzione di trasferimento complessa
+\begin{equation}
+  \label{eq:bp-vcvs-tfunc}
+  \colorbox{blu}{\boxed{H(s) = \frac{8RCs}{3 + RCs + 3R^2C^2s^2}}}
+\end{equation}
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
@@ -58,40 +104,74 @@
     centrale, guadagno massimo e larghezza banda) e confrontarli con le misure di cui ai
     punti 1a, 1b, 1c.
   \end{minipage}
-} \smallskip \\
-\noindent\colorbox{blu}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Risposta (c)}
-    frequenza centrale
-    \begin{equation}
-      \label{eq:bp-vcvs-freq-centr}
-      \omega_0 = \frac{1}{RC} \quad f_0 = \frac{1}{2 \pi RC}
-    \end{equation}
-  
-    guadagno massimo
-    \begin{equation}
-      \label{eq:bp-vcvs-gain-max}
-      H(j\omega_0) = 8
-    \end{equation}
-  
-    larghezza di banda
-    \begin{equation}
-      \label{eq:bp-vcvs-bw}
-      ???
-    \end{equation}
-  \end{minipage}
-} \smallskip \\
+}
+\paragraph{Risposta (c)}
+Le parti reali e immaginarie del numeratore e denominatore
+\begin{equation*}
+  \begin{cases}
+    \mathcal{R}_{\omega}^N = 0 \\
+    \mathcal{I}_{\omega}^N = 8RC \\
+    \mathcal{R}_{\omega}^D = 3 - 3R^2C^2 \\
+    \mathcal{I}_{\omega}^D = RC
+  \end{cases} \implies
+  G(\omega) = \sqrt{\frac{(8RC\omega)^2}{(3 - 3R^2C^2\omega^2)^2 + (RC\omega)^2}}
+\end{equation*}
+il guadagno \'e ottenuto dall'espressione \ref{eq:da-tfunc-a-gain}
+\begin{equation}
+  \label{eq:bp-vcvs-gain}
+  G(f) = \frac{16\pi RCf}{\sqrt{9 - 68\pi^2R^2C^2f^2 + 144\pi^4R^4C^4f^4}}
+\end{equation}
+il guadagno massimo pu\'o essere ottenuto semplicemente riducendo l'espressione
+del guadagno trovata in precedenza (in funzione della pulsazione $\omega$) nella
+seguente forma
+\begin{equation*}
+  G(\omega) = \frac{8}{\sqrt{\left(\frac{3 - 3R^2C^2\omega^2}{RC\omega}\right)^2 + 1}}
+\end{equation*}
+il numeratore assume valore minimo per $3 - 3R^2C^2\omega^2 = 0$ e quindi il guadagno \'e
+\begin{equation}
+  \label{eq:bp-vcvs-gain-max}
+  \colorbox{blu}{\boxed{\max_{\omega \in [0, +\infty)} G(\omega) = 8}}
+\end{equation}
+inoltre sostituendo $\omega \to 2\pi f$ alla condizione di minimizzazione si ricava la
+frequenza centrale
+\begin{equation}
+  \label{eq:bp-vcvs-frequenza-centrale}
+  \colorbox{blu}{\boxed{f = \frac{1}{2\pi RC}}}
+\end{equation}
+Un modo di ottenere la larghezza di banda richiede le frequenze di taglio, si calcolano
+vincolando il guadagno quadro alla met\'a del suo guadagno massimo quadro (si usa il guadagno
+in funzione della pulsazione per facilitare i calcoli)
+\begin{equation*}
+  \begin{gathered}
+    \frac{8RC\omega}{\sqrt{9 - 17R^2C^2\omega^2 + 9R^4C^4\omega^4}} = \frac{8}{\sqrt2} \\ \implies
+    9 - 19R^2C^2\omega^2 + 9R^4C^4\omega^4 = 0
+  \end{gathered}
+\end{equation*}
+un ulteriore sostituzione $R^2C^2\omega^2 \to \xi$ semplifica il problema ulteriormente ad
+un polinomio di ordine 2
+\begin{equation*}
+  \begin{gathered}
+    9 - 19\xi + 9\xi^2 = 0 \\
+    \xi = \frac{19 \pm \sqrt{37}}{18}
+  \end{gathered}
+\end{equation*}
+sostituendo $\xi \to R^2C^2\omega^2$ e $\omega \to 2\pi f$ si ottiene
+\begin{equation*}
+  \begin{gathered}
+    4\pi^2R^2C^2f^2 = \frac{19 \pm \sqrt{37}}{18} \implies
+    f_{L,H} = \frac{1}{2\pi RC}\sqrt{\frac{19 \pm \sqrt{37}}{18}}
+  \end{gathered}
+\end{equation*}
+dunque la larghezza di banda $\Delta f = f_H - f_L$
+\begin{equation}
+  \label{eq:bp-vcvs-bw}
+  \colorbox{blu}{\boxed{\Delta f = \frac{1}{2\pi\sqrt{18}RC}\left[\sqrt{19 + \sqrt{37}} - \sqrt{19 - \sqrt{37}}\right]}}
+\end{equation}
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
     \paragraph{Richiesta (d)}
     Dare un’interpretazione qualitativa (e se possibile quantitativa) delle caratteristiche del
     segnale di uscita osservato al punto 1d. Che tipo di segnale appare? A quale ampiezza?
-  \end{minipage}
-} \smallskip \\
-\noindent\colorbox{blu}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Risposta (d)}
-    Leggi punto 1d per rispondere a questa domanda. Tuttavia questo circuito si dovrebbe comportare come una selettore spettrale, ovvero seleziona un armonica di un segnale complesso esprimbile per combinazione lineare di sinusoidi.
   \end{minipage}
 }
