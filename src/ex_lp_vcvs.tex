@@ -9,70 +9,175 @@
     1c.
   \end{minipage}
 }
+
 \paragraph{Risposta (a)}
 \begin{itemize}
 \item
-  \noindent\colorbox{blu}{
-    \begin{minipage}{.9\linewidth}
-      Per $f \to 0$
-      i condensatori agiscono da rami aperti, il circuito complessivo prende la forma di un amplificatore
-      invertente il cui guadagno \'e \underline{non} nullo.
-    \end{minipage}
-  }
-\item
-  \noindent\colorbox{blu}{
-    \begin{minipage}{.9\linewidth}
-      Per $f \to \infty$
-      i condensatori agiscono da \textit{corto-circuiti} e l'ingresso non invertente viene messo a terra,
-      la mancanza di componenti attive fra l'ingresso invertente e il nodo di tensione d'uscita \'e
-      sufficiente per dire che essa \'e nulla.
-    \end{minipage}
-  }
+  Per $f \to 0$ i condensatori $C_1$ e $C_2$ aprono i loro rami. Il circuito opera
+  come un amplificatore \underline{non}-invertente. La tensione al nodo A \'e la
+  tensione sorgente \textit{partita} dal partitore di tensione $(R_1, R_2)$
+  \begin{equation*}
+    V_A = \frac12 V_s
+  \end{equation*}
+  $R_3$ \'e una resistenza finita trascurabile rispetto all'impendenza ``grande'' dell'opamp,
+  di conseguenza la tensione dell'ingresso invertente
+  \begin{equation*}
+    V_+ = \frac12 V_s
+  \end{equation*}
+  In maniera del tutto analoga a quanto detto in precedenza, la tensione dell'ingresso
+  invertente
+  \begin{equation*}
+    V_- = \frac12 V_{OUT}
+  \end{equation*}
+  Se l'opamp opera in regime di linearit\'a $V_{OUT} = A_dV_d$
+  \begin{equation*}
+    V_{OUT} = \frac12 A_d(V_s - V_{OUT}) \implies \colorbox{blu}{\boxed{V_{OUT} = \frac{A_d}{2 + A_d}V_s}}
+  \end{equation*}
+  nel limite di basse frequenze il circuito ha un andamento compatibile con quello di
+  un circuito filtro passa basso.
+\item Per $f \to +\infty$ il condensatore $C_1$ ``corto-circuita'' il proprio ramo
+  cos\'i che $V_+ = 0$. Se l'opamp opera in regime di linearit\'a $V_{OUT} = A_dV_d$
+  \begin{equation*}
+    V_{OUT} = A_d(0 - V_-) = -A_dV_{OUT} \implies \colorbox{blu}{\boxed{V_{OUT} = \frac{0}{1 + A_d} = 0}}
+  \end{equation*}
+  nel limite di alte frequenze il circuito ha un andamento compatibile con quello di
+  un circuito filtro passa basso.
 \end{itemize}
 
-\paragraph{Richiesta (b)}
-Derivare analiticamente la trasformata di Laplace della funzione di trasferimento $A_v(s) =
-V_{OUT}(s)/V_S(s)$ nell’ipotesi che l’operazionale sia ideale ed i valori di resistenze e capacit\'a
-siano pari a quelli nominali, ovvero valgano le relazioni C1=C2=C, R1=R2=R, R3=2R,
-R4=R5 (\textit{suggerimento: si determini la tensione nel punto A del circuito in termini di VS e
-$V_{OUT}$; si determini quindi la tensione all’ingresso non invertente dell’operazionale e
-l’ulteriore relazione tra $V_A$ e $V_{OUT}$ assumendo che l'operazionale funzioni in regime lineare}).
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (b)}
+    Derivare analiticamente la trasformata di Laplace della funzione di trasferimento $A_v(s) =
+    V_{OUT}(s)/V_S(s)$ nell’ipotesi che l’operazionale sia ideale ed i valori di resistenze e capacit\'a
+    siano pari a quelli nominali, ovvero valgano le relazioni C1=C2=C, R1=R2=R, R3=2R,
+    R4=R5 (\textit{suggerimento: si determini la tensione nel punto A del circuito in termini di VS e
+      $V_{OUT}$; si determini quindi la tensione all’ingresso non invertente dell’operazionale e
+      l’ulteriore relazione tra $V_A$ e $V_{OUT}$ assumendo che l'operazionale funzioni in regime lineare}).
+  \end{minipage}
+}
+
 \paragraph{Risposta (b)}
-\begin{itemize}
-\item
-  Nell'ipotesi di \textit{corto-circuito virtuale} $V_+ = V_-$
-\item
-  La tensione all'ingresso invertente risulta da un partitore di tensione, che in
-  questa esatta configurazione e propriamente un \textit{dimezzatore di tensione}
-  \begin{equation*}
-    V_- \equiv \frac{R_1}{R_1 + R_1}V_{OUT} = \frac12V_{OUT}
-  \end{equation*}
-\end{itemize}
-da cui
+La richiesta porta con se un suggerimento, seguendolo per il nodo A vale
 \begin{equation*}
-  V_B = 2V_{OUT}
+  \frac{V_S - V_A}{R} = \frac{V_A}{R} + \frac{V_A - V_B}{2R} + sC(V_A - V_{OUT})
 \end{equation*}
-quest'ultimo appaiato con i succesivi vincoli sulle correnti fra i nodi
+quindi l'espressione della KCL per il nodo A include i termini $V_A$ e $V_{OUT}$
+successivamente, sempre seguendo le istruzioni date si trovano ulteriori
+relazioni per i nodi $V_A$ e $V_B$
+\begin{equation*}
+  \frac{V_A - V_B}{2R} = sCV_B
+\end{equation*}
+assumendo che l'opamp sia ideale e che operi in regime lineare si applica
+il principio di corto-circuito virtuale $V_+ = V_-$ da cui
 \begin{equation*}
   \begin{gathered}
-    \frac{V_B - V_A}{2R} + sCV_B = 0 \\
-    \frac{V_A - V_S}{R} + \frac{V_A}{R} + \frac{V_A - V_B}{2R} + sC(V_A - V_{OUT}) = 0
+    \begin{cases}
+      \frac{V_{OUT} - V_-}{R} = \frac{V_-}{R} \\
+      V_B = V_+ = V_-
+    \end{cases} \implies
+    \frac{V_{OUT} - V_B}{R} = \frac{V_B}{R} \\
+    V_B = \frac12V_{OUT}
   \end{gathered}
 \end{equation*}
-permette di ricavare la funzione di trasferimento dalla soluzione del sistema lineare
+ora $V_B$ \'e puramente espressione di $V_{OUT}$ questo permetter\'a
+di trovare una relazione analoga per $V_A$
+\begin{equation*}
+  \begin{gathered}
+    \begin{cases}
+      \frac{V_A - V_B}{2R} = sCV_B \\
+      V_B = \frac12V_{OUT}
+    \end{cases} \implies
+    \frac{V_A - \frac12V_{OUT}}{2R} = sC\frac12V_{OUT} \\
+    V_A = \frac12(1 + 2sRC)V_{OUT}
+  \end{gathered}
+\end{equation*}
+ora $V_B$ e $V_A$ sono espressioni unicamente di $V_{OUT}$. Ora si riduce
+la prima equazione nodale trovata all'inizio di questa risposta
+\begin{equation*}
+  V_S = \frac12(5 + 2sRC)V_A - \frac12V_B - sRCV_{OUT}
+\end{equation*}
+e si sostituiscono $V_A$ e $V_B$ con le loro espressioni in termini di $V_{OUT}$
+\begin{equation*}
+  V_S = \frac14\left[(5 + 2sRC)(1 + 2sRC) - 1 - 4sRC\right]V_{OUT}
+\end{equation*}
+l'espressione finale per la funzione di trasferimento complessa
 \begin{equation}
   \label{eq:lp-vcvs-tfunc}
-  \colorbox{blu}{\boxed{H(s) = \frac{1}{(1 + p^2)} \impliedby p \equiv sR_1C_1}}
+  \colorbox{blu}{\boxed{H(s) = \frac{1}{(1 + RCs)^2}}}
 \end{equation}
 
-
-\paragraph{Richiesta (c)}
-Dalla funzione di trasferimento dedurre le caratteristiche del filtro osservate al punto 1)
-(guadagno a centro-banda, frequenza naturale, andamento di modulo/fase in funzione della
-frequenza) e confrontarli con quanto misurato ai punti 1c, 1d, 1e.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (c)}
+    Dalla funzione di trasferimento dedurre le caratteristiche del filtro osservate al punto 1)
+    (guadagno a centro-banda, frequenza naturale, andamento di modulo/fase in funzione della
+    frequenza) e confrontarli con quanto misurato ai punti 1c, 1d, 1e.
+  \end{minipage}
+}
 \paragraph{Risposta (c)}
+Le parti reali e immaginarie del numeratore e denominatore
+\begin{equation*}
+  \begin{cases}
+    \mathcal{R}_{\omega}^N = 1 \\
+    \mathcal{I}_{\omega}^N = 0 \\
+    \mathcal{R}_{\omega}^D = 1 - R^2C^2\omega^2 \\
+    \mathcal{I}_{\omega}^D = 2RC\omega
+  \end{cases} \implies
+  G(\omega) = \sqrt{\frac{1}{(1 - R^2C^2\omega^2)^2 + (2RC\omega)^2}}
+\end{equation*}
+il guadagno \'e ottenuto dall'espressione \ref{eq:da-tfunc-a-gain}
+\begin{equation}
+  \label{eq:lp-vcvs-gain}
+  G(f) = \frac{1}{1 + 4\pi^2R^2C^2f^2}
+\end{equation}
+il denominatore \'e positivo monotono crescente, limitato inferiormente a $G(f) = 1$,
+di conseguenza il guadagno massimo, essando il reciproco del denominatore \'e proprio
+quell'estremo inferiore
+\begin{equation}
+  \label{eq:lp-vcvs-gain-max}
+  \colorbox{blu}{\boxed{\max_{f \in [0, +\infty)} G(f) = G(0) = 1}}
+\end{equation}
+la frequenza centrale \'e la frequenza per cui il guadagno \'e massimo
+\begin{equation}
+  \label{eq:lp-vcvs-frequenza-centrale}
+  \colorbox{blu}{\boxed{f = 0}}
+\end{equation}
+ad ogni polo della funzione di trasferimento complessa $H(s)$ corrisponde una
+frequenza naturale\footnotemark
 
-\paragraph{Richiesta (d)}
-Dare un’interpretazione qualitativa e quantitativa delle caratteristiche del segnale di uscita
-osservato al punto 1f. Che tipo di segnale appare? A quale ampiezza?
-\paragraph{Risposta (d)}
+\footnotetext{
+  Il viceversa non \'e vero in generale, alcune frequenze naturali
+  corrispondono a particolari condizioni iniziali
+  ``Desoer, Charles (1969). Basic circuit theory. McGraw-Hill pag. 643''
+}
+
+\begin{equation}
+  \label{eq:lp-vcvs-frequenza-naturale}
+  \colorbox{blu}{\boxed{f = \frac{1}{2\pi RC}}}
+\end{equation}
+
+Per calcolare l'espressione della fase bisogna prima identificare il semi-piano di appartenenza,
+il sengo della parte reale \'e determinata da
+\begin{equation*}
+  1-R^2C^2\omega^2
+\end{equation*}
+il segno non \'e be determinato per ogni $\omega \in [0, +\infty)$. Invece, il segno della parte
+immaginaria \'e determinata da
+\begin{equation*}
+  2RC\omega > 0
+\end{equation*}
+di conseguenza il semipiano \'e quello \textit{immaginario positivo} da cui la fase $\phi$ in
+funzione della frequenza viene calcolata attraverso la \ref{eq:da-tfunc-a-fase-immaginario-positivo}
+e la sostituzione $\omega \to 2\pi f$
+\begin{equation}
+  \label{eq:lp-vcvs-fase}
+  \colorbox{blu}{\boxed{\phi(f) = -\frac{\pi}{2} + \arctan\left(\frac{1 - 4\pi^2R^2C^2f^2}{4\pi RCf}\right)}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (d)}
+    Dare un’interpretazione qualitativa e quantitativa delle caratteristiche del segnale di uscita
+    osservato al punto 1f. Che tipo di segnale appare? A quale ampiezza?
+  \end{minipage}
+}
