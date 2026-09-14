@@ -8,22 +8,18 @@
     dominio delle frequenze reali e verificando che i limiti asintotici del guadagno (sia per
     $f \to 0$ che per $f \to \infty$) coincidano con quanto osservato al punto 1b.
   \end{minipage}
-} \smallskip \\
-\noindent\colorbox{blu}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Risposta (a)}
-    Qualitativamente il circuito si tratta di un amplificatore pilotato
-    dall'ingresso non invertente che viene preceduto da un nodo che
-    ridirige il flusso di corrente ad un blocco secondario da studiare
-    qualitativamente. Nei limiti di frequenze il sotto-circuito agisce
-    come se non esistesse. Il ramo in retroazione dell'ingresso invertente
-    agisce come un \textit{dimezzatore di tensione}, dunque se l'impedenza
-    effettiva del sotto-circuito equivale alla configurazione all'ingresso
-    invertente il guadagno differenziale sar\'a nullo e il filtro agira
-    come \textit{notch-filter}. Con uno studio quantitativo si potra calcolare
-    quanti notch sono presenti e dove sono disposti in funzione della frequenza.
-  \end{minipage}
-} \smallskip \\
+}
+\paragraph{Risposta (a)}
+Qualitativamente il circuito si tratta di un amplificatore pilotato
+dall'ingresso non invertente che viene preceduto da un nodo che
+ridirige il flusso di corrente ad un blocco secondario da studiare
+qualitativamente. Nei limiti di frequenze il sotto-circuito agisce
+come se non esistesse. Il ramo in retroazione dell'ingresso invertente
+agisce come un \textit{dimezzatore di tensione}, dunque se l'impedenza
+effettiva del sotto-circuito equivale alla configurazione all'ingresso
+invertente il guadagno differenziale sar\'a nullo e il filtro agira
+come \textit{notch-filter}. Con uno studio quantitativo si potra calcolare
+quanti notch sono presenti e dove sono disposti in funzione della frequenza.
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
@@ -47,35 +43,72 @@
   \end{minipage}
 }
 \paragraph{Risposta (b.i)}
-\begin{itemize}
-\item
-  U2 \'e un voltage follower e di conseguenza $V_{+U2} = V_{U2}$.
-\item
-  U2 non assorbe corrente per ipotesi di idealit\'a degli opamp, di conseguenza $\boldsymbol{I_1} = I_{R_4}$,
-  da cui si ottiene $V_{+U2} - V_{R_4 \to R_5} = R_4\boldsymbol{I_1}$.
-\end{itemize}
-da cui si ottiene la prima relazione fondamentale che correla le tensioni $\boldsymbol{I_1}$ e $I_2$
+Seguendo il suggerimento
 \begin{equation*}
-  I_2 = sC_2(V_{U2} - V_{R_4 \to R_5}) = sC_2(V_{+U2} - V_{R_4 \to R_5}) = sC_2R_4\boldsymbol{I_1} \implies \boldsymbol{I_2}(\boldsymbol{I_1})
+  I_1 \equiv sC(V_{+U1} - V_{+U2})
 \end{equation*}
-da cui si ottiene direttamente il valore della tensione al nodo fra le resistenze $R_4$ e $R_5$
-per causa diretta della legge di Kirchoff sui nodi:
+nell'ipotesi di op-amp ideale, +U2 non assorbe corrente, di conseguenza
 \begin{equation*}
-  V_{R_4 \to R_5} = R_5I_{R_5} = R_5(\boldsymbol{I_1} + \boldsymbol{I_2}) = R_5\boldsymbol{I_1} + sR_4R_5C_2\boldsymbol{I_1} \implies \boldsymbol{V_{R_4 \to R_5}}(\boldsymbol{I_1})
+  I_1 = \frac{V_{+U2} - V_3}{R/2}
 \end{equation*}
-l'analisi rimanente da fare
+inoltre lo schema circuitale dell'op-amp U2 \'e quello di un inseguitore
+di tensione, di conseguenza
+\begin{equation*}
+  V_{+U2} = V_{U2} \implies I_1 = \frac{V_{U2} - V_3}{R/2}
+\end{equation*}
+la corrente all'uscita dell'op-amp U2
+\begin{equation*}
+  I_2 \equiv 100sC(V_{U2} - V_3) \implies I_2 = 100sC\left(\frac{R}{2}I_1\right)
+\end{equation*}
+la KCL al nodo 3
 \begin{equation*}
   \begin{gathered}
-    \boldsymbol{I_1} = \frac{(V_{+U2} - \boldsymbol{V_{R_4\to R_5}})}{R_4} \implies V_{+U2} = (R_4 + R_5 + sR_4R_5C_2)\boldsymbol{I_1} \implies \boldsymbol{V_{+U2}}(\boldsymbol{I_1}) \\
-    \boldsymbol{I_1} = \frac{(V_{+U1} - \boldsymbol{V_{+U2}})}{\frac{1}{sC_1}} \implies V_{+U1} = \frac{\boldsymbol{I_1}}{sC_1} + (R_4 + R_5 + sR_4R_5C_2)\boldsymbol{I_1} \implies \boldsymbol{V_{+U1}}(\boldsymbol{I_1}) \\
-    \colorbox{blu}{\boxed{Z_{in} \equiv \frac{V_{+U1}(I_1)}{I_1} = \frac{1}{sC_1} + (R_4 + R_5 + sR_4R_5C_2)}}
+    I_1 + I_2 = I_3 \equiv \frac{V_3}{R/2} \\
+    \implies V_3 = \frac{R}{2}(1 + 50sRC)I_1
   \end{gathered}
 \end{equation*}
-\paragraph{Risposta (b.ii)}
+dalla seconda espressione di $I_1$
+\begin{equation*}
+  \begin{gathered}
+    I_1 = \frac{V_{+U2} - \frac{R}{2}(1 + 50sRC)I_1}{R/2} \\
+    \implies V_{+U2} = \frac{R}{2}(2 + 50sRC)I_1
+  \end{gathered}
+\end{equation*}
+dalla prima espressione/definizione di $I_1$
+\begin{equation*}
+  \begin{gathered}
+    I_1 = sC(V_{+U1} - R(1 + 25sRC)I_1) \\ \implies
+    (1 + sRC + 25sR^2C^2)I_1= sCV_{+U1}
+  \end{gathered}
+\end{equation*}
+l'impedenza d'ingresso $Z_{in}$ si ottiene dal rapporto fra la tensione
+d'ingresso $V_{+U1}$ e la corrente d'ingresso $I_1$
+\begin{equation}
+  \label{eq:notch2-zin}
+  \colorbox{blu}{\boxed{Z_{in} \equiv \frac{V_{+U1}}{I_1} = \frac{1}{sC}(1 + sRC + 25sR^2C^2)}}
+\end{equation}
 
+\paragraph{Risposta (b.ii)}
+La tensione all'ingresso invertente $V_-$ \'e met\'a della tensione sorgente $V_s$
+(partitore di tensione con resistenze uguali dimezzano la tensione)
+\begin{equation*}
+  V_+ = \frac12V_s + \frac12V_{OUT}
+\end{equation*}
+la tensione all'ingresso \underline{non}-invertente risulta sempre come risultato
+di un partiore composto da $R$ e $Z_{in}$
+\begin{equation*}
+  V_- = \frac{Z_{in}}{R + Z_{in}}V_s
+\end{equation*}
+nell'ipotesi di op-amp ideale che opera in regime di linearit\'a si applica il principio
+di corto-circuito virtuale
+\begin{equation*}
+  V_+ = V_- \implies \frac12V_s + \frac12V_{OUT} = \frac{Z_{in}}{R + Z_{in}}V_s
+\end{equation*}
+la forma generale della funzione di trasferimento parametrizzata da $Z_{in}$
 \begin{equation*}
   H(s) = \frac{Z_{in} - R}{Z_{in} + R}
 \end{equation*}
+espandendo l'espressione di $Z_{in}$ si ottiene
 \begin{equation}
   \label{eq:notch2-tfunc}
   \colorbox{blu}{\boxed{H(s) = \frac{1 + 25\xi^2}{1 + 2\xi + 25\xi^2} \qquad \xi \equiv sRC}}
@@ -87,8 +120,18 @@ l'analisi rimanente da fare
     Verificare che l'espressione ottenuta per la funzione di trasferimento soddisfi la
     condizione necessaria a garantire la stabilità del filtro in zona lineare.
   \end{minipage}
-} \smallskip \\
+}
 \paragraph{Risposta (c)}
+La stabilit\'a del filtro si verifica studiando i poli della funzione di
+trasferimento complessa $H(s)$ (ovvero gli zeri del denominatore)
+\begin{equation*}
+  \begin{gathered}
+    1 + 2\xi + 25\xi^2 = 0 \implies \xi = \frac{-2 \pm i\sqrt{96}}{50} \\ \implies
+    \colorbox{blu}{\boxed{\mathcal{R}\{\xi\} = -\frac{1}{25} < 0}}
+  \end{gathered}
+\end{equation*}
+la parte reale dei poli \'e negativa, per il terzo criterio di stabilit\'a
+questo implica che il filtro \'e stabile e lineare. \\
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
@@ -96,10 +139,81 @@ l'analisi rimanente da fare
     Dedurre i valori attesi (senza incertezze) per i parametri del filtro (frequenza centrale,
     larghezza di banda e fattore di merito) e confrontarli con le misure di cui al punto 1b (si
     consiglia di esprimere la funzione di trasferimento sul dominio delle frequenze reali in
-    termini della grandezza adimensionale u = wRC).
+    termini della grandezza adimensionale $u = \omega RC$).
   \end{minipage}
-} \smallskip \\
+}
 \paragraph{Risposta (d)}
+Seguendo il consiglio della richiesta per la scelta di parametri, le parti reali
+e immaginarie del numeratore e denominatore della funzione di trasferimento
+complessa in forma canonica
+\begin{equation*}
+  \begin{cases}
+    \mathcal{R}_{\omega}^N = 1 - 25u^2 \\
+    \mathcal{I}_{\omega}^N = 0 \\
+    \mathcal{R}_{\omega}^D = 1 - 25u^2 \\
+    \mathcal{I}_{\omega}^D = 2u
+  \end{cases}
+\end{equation*}
+il guadagno \'e ottenuto dall'espressione \ref{eq:da-tfunc-a-gain}
+\begin{equation*}
+  G(u) = \frac{1 - 25u^2}{\sqrt{(1 - 25u^2)^2 + (2u)^2}}
+\end{equation*}
+nel contesto attuale, ovvero nello studio di un filtro notch, la frequenza
+centrale \'e quella frequenza per cui il guadagno si annulla (il \textit{notch})
+\begin{equation*}
+  1 - 25u^2 = 0
+\end{equation*}
+sostituendo $u \to \omega RC$ e $\omega \to 2\pi f$ si ottiene la frequenza centrale
+\begin{equation}
+  \label{eq:notch2-frequenza-centrale}
+  \colorbox{blu}{\boxed{f = \frac{1}{10\pi RC}}}
+\end{equation}
+per studiare la larghezza di banda servono le frequenze di taglio e di conseguenza
+anche il guadagno massimo, ri-arrangiando l'espressione del guadagno in termini di $u$
+(nell'ipotesi che il numeratore non sia nullo quindi diverso dalla frequenza centrale)
+si ottiene
+\begin{equation*}
+  G(u) = \frac{1}{\sqrt{1 + \left(\frac{2u}{1 - 25u^2}\right)^2}}
+\end{equation*}
+la funzione di trasferimento \'e il reciproco della radice di un espressione
+quadratica con minimo uguale ad $1$ per valori reali, dunque il guadagno massimo
+\begin{equation*}
+  \max_{u \in [0, +\infty)} G(u) = 1
+\end{equation*}
+ora le frequenze di taglio si determinano come quelle frequenze per cui il guadagno
+quadro \'e uguale alla met\'a del suo massimo quadro
+\begin{equation*}
+  \begin{gathered}
+    \frac{1 - 25u^2}{\sqrt{(1 - 25u^2)^2 + (2u)^2}} = \frac{1}{\sqrt2} \\ \implies
+    (1 - 25u^2)^2 = (2u)^2 \implies
+    \begin{cases}
+      1 - 25u_+^2 = +2u_+ \\
+      1 - 25u_-^2 = -2u_-
+    \end{cases} \\ \implies
+    u_+ = \frac{-1 \pm \sqrt{26}}{25} \quad \wedge \quad u_- = \frac{1 \pm \sqrt{26}}{25}
+  \end{gathered}
+\end{equation*}
+una frequenza ammissibile deve essere positiva, di conseguenza
+\begin{equation*}
+  u_{L,H} = \frac{\sqrt{26} \pm 1}{25}
+\end{equation*}
+attraverso la sostituzione $u \to \omega RC$ e $\omega \to 2\pi f$ si ottengono
+le frequenze di taglio
+\begin{equation*}
+  f_{L,H} = \frac{\sqrt{26} \pm 1}{50\pi RC}
+\end{equation*}
+dunque la larghezza di banda
+\begin{equation}
+  \label{eq:notch2-bw}
+  \colorbox{blu}{\boxed{\Delta f = \frac{1}{25\pi RC}}}
+\end{equation}
+infine il fattore di merito (Q-factor) si ottiene dal rapporto fra \ref{eq:notch2-frequenza-centrale}
+e \ref{eq:notch2-bw}
+\begin{equation}
+  \label{eq:notch2-q-factor}
+  \colorbox{blu}{\boxed{Q = \frac{25\pi RC}{10\pi RC} = \frac52}}
+\end{equation}
+questo valore \'e indipendente dai componenti del circuito. \\
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
