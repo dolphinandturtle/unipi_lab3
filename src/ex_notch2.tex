@@ -10,16 +10,42 @@
   \end{minipage}
 }
 \paragraph{Risposta (a)}
-Qualitativamente il circuito si tratta di un amplificatore pilotato
-dall'ingresso non invertente che viene preceduto da un nodo che
-ridirige il flusso di corrente ad un blocco secondario da studiare
-qualitativamente. Nei limiti di frequenze il sotto-circuito agisce
-come se non esistesse. Il ramo in retroazione dell'ingresso invertente
-agisce come un \textit{dimezzatore di tensione}, dunque se l'impedenza
-effettiva del sotto-circuito equivale alla configurazione all'ingresso
-invertente il guadagno differenziale sar\'a nullo e il filtro agira
-come \textit{notch-filter}. Con uno studio quantitativo si potra calcolare
-quanti notch sono presenti e dove sono disposti in funzione della frequenza.
+\begin{itemize}
+\item
+  Per $f \to 0$ il condensatore $C_1$ apre il ramo lungo cui scorrerebbe $I_1$. Di conseguenza
+  ci\'o che rimane \'e un circuito amplificatore. La tensione all'ingresso invertente \'e
+  dimezzata rispetto alla tensione sorgente perch\'e $(R_1, R_2)$ agisce da partitore di tensione
+  \begin{equation*}
+    V_- = \frac12 V_s + \frac12 V_{OUT}
+  \end{equation*}
+  nel regime lineare di operazione dell'op-amp vale
+  \begin{equation*}
+    V_{OUT} = A_d\left(V_s - \frac12 V_s - \frac12 V_{OUT}\right) \implies \colorbox{blu}{\boxed{V_{OUT} = \frac{A_d}{2 + A_d}V_s}}
+  \end{equation*}
+\item
+  Per $f \to +\infty$ il condensatore $C_1$ ``cortocircuita'' il ramo lungo cui scorre $I_1$ e
+  il condensatore $C_2$ aprendosi fa si che l'op-amp U2 agisca da inseguitore di tensione
+  rendendo il ramo di $R_4$ equipotenziale ai capi, quindi effettivamente un ``cortocircuito''.
+  La corrente $I_1$, effettivamente, attraversa un solo ramo con resistenza $R_5$. Di conseguenza
+  anche la tensione all'ingresso \underline{non}-invertente risulta dal partitore $(R_3, R_5)$.
+  \begin{equation*}
+    V_+ = \frac13 V_s
+  \end{equation*}
+  l'ingresso invertente come in precedenza
+  \begin{equation*}
+    V_- = \frac12 V_s + \frac12 V_{OUT}
+  \end{equation*}
+  nel regime lineare di operazione dell'op-amp vale
+  \begin{equation*}
+    V_{OUT} = A_d\left(\frac13 V_s - \frac12 V_s - \frac12 V_{OUT}\right) \implies \colorbox{blu}{\boxed{V_{OUT} = -\frac{A_d}{6 + 3A_d}V_s}}
+  \end{equation*}
+\end{itemize}
+come ultima osservazione, essendo il circuito lineare e avendo tensione all'ingresso non invertente
+$V_+ \in [\frac13 V_s, V_s]$, esiste frequenza/pulsazione per cui $V_+ = \frac12 V_s$, di conseguenza
+\begin{equation*}
+  V_{OUT} = A_d\left(\frac12 V_s - \frac12 V_s - \frac12 V_{OUT}\right) \implies \colorbox{blu}{\boxed{V_{OUT} = \frac{0\cdot A_d}{2 + A_d}V_s = 0}}
+\end{equation*}
+dunque l'andamento del circuito \'e compatibile con l'andamento di un filtro notch. \\
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
@@ -222,7 +248,6 @@ questo valore \'e indipendente dai componenti del circuito. \\
     giustificarli alla luce delle proprietà di simmetria della funzione di trasferimento.
   \end{minipage}
 } \smallskip \\
-\paragraph{Risposta (e)}
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
@@ -233,5 +258,13 @@ questo valore \'e indipendente dai componenti del circuito. \\
     Math → Simple (software)'' associando la differenza dei due canali) e discutere
     qualitativamente e quantitativamente le caratteristiche di quest'ultima.
   \end{minipage}
-} \smallskip \\
+}
 \paragraph{Risposta (f)}
+Dalla teoria, un'onda quadra pu\'o essere decomposta in una combinazione lineare di onde
+sinusoidali a frequenze e ampiezze diverse. Il ruolo del circuito \'e quello di selettore
+spettrale. Dal dominio del tempo \'e difficile interpretare la forma d'onda complessa
+visualizzata nell'oscilloscopio, tuttavia nel dominio delle frequenze alla luce della teoria
+ci si aspetta la distribuzione di frequenza di un onda quadra con una lacuna nella
+frequenza di centro-banda del filtro (laddove il segnale viene soppresso). Dunque facendo
+la differenza fra il segnale quadro d'ingresso ed il segnale d'uscita ci si aspetta che
+la risultante sia proprio quella banda soppressa.
