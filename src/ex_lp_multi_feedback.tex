@@ -1,0 +1,156 @@
+\section*{Filtro Lowpass (retroazione multipla)}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (a)}
+    Dimostrare, sulla base di semplici argomenti di natura qualitativa, che il circuito proposto
+    svolga effettivamente la funzione di filtro passa-basso, discutendone la risposta ai limiti
+    del dominio delle frequenze reali.
+  \end{minipage}
+}
+\paragraph{Risposta (a)}
+\begin{itemize}
+\item
+  Per $f \to 0$ i rami di $C_1$ e $C_2$ si aprono, $R_2$ \'e dunque in serie con l'impedenza
+  d'ingresso ``grande'' dell'op-amp, \'e trascurabile. Il circuito assume la forma di un
+  amplificatore invertente.
+\item
+  Per $f \to +\infty$ il condensatore $C_2$ ``corto-circuita'' $V_+$ con $V_{OUT}$ per cui
+  \begin{equation*}
+    V_{OUT} = A_d(0 - V_{OUT}) \implies \colorbox{blu}{\boxed{V_{OUT} = \frac{0}{1 + A_bd} = 0}}
+  \end{equation*}
+\end{itemize}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (b)}
+    Derivare analiticamente la funzione di trasferimento complessa $A_v(s)=V_{OUT}(s)/V_S(s)$
+    nell'ipotesi che l'operazionale sia ideale
+    (\textit{suggerimento: si determini la tensione nel nodo A del circuito in termini di $V_S$ e
+      $V_{OUT}$; quindi si esprima $V_A$ in termini di $V_{OUT}$ assumendo che l'op-amp funzioni in
+      regime lineare ed utilizzando il principio di cortocircuito virtuale; si eguaglino
+      infine le espressioni ottenute per ottenere la funzione di trasferimento}).
+    Per semplicit\'a di calcolo, si assuma inoltre (ipotesi compatibile con i
+    valori e le incertezze nominali dei componenti) che $R_1=R_3=R$, $R_2=R/2$, $C_2=C$, $C_1=2C$.
+  \end{minipage}
+}
+\paragraph{Risposta (b)}
+Usando la \textit{KCL} al nodo A
+\begin{equation*}
+  \frac{V_S - V_A}{R} = \frac{V_A - V_{OUT}}{R} + \frac{V_A - V_-}{R/2} + 2sCV_A
+\end{equation*}
+Usando la \textit{KCL} al nodo + e l'ipotesi di corto-circuito virtuale sapendo $V_+ = 0$
+\begin{equation*}
+  \begin{gathered}
+    \frac{V_A - V_-}{R/2} = sC(V_- - V_{OUT}) \\ \overset{V_+ = V_-}{\implies}
+    \frac{V_A}{R/2} = -sCV_{OUT}
+  \end{gathered}
+\end{equation*}
+applicando il principio di corto-circuito virtuale alla prima espressione
+\begin{equation*}
+  \frac{V_S - V_A}{R} = \frac{V_A - V_{OUT}}{R} + \frac{V_A}{R/2} + 2sCV_A
+\end{equation*}
+moltiplicando LHS e RHS per $R$
+\begin{equation*}
+  V_S - V_A = V_A - V_{OUT} + 2V_A + 2sRCV_A
+\end{equation*}
+raccogliendo i termini $V_A$ a destra
+\begin{equation*}
+  V_S = 2(2 + sRC)V_A - V_{OUT}
+\end{equation*}
+sostituisco $V_A$
+\begin{equation*}
+  V_S = -(1 + 2sRC + s^2R^2C^2)V_{OUT}
+\end{equation*}
+\begin{equation}
+  \label{eq:lp-multi-feedback-tfunc}
+  \colorbox{blu}{\boxed{H(s) = -\frac{1}{(1 + sRC)^2}}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (c)}
+    Dalla funzione di trasferimento dedurre le caratteristiche del filtro osservate al punto 1)
+    (guadagno a centro-banda, frequenza naturale, andamento di modulo/fase in funzione
+    della frequenza) e confrontarle con quanto misurato ai punti 1c, 1d, 1e.
+  \end{minipage}
+}
+\paragraph{Risposta (c)}
+La funzione di trasferimento \ref{eq:lp-multi-feedback-tfunc} \'e in forma canonica, calcolando
+le parti reali ed immaginarie del numeratore e denominatore con dominio ristretto all'asse
+immaginario si ottiene
+\begin{equation*}
+  \begin{cases}
+    \mathcal{R}_{\omega}^N = -1 \\
+    \mathcal{I}_{\omega}^N = 0 \\
+    \mathcal{R}_{\omega}^D = 1 - R^2C^2\omega^2 \\
+    \mathcal{I}_{\omega}^D = 2RC\omega
+  \end{cases}
+\end{equation*}
+di conseguenza ottengo la funzione di guadagno mediante \ref{eq:da-tfunc-a-gain}
+\begin{equation*}
+  G(\omega) = \frac{1}{\sqrt{(1 - R^2C^2\omega^2)^2 + (2RC\omega)^2}} = \frac{1}{1 + R^2C^2\omega^2}
+\end{equation*}
+l'andamento del guadagno in termini della frequenza si ottiene sostituendo $\omega \to 2\pi f$
+\begin{equation}
+  \label{eq:lp-multi-feedback-gain}
+  \colorbox{blu}{\boxed{G(f) = \frac{1}{1 + 4\pi^2R^2C^2f^2}}}
+\end{equation}
+il guadagno massimo \'e chiaramente per $\omega \to 0$
+\begin{equation}
+  \label{eq:lp-multi-feedback-gain-max}
+  \colorbox{blu}{\boxed{\max_{\omega \in [0, +\infty)}G(\omega) = 1}}
+\end{equation}
+di conseguenza la frequenza centrale
+\begin{equation}
+  \label{eq:lp-multi-feedback-frequenza-centrale}
+  \colorbox{blu}{\boxed{f = 0}}
+\end{equation}
+la frequenza di taglio si ottiene
+\begin{equation*}
+  \frac{1}{1 + R^2C^2\omega^2} = \frac{1}{\sqrt{2}} \implies
+  \omega = \pm\frac{\sqrt{\sqrt{2} - 1}}{RC}
+\end{equation*}
+la pulsazione e frequenza ammettono solamente valori positivi, sostituendo $\omega \to 2\pi f$
+\begin{equation}
+  \label{eq:lp-multi-feedback-frequenza-cut}
+  \colorbox{blu}{\boxed{f = \frac{\sqrt{\sqrt{2} - 1}}{2\pi RC}}}
+\end{equation}
+la frequenza di taglio \'e diversa dalla frequenza naturale
+\begin{equation}
+  \label{eq:lp-multi-feedback-frequenza-naturale}
+  \colorbox{blu}{\boxed{f = \frac{1}{2\pi RC}}}
+\end{equation}
+l'andamento della fase richiede identificare il corretto semi-piano, il segno della parte reale
+di $H(s)$
+\begin{equation*}
+  R^2C^2\omega^2 - 1
+\end{equation*}
+non \'e ben determinato nell'intervall $\omega \in [0, \infty)$, mentre
+\begin{equation*}
+  2RC\omega > 0
+\end{equation*}
+\'e ben determinato nell'intervall $\omega \in [0, \infty)$, l'andamento della
+fase (in funzione della pulsazione \'e dato da) \ref{eq:da-tfunc-a-fase-immaginario-positivo}
+attraverso la sostituzione $\omega \to 2 \pi f$ si ottiene
+\begin{equation}
+  \label{eq:lp-multi-feedback-fase}
+  \colorbox{blu}{\boxed{\phi(f) = \frac{\pi}{2} + \arctan\left(\frac{1 - 4\pi^2R^2C^2f^2}{4\pi RC f}\right)}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (d)}
+    Dare un'interpretazione qualitativa (e se possibile quantitativa) delle caratteristiche del
+    segnale di uscita osservato al punto 1f. Che tipo di segnale appare? A quale ampiezza?
+  \end{minipage}
+}
+\paragraph{Risposta (d)}
+Se si invia nell'ingresso un onda quadra di frequenza pari alla frequenza di centro-banda, siccome
+l'onda quadra \'e rappresentabile come una combinazione lineare di onde sinusoidali la cui prima
+componente a frequenza non-nulla \'e a frequenza di centro-banda. Il risultato dovrebbe essere
+un unica onda sinusoidale
+\begin{equation}
+  \colorbox{blu}{\boxed{V_{OUT} = G(5~\text{kHz})\cdot\frac{4}{\pi}\cdot 5~\text{V}\approx 586~\text{mV}}}
+\end{equation}
+il risultato dovrebbe essere in accordo con quanto misurato sperimentalmente.

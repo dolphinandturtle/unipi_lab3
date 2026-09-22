@@ -1,0 +1,156 @@
+\section*{Oscillatore integratore-derivatore}
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (a)}
+    Discutere, sulla base di semplici argomenti di natura qualitativa (ovvero senza effettuare
+    i calcoli richiesti ai punti successivi), la funzione svolta dai blocchi 1 (ingresso $V_1$,
+    uscita $V_2$) e 2 (ingresso $V_2$, uscita $V_3$) del circuito.
+  \end{minipage}
+}
+\paragraph{Risposta (a)}
+\begin{itemize}
+\item
+  Nel blocco 1 \'e immediato notare che per $f \to 0$ il condensatore $C_1$ apre il ramo
+  e la tensione d'uscita $V_2$ \'e nulla, mentre per $f \to \infty$ il condensatore $C_1$
+  ``corto-circuita'' il ramo e il circuito assume lo schema di \textit{amplificatore invertente};
+  il blocco 1 \'e un circuito a schema di \colorbox{blu}{\textit{derivatore reale con op-amp}}.
+\item
+  Nel blocco 2 $f \to 0$ il condensatore $C_1$ apre il ramo e il circuito assume lo schema di
+  \textit{amplificatore invertente}, mentre per $f \to \infty$
+  \begin{equation*}
+    V_{OUT} = A_d(0 - V_{OUT}) \implies V_{OUT} = \frac{0}{1 + A_d} = 0
+  \end{equation*}
+  il blocco 2 \'e un circuito a schema di \colorbox{blu}{\textit{integratore reale con op-amp}}.
+\end{itemize}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (b)}
+    Scrivere un'espressione analitica per le funzioni di trasferimento $A_1$, $A_2$ dei singoli
+    blocchi e del loop-gain, nelle ipotesi di idealit\'a dell'operazionale e (al momento) di
+    polarizzazione inversa dei diodi, e giustificare perché quest'ultima possa essere ottenuta
+    come prodotto delle precedenti.
+  \end{minipage}
+} \smallskip \\
+Nell'ipotesi che nessuna corrente scorra fra i diodi, la ramo di feedback dell'op-amp U1 ha
+impedenza equivalente $\tilde{R}$ dove
+\begin{equation*}
+  \tilde{R} \approx 2R + R/2 = \frac52 R
+\end{equation*}
+lo schema del blocco $A_1$ \'e ben noto, la funzione di trasferimento
+\begin{equation}
+  \label{eq:oscillatore-integratore-derivatore-tfunc-1}
+  \colorbox{blu}{\boxed{H_1(s) = -\frac{s\tilde{R}C}{1 + sRC}}}
+\end{equation}
+lo schema del blocco $A_2$ \'e ben noto, la funzione di trasferimento
+\begin{equation}
+  \label{eq:oscillatore-integratore-derivatore-tfunc-2}
+  \colorbox{blu}{\boxed{H_2(s) = -\frac{1}{1 + sRC}}}
+\end{equation}
+\begin{equation}
+  \label{eq:oscillatore-integratore-derivatore-loop-gain}
+  \colorbox{blu}{\boxed{L(s) \equiv H_1(s)H_2(s) = \frac{s\tilde{R}C}{(1 + sRC)^2}}}
+\end{equation}
+la funzione di trasferimento finale \'e compatibile con la funzione
+di trasferimento di un \textit{filtro passa-banda}. \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (c)}
+    Mostrare che esiste unica una frequenza tale che il loop-gain, calcolato sul dominio delle
+    frequenze reali, abbia fase nulla e confrontare la compatibilit\'a di detta frequenza con
+    quelle misurate ai punti 1a ed 1c.
+  \end{minipage}
+}
+\paragraph{Risposta (c)}
+Lo studio della fase di $L(s)$ richiede di individuare il semi-piano sui cui \'e definita la parte
+reale ed immaginaria della fase
+\begin{equation*}
+  \begin{cases}
+    \mathcal{R}_{\omega}^N = 0 \\
+    \mathcal{I}_{\omega}^N = \tilde{R}C\omega \\
+    \mathcal{R}_{\omega}^D = 1 - R^2C^2\omega^2 \\
+    \mathcal{I}_{\omega}^D = 2RC\omega
+  \end{cases}
+\end{equation*}
+si studia il segno del semi-piano reale di $L(s)$
+\begin{equation*}
+  2R\tilde{R}C\omega > 0
+\end{equation*}
+si studia il segno del semi-piano immaginario di $L(s)$
+\begin{equation*}
+  \tilde{R}C\omega(1 - R^2C^2\omega^2)
+\end{equation*}
+il segno non \'e definito, di conseguenza la legge di fase per $L(s)$ \'e definita da
+\ref{eq:da-tfunc-a-fase-reale-positivo} e la si fa dipendere dalla frequenza con la sostituzione
+$\omega \to 2\pi f$
+\begin{equation}
+  \label{eq:oscillatore-integratore-derivatore-fase}
+  \colorbox{blu}{\boxed{\phi(f) = \arctan\left(\frac{1 - 4\pi^2R^2C^2f^2}{4\pi RCf}\right)}}
+\end{equation}
+(il fattore moltiplicativo che differisce $\tilde{R}$ da $R$ si vede che non contribuisce).
+L'annullamento della fase richiede l'annullamento del numeratore
+\begin{equation}
+  \label{eq:oscillatore-integratore-derivatore-frequenza-centrale}
+  \colorbox{blu}{\boxed{f = \frac{1}{2\pi RC} \approx 1592~\text{Hz}}}
+\end{equation}
+essendo la frequenza una quantit\'a positiva la soluzione \'e \textit{unica}.
+La stima \'e qualitativamente compatibile con quanto osservato dal circuito simulato tramite
+\textit{falstad}. \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (d)}
+    Calcolare la resistenza equivalente del parallelo $R_4$-$D_1$-$D_2$ tale che a quella frequenza si
+    realizzi la condizione di Barkhausen.
+  \end{minipage}
+}
+\paragraph{Risposta (d)}
+Modificando la risposta di \ref{eq:oscillatore-integratore-derivatore-tfunc-1} tenendo in considerazione la
+rete di diodi si ottiene
+\begin{equation*}
+  \begin{gathered}
+    Z \equiv D_1||R||D_2 \\
+    H_1(s) = -\frac{s(\frac32 R + Z)C}{1 + sRC} \\ \implies
+    L(s) \equiv H_1(s)H_2(s) = \frac{s(\frac32 R + Z)C}{(1 + sRC)^2}
+  \end{gathered}
+\end{equation*}
+per quanto osservato prima la frequenza centrale non dipende da $\tilde{R}$ di conseguenza bisogner\'a
+studiare la \textit{condizione di barkhausen} sul modulo, utilizzando \ref{eq:da-tfunc-a-gain} si ottiene
+\begin{equation*}
+  G(\omega) = \frac{(\frac32 R + Z)C\omega}{\sqrt{(1 - R^2C^2\omega^2)^2 + (2RC\omega)^2}} = 1
+\end{equation*}
+si impone la pulsazione in fase usando \ref{eq:oscillatore-integratore-derivatore-frequenza-centrale}
+e sostituendo $f \to \frac{\omega}{2\pi}$
+\begin{equation*}
+  \begin{gathered}
+    \frac{(\frac32 R + Z)\frac{1}{R}}{\sqrt{0^2 + (2)^2}} = 1 \implies
+    \colorbox{blu}{\boxed{Z = \frac12 R}}
+  \end{gathered}
+\end{equation*}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (e)}
+    Sulla base della misura nelle condizioni di cui al punto 1e provare a determinare una
+    stima per il valore atteso dell'ampiezza del segnale di oscillazione in $V_2$.
+  \end{minipage}
+}
+\paragraph{Risposta (e)}
+Sulla base del risultato precedente, la funzione di trasferimento del primo blocco vale
+\begin{equation*}
+  H_1(s) = -\frac{s(\frac32 R + \frac12 R)C}{1 + sRC} = -\frac{2sRC}{1 + sRC}
+\end{equation*}
+il guadagno si ricava usando \ref{eq:da-tfunc-a-gain} per cui
+\begin{equation*}
+  G_1(\omega) = \frac{2RC\omega}{\sqrt{1 + (RC\omega)^2}}
+\end{equation*}
+il guadagno a centro banda
+\begin{equation*}
+  G_1(1/(RC)) = \frac{2}{\sqrt{1 + 1^2}} = \sqrt2
+\end{equation*}
+per una tensione $V_3 = 1.377~\text{V}$ il valore di aspettazione di $V_2$
+\begin{equation*}
+  \colorbox{blu}{\boxed{V_2 = V_3\sqrt{2} \approx 1.947~\text{V}}}
+\end{equation*}
+

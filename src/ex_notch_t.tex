@@ -1,0 +1,119 @@
+\section*{Notch-T}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (a)}
+    Sulla base di semplici argomenti di natura qualitativa (ovvero senza effettuare il calcolo
+    della funzione di trasferimento, come richiesto al punto successivo), mostrare che il
+    circuito svolga effettivamente la funzione di notch, discutendone la risposta ai limiti del
+    dominio delle frequenze reali.
+  \end{minipage}
+}
+\begin{itemize}
+\item
+  Per $f \to 0$ i condensatori nel circuito ``aprono'' i loro rami. Di conseguenza il circuito
+  finale si tratta di un op-amp in configurazione di \textit{inseguitore di tensione}, la tensione
+  $V_S$ attraversa $R_1$ e $R_2$ in serie, nell'ipotesi di ``grossa'' impendenza in ingresso
+  all'op-amp tali resistenze possono essere trascurate e nel regime lineare di operazione
+  dell'op-amp vale
+  \begin{equation*}
+    V_{OUT} = A_d(V_S - V_{OUT}) \implies \colorbox{blu}{\boxed{V_{OUT} = \frac{A_d}{1+A_d}V_S}}
+  \end{equation*}
+\item
+  Per $f \to \infty$ i condensatori $C_1$ e $C_2$ mettono ``in corto-circuito'' $V_S$ e $V_+$,
+  nel regime lineare di operazione dell'op-amp vale
+  \begin{equation*}
+    V_{OUT} = A_d(V_S - V_{OUT}) \implies \colorbox{blu}{\boxed{V_{OUT} = \frac{A_d}{1+A_d}V_S}}
+  \end{equation*}
+\end{itemize}
+La caratteristica del notch \'e quella dell'eliminazione di una banda all'uscita dal circuito,
+data la topologia del circuito la condizione equivalente \'e quella dell'annullamento della
+tensione all'ingresso \underline{non}-invertente $V_+$.
+\begin{itemize}
+\item
+  \textit{Aumentando} la frequenza del segnale $f \to 0$, durante la caduta/salita di potenziale
+  fra $R_1$ e $R_2$ il condensatore $C_3$ si scarica/carica, immettendo/assorbendo corrente da
+  $R_2$ e di conseguenza \textit{ritardando} il segnale.
+\item
+  \textit{Diminuendo} la frequenza del segnale $f \to \infty$
+  la carica del condensatore $C_1$ impiega tempo non nullo durante cui $C_2$ si carica pi\'u
+  lentamente e di conseguenza \textit{ritardando} il segnale.
+\end{itemize}
+\noindent\colorbox{blu}{
+  \begin{minipage}{1.0\linewidth}
+    Siccome agli estremi del dominio di frequenza il segnale \'e senza attenuazione e per piccole
+    variazioni di frequenza esso tenda ad attenuarsi \'e ``ragionevole'' assumere l'esistenza di un
+    minimo anche detto \textit{notch}.
+  \end{minipage}
+}
+\paragraph{Richiesta (b)}
+Derivare analiticamente la funzione di trasferimento $A(s)=V_{OUT}(s)/V_S$ nell'ipotesi che
+l'operazionale sia ideale ed assumendo per semplicit\'a che $R_1=R_2=R=10 kW$, $R3=R/2$,
+$C_1=C_2=C=10 nF$ e $C_3=2C$. Si suggerisce di procedere:
+\begin{enumerate}
+\item[i.]
+  considerando lo schema semplificato del circuito riportato in calce;
+\item[ii.]
+  ottenendo il suo equivalente per effetto della sostituzione di Th\'evenin dei blocchi A
+  e B;
+\item[iii.]
+  quindi determinando la tensione nel nodo $V_+$ in termini di $V_S$ e $V_{OUT}$ ed in funzione
+  della variabile complessa adimensionale $u = sRC$;
+\item[iv.]
+  infine, mettendo in relazione $V_+$ e $V_{OUT}$.
+\end{enumerate}
+\paragraph{Risposta (b.ii)}
+\begin{itemize}
+\item[a.]
+  \begin{equation*}
+    \begin{gathered}
+      sC(V_S - V_A) = \frac{V_A - V_{OUT}}{R/2} \\
+      sRC(V_S - V_A) = 2(V_A - V_{OUT}) \\
+      sRCV_S + 2V_{OUT} = (2 + sRC)V_A \\ \implies
+      V_{Th, A} \equiv V_A = \frac{sRCV_S + 2V_{OUT}}{2 + sRC}
+    \end{gathered}
+  \end{equation*}
+  \begin{equation*}
+    Z_{th, A} \equiv \frac{R}{2 + sRC}
+  \end{equation*}
+\item[b.]
+  \begin{equation*}
+    \begin{gathered}
+      \frac{V_S - V_A}{R} = 2sCV_A \\
+      V_{Th, B} \equiv V_A = \frac{V_S}{1 + 2sRC}
+    \end{gathered}
+  \end{equation*}
+  \begin{equation*}
+    Z_{Th, B} \equiv \frac{R}{1 + 2sRC}
+  \end{equation*}
+\end{itemize}
+\paragraph{Risposta (b.iii)}
+\begin{equation*}
+  \begin{gathered}
+    V_{Th, A} = \frac{uV_S + 2V_{OUT}}{2 + u} \qquad
+    Z_{Th, A} = \frac{R}{2 + u} \\
+    V_{Th, B} = \frac{V_S}{2 + u} \qquad
+    Z_{Th, B} = \frac{R}{1 + 2u}
+  \end{gathered}
+\end{equation*}
+\'E un partitore di tensione quindi
+\begin{equation*}
+  \begin{gathered}
+    V_+ = \frac{Z_{Th, B} + R}{Z_{Th, A} + Z_{Th, B} + R + \frac{1}{sC}}V_{Th, A}
+  \end{gathered}
+\end{equation*}
+
+\paragraph{Richiesta (c)}
+Verificare che i limiti asintotici del guadagno (sia per $f \to 0$ che per $f \to \infty$) coincidano
+con quanto osservato e qualitativamente dedotto al punto 2a.
+
+\paragraph{Richiesta (d)}
+Dall'espressione ottenuta dedurre i valori attesi per i parametri del filtro (frequenza
+centrale, larghezza di banda e fattore di merito) e confrontarli con le misure di cui al
+punto 1b (si consiglia di utilizzare la grandezza adimensionale $x = \omega RC = 2\pi fRC$
+come variabile indipendente e di semplificare preliminarmente l'espressione della funzione
+di trasferimento dividendo per il numeratore).
+
+\paragraph{Richiesta (e)}
+Osservare le propriet\'a di simmetria del plot di Bode e giustificarle alla luce
+del fatto che $A(1/x) = A^*(x)$.
