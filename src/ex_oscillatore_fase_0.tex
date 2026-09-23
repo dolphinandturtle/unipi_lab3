@@ -1,0 +1,147 @@
+\section{Oscillatore Fase 0}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (a)}
+    Discutere le caratteristiche del blocco 1 e determinare il suo guadagno $A_1$, al momento
+    trascurando la presenza dei diodi.
+  \end{minipage}
+}
+\paragraph{Risposta (a)}
+Il ruolo del blocco $A_1$ (ignorando la presenza di diodi) \'e un comune amplificatore a schema
+\underline{non}-invertente con op-amp, la funzione di trasferimento \'e nota.
+\begin{equation}
+  \label{eq:oscillatore-fase-0-tfunc-1}
+  \colorbox{blu}{\boxed{H_1(s) = \frac{R + (R/5 + R)}{R} = \frac{11}{5}}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (b)}
+    Determinare la funzione di trasferimento $A_2(s)$ del blocco 2.
+  \end{minipage}
+}
+\paragraph{Risposta (b)}
+Il blocco 2 \'e composto da un \textit{integratore passivo} in serie con un \textit{inseguitore di tensione}
+con op-amp ed un \textit{derivatore passivo}.
+\begin{equation}
+  \label{eq:oscillatore-fase-0-tfunc-2}
+  \colorbox{blu}{\boxed{H_2(s) = \frac{sRC}{(1 + sRC)^2}}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (c)}
+    Verificare che esiste un unico valore di frequenza per cui il loop-gain $A_1A_2$ soddisfi la
+    condizione di Barkhausen e metterlo in relazione alla frequenza di oscillazione
+    precedentemente misurata.
+  \end{minipage}
+}
+\paragraph{Risposta (c)}
+Il loop gain si ottiene
+\begin{equation*}
+  L(s) \equiv H_1(s)H_2(s) = \frac{11}{5}\frac{sRC}{(1 + sRC)^2}
+\end{equation*}
+nello studio della fase il fattore positivo non contribuisce all'identificazione del semi-piano
+di operazione dunque sar\'a sufficiente studiare $H_2(s)$.
+Il segno del semi-piano reale
+\begin{equation*}
+  2R^2C^2\omega^2 > 0
+\end{equation*}
+il segno del semi-piano complesso
+\begin{equation*}
+  RC\omega(1 - R^2C^2\omega^2)
+\end{equation*}
+non \'e ben definito. Di conseguenza si usa \ref{eq:da-tfunc-a-fase-reale-positivo}
+\begin{equation}
+  \label{eq:oscillatore-fase-0-loop-gain-fase}
+  \colorbox{blu}{\boxed{\phi(\omega) = \arctan\left(\frac{1 - R^2C^2\omega^2}{2RC\omega}\right)}}
+\end{equation}
+la frequenza \'e direttamente proporzionale alla pulsazione, la fase si annulla quando
+\begin{equation*}
+  1 - R^2C^2\omega^2 = 0
+\end{equation*}
+siccome le pulsazione ammesse sono positive esiste un unica frequenza che soddisfa la
+condizione di barkhausen, la frequenza centrale (ottenuta sostituendo $\omega \to 2\pi f$)
+\begin{equation}
+  \label{eq:oscillatore-fase-0-loop-gain-frequenza-centrale}
+  \colorbox{blu}{\boxed{f = \frac{1}{2\pi RC}}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (d)}
+    Discutere qualitativamente e quantitativamente il ruolo dei diodi alla luce dell’andamento
+    osservato (punti 1c-e) del loop-gain in funzione dell’ampiezza di $V_1$, in particolare
+    determinando un valore atteso per l’ampiezza dell’aut
+  \end{minipage}
+}
+\paragraph{Risposta (d)}
+La funzione di trasferimento del blocco 1 modificata dall'operazione dei diodi, dove
+$Z = D||R||D$.
+\begin{equation*}
+  H_1(s, Z) = \frac{R + (R/5 + Z)}{R} = \frac65 + \frac{Z}{R}
+\end{equation*}
+di conseguenza la funzione di loop-gain modificata
+\begin{equation*}
+  L(s, Z) = \left(\frac65 + \frac{Z}{R}\right)\frac{sRC}{(1 + sRC)^2}
+\end{equation*}
+la legge sulla fase non viene modificata siccome il termine modificato \'e sempre
+un fattore di $H_2(s)$, la pulsazione/frequenza centrale rimane invariata, occorre studiare
+il guadagno che per soddisfare la condizione di Barkhausen deve essere unitario, utilizzando
+\ref{eq:da-tfunc-a-gain}
+\begin{equation}
+  \label{eq:oscillatore-fase-0-resistenza-dinamica}
+  \begin{gathered}
+    G(\omega, Z) = \left(\frac65 + \frac{Z}{R}\right)\frac{RC\omega}{\sqrt{(1 - R^2C^2\omega^2)^2 + (2RC\omega)^2}} = 1 \\ \implies
+    \left(\frac65 + \frac{Z}{R}\right)\frac{1}{\sqrt{(0)^2 + (2)^2}} = 1 \implies \colorbox{blu}{\boxed{Z = \frac45 R}}
+  \end{gathered}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \paragraph{Richiesta (e)}
+    Enfatizzare il ruolo svolto da $U_2$ discutendo come sarebbe cambiata la risposta alla domanda
+    3b eliminandolo (ovvero corto-circuitando i terminali delle capacità) e come sarebbe stato
+    necessario in questo caso modificare il blocco 1 per ripristinare la condizione di Barkhausen.
+  \end{minipage}
+}
+\paragraph{Risposta (e)}
+Rimuovendo l'op-amp $U_2$ l'integratore passivo e il derivatore passivo sono sempre in serie ma sono
+accoppiati, non la tensione intermedia non \'e pi\'u proveniente da un partitore di tensione
+\begin{equation*}
+  \begin{gathered}
+    \frac{V_S - V}{R} = sCV + sC(V - V_{OUT}) \\
+    V_{OUT} = \frac{sRC}{1 + sRC}V
+  \end{gathered}
+\end{equation*}
+isolando il termine $V_S$ a sinistra
+\begin{equation*}
+  \begin{gathered}
+    V_S = (1 + 2sRC)V - sRCV_{OUT}
+  \end{gathered}
+\end{equation*}
+sostituendo $V \to \frac{1 + sRC}{sRC}V_{OUT}$ e $sRCV \to (1+sRC)V_{OUT}$
+\begin{equation*}
+  \begin{gathered}
+    V_S = \left[\frac{1 + sRC}{sRC} + 2(1 + sRC) - sRC\right]V_{OUT}
+  \end{gathered}
+\end{equation*}
+moltiplicando entrambi i lati per $sRC$ si ottiene
+\begin{equation}
+  \label{eq:oscillatore-fase-0-tfunc-2-mod}
+  \colorbox{blu}{\boxed{\tilde{H}_2(s) = \frac{sRC}{1 + 3sRC + s^2R^2C^2}}}
+\end{equation}
+Ripetendo i conti per il calcolo della pulsazione a fase nulla ci si rende conto
+che essa rimane invariata (nell'espressione all'interno dell'$\arctan$ cambia solo
+che a denominatore $2RC\omega \to 3RC\omega$).
+Si modifica per\'o il guadagno e ripartendo da \ref{eq:oscillatore-fase-0-resistenza-dinamica}
+si ottiene la nuova condizione sull'operazione dei diodi perch\'e sia soddisfatta la
+condizione di Barkhausen
+\begin{equation}
+  \label{eq:oscillatore-fase-0-resistenza-dinamica-mod}
+  \begin{gathered}
+    \tilde{G}(\omega, \tilde{Z}) = \left(\frac65 + \frac{\tilde{Z}}{R}\right)\frac{RC\omega}{\sqrt{(1 - R^2C^2\omega^2)^2 + (3RC\omega)^2}} = 1 \\ \implies
+    \left(\frac65 + \frac{\tilde{Z}}{R}\right)\frac{1}{\sqrt{(0)^2 + (3)^2}} = 1 \implies \colorbox{blu}{\boxed{\tilde{Z} = \frac95 R}}
+  \end{gathered}
+\end{equation}
