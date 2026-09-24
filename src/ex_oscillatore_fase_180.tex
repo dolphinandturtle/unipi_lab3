@@ -1,0 +1,166 @@
+\section*{Oscillatore Fase 180}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (a)}
+    Discutere, sulla base di semplici argomenti di natura qualitativa (ovvero senza effettuare
+    i calcoli richiesti ai punti successivi), la funzione svolta dai blocchi 1 (ingresso $V_1$,
+    uscita $V_2$) e 2 (ingresso $V_2$, uscita $V_3$) del circuito.
+  \end{minipage}
+}
+\subsection*{Risposta (a)}
+\paragraph{Blocco 1}
+Ci sono delle componenti con ammittenza all'interno del circuito di conseguenza la risposta sar\'a
+diversa a seconda della pulsazione/frequenza del segnale d'ingresso, agli estremi succede
+\begin{itemize}
+\item
+  Per $f \to 0$ si ``apre'' il ramo con $C_1$ e di conseguenza la tensione d'uscita quando l'op-amp
+  opera in regime di linearit\'a
+  \begin{equation*}
+    V_2 = A_d(0 - Z_{R_2}||Z_{C_2}V_2) \implies \colorbox{blu}{\boxed{V_2 = A_d\frac{0}{1 + Z_{R_2}||Z_{C_2}} = 0}}
+  \end{equation*}
+\item
+  Per $f \to \infty$ si ``corto-circuita'' il ramo con $C_1$ e con $C_2$ e di conseguenza la tensione d'uscita quando l'op-amp
+  opera in regime di linearit\'a
+  \begin{equation*}
+    V_2 = A_d(0 - V_2) \implies \colorbox{blu}{\boxed{V_2 = A_d\frac{0}{1 + 1} = 0}}
+  \end{equation*}
+  
+\end{itemize}
+
+\paragraph{Blocco 2}
+Ci sono solo componenti resistivi all'interno del circuito di conseguenza la risposta \underline{non}
+dipende dalla pulsazione/frequenza del segnale d'ingresso, tuttavia sono presenti dei \textit{diodi},
+dei componenti \textit{non-lineari} che alternano l'operazione del circuito che si tratta di un
+\textit{amplificatore invertente con op-amp}
+\begin{itemize}
+\item
+  Con i \textit{diodi interdetti} il ramo superiore ha un resistenza equivalente di $R_{eq} = \frac{11}{5}R$.
+\item
+  Con i \textit{diodi in conduzione} il ramo superiore ha un resistenza equivalente di $R_{eq} = \frac{6}{5}R$.
+\end{itemize}
+\noindent\colorbox{blu}{
+  \begin{minipage}{1.0\linewidth}
+    la conseguenza dei due risultati precedenti \'e che il fattore di amplificazione varia in risposta a
+    variazioni di corrente.
+  \end{minipage}
+} \smallskip
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (b)}
+    Calcolare analiticamente la funzione di trasferimento $\beta(s)=V_2/V_1$ del solo blocco 1,
+    verificando che il suo andamento in frequenza sia in accordo con quanto dedotto al punto
+    precedente.
+  \end{minipage}
+}
+\subsection*{Risposta (b)}
+Il blocco 1 \'e un circuito \textit{amplificatore invertente con op-amp} e la forma della funzione di
+trasferimento \'e ben nota
+\begin{equation*}
+  H_1(s) = -\frac{Z_{R_2}||Z_{C_2}}{Z_{R_1}+Z_{C_1}} = -\frac{sR_2C_1}{(1 + sR_1C_1)(1 + sR_2C_2)}
+\end{equation*}
+notando che per $R \equiv R_1 = R_2$ e $C \equiv C_1 = C_2$
+\begin{equation}
+  \label{eq:oscillatore-fase-180-tfunc-1}
+  \colorbox{blu}{\boxed{H_1(s) = -\frac{sRC}{(1 + sRC)^2}}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (c)}
+    Determinare il valore del guadagno $A=V_3/V_2$ del blocco 2 tale da soddisfare la
+    condizione di Barkhausen e verificare che, nelle ipotesi di idealit\'a dell'operazionale
+    e (al momento) di polarizzazione inversa dei diodi, il modulo del guadagno effettivo di
+    quel blocco sia leggermente superiore.
+  \end{minipage}
+}
+\subsection*{Risposta (c)}
+\paragraph{Blocco 2}
+Nel momento di polarizzazione inversa dei diodi supponendo che la corrente di polarizzazione
+negativa sia neglegibile i rami con i diodi si comportano come degli ``aperti'' e di conseguenza
+\begin{equation}
+  \label{eq:oscillatore-fase-180-tfunc-2}
+  \colorbox{blu}{\boxed{A_2 = -\frac{R + R/5 + R}{R} = -\frac{11}{5}}}
+\end{equation}
+\paragraph{Loop-Gain}
+Nell'ipotesi in cui la \textit{condizione di Barkhausen} possa essere soddisfata
+allora $s = \frac{1}{RC}$ e per mezzo di \ref{eq:da-tfunc-a-gain}
+\begin{equation}
+  \label{eq:oscillatore-fase-180-gain}
+  \colorbox{blu}{\boxed{G\left(\frac{1}{RC}\right) = \frac{11}{5}\frac{1}{\sqrt{(0)^2 + (2)^2}} = 1.1 > 1.0}}
+\end{equation}
+in effetti non viene soddisfatta. \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (d)}
+    Determinare la frequenza di auto-oscillazione del circuito e metterla in relazione alle
+    precedenti misure di cui ai punti 1a, 1c.
+  \end{minipage}
+}
+\subsection*{Risposta (d)}
+\begin{equation}
+  \label{eq:oscillatore-fase-180-loop-gain}
+  \colorbox{blu}{\boxed{L(s) \propto \frac{sRC}{(1 + sRC)^2}}}
+\end{equation}
+il fattore reale di amplificazione dato dal blocco 2 non dipende dalla pulsazione/frequenza del
+segnale, dunque non contribuisce in alcun modo alla fase. Il segno del semi-piano reale
+\begin{equation*}
+  2R^2C^2\omega^2 > 0
+\end{equation*}
+il segno del semi-piano complesso
+\begin{equation*}
+  RC\omega(1 - R^2C^2\omega^2)
+\end{equation*}
+non \'e ben definito. Di conseguenza si usa \ref{eq:da-tfunc-a-fase-reale-positivo}
+\begin{equation}
+  \label{eq:oscillatore-fase-180-loop-gain-fase}
+  \colorbox{blu}{\boxed{\phi(\omega) = \arctan\left(\frac{1 - R^2C^2\omega^2}{2RC\omega}\right)}}
+\end{equation}
+la frequenza \'e direttamente proporzionale alla pulsazione, la fase si annulla quando
+\begin{equation*}
+  1 - R^2C^2\omega^2 = 0
+\end{equation*}
+siccome le pulsazione ammesse sono positive esiste un unica frequenza che soddisfa la
+\textit{condizione di Barkhausen}, la frequenza centrale (ottenuta sostituendo $\omega \to 2\pi f$)
+\begin{equation}
+  \label{eq:oscillatore-fase-180-loop-gain-frequenza-centrale}
+  \colorbox{blu}{\boxed{f = \frac{1}{2\pi RC}}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (e)}
+    Discutere quantitativamente il ruolo svolto dai diodi in relazione alla variazione di
+    guadagno osservata al punto 1d. Giustificare il valore dell’ampiezza dell’auto-
+    oscillazione misurato al punto 1a
+  \end{minipage}
+}
+\subsection*{Risposta (e)}
+Il parallelo di diodo $D_1$ con resistenza $R_6$ e diodo $D_2$ fa si che l'amplificatore possieda
+una forma di guadagno dinamico siccome il diodo si comporta da elemento resistivo dinamico.
+I diodi sono disposti in anti-parallelo cos\'i che sia la parte di semi-onda positiva che di
+semi-onda negativa ne risentano gli effetti; i diodi non possono mai entrare entrambi in
+conduzione (per semplicit\'a ipotizzo che la corrente di polarizzazione negativa del diodo
+sia trascurabile). Il blocco 2 \'e un circuito \textit{amplificatore invertente con op-amp}
+e dunque la sua funzione di trasferimento \'e ben nota
+\begin{equation*}
+  A_2(D) = -\frac{R + R/5 + D||R}{R} = -\left(\frac65 + \frac{D}{R + D}\right)
+\end{equation*}
+
+Il guadagno alla frequenza di auto-oscillazione modificato
+\begin{equation*}
+  G\left(\frac{1}{RC}\right) = \left(\frac35 + \frac{D/2}{R + D}\right) \in \left[0.6, 2.2\right]
+\end{equation*}
+\begin{itemize}
+\item
+  Se avviene una perturbazione nei componenti del circuito cos\'i che il guadagno di centro-banda
+  \underline{non} sia pi\'u unitario allora il feedback potrebbe essere minore/maggiore di 1 quindi
+  smorzante/amplificante, tuttavia i diodi conducendo di meno/pi\'u aumenterebbero/diminuirebbero
+  il guadagno complessivo del feedback stabilizzando il circuito.
+\item
+  Se avviene una perturbazione nella frequenza del segnale, il feedback idealmente sar\'a minore di 1
+  (il filtro a passa-banda ha massimo nella frequenza centrale) e si attenuer\'a velocemente portando
+  in \textit{interdizione i diodi} e di conseguenza \textit{aumentando} il guadagno.
+\end{itemize}
