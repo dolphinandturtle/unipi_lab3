@@ -1,0 +1,140 @@
+\section*{Oscillatore Regolato}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (a)}
+    Discutere se, sulla base di quanto osservato nella configurazione ad anello, si possa applicare
+    il principio di cortocircuito virtuale agli ingressi di entrambi gli operazionali.
+  \end{minipage}
+}
+\subsection*{Risposta (a)}
+\paragraph{Op-amp U1}
+Il ramo invertente in retroazione, modulo transienti il dispositivo
+operer\'a in \colorbox{blu}{regione di linearit\'a}.
+\paragraph{Op-amp U2}
+Sia il ramo invertente che \underline{non}-invertente in retroazione. Tuttavia, la corrente in retro-azione
+\underline{non} finisce nell'ingresso \underline{non}-invertente (\'e presente un ``corto''), la retro-azione
+avviene tutta nel ramo invertente, modulo transienti il dispositivo operer\'a in
+\colorbox{blu}{regione di linearit\'a}. \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (b)}
+    Ricavare un'espressione analitica della L-trasformata della funzione di trasferimento $A_1(s)$
+    del blocco 1 nell'ipotesi di idealit\'a dell'operazionale. Si assuma inoltre per semplicit\'a che i
+    valori dei componenti siano legati tra loro dalle seguenti relazioni: $R_2=R$, $C_2=C$, $R_1=R/5$ e
+    $C_1=5C$.
+  \end{minipage}
+}
+\subsection*{Risposta (b)}
+Lo schema del circuito nel blocco 1 \'e quello di un \textit{amplificatore invertente con op-amp} e la
+funzione di trasferimento \'e nota: ``l'inverso del rapporto fra l'impedenze del ramo di retroazione e
+ramo d'ingresso''
+\begin{equation}
+  \label{eq:oscillatore-regolato-tfunc-1}
+  \colorbox{blu}{\boxed{H_1(s) = -\frac{Z_{R}||Z_{C}}{Z_{5C} + Z_{R/5}} = -\frac{5sRC}{(1 + sRC)^2}}}
+\end{equation}
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (c)}
+    Dall'espressione ottenuta calcolare frequenza $f_\pi$ e modulo del guadagno $|A_1(f_{\pi})|$ del blocco 1
+    e verificare la loro compatibilit\'a con le precedenti misure di cui al punto 1.2.
+  \end{minipage}
+}
+\subsection*{Risposta (c)}
+Restringendo la funzione di trasferimento \ref{eq:oscillatore-regolato-tfunc-1} all'asse immaginario
+\begin{equation*}
+  A_1(j\omega) = -\frac{5jRC\omega}{(1 + jRC\omega)^2}
+\end{equation*}
+lo sfasamento di $\pi$ si ottiene per un valore reale del rapporto (siccome c\'e un segno ``meno'' davanti),
+questo accade solo se si annulla la parte reale del denominatore (siccome il numeratore ha solo parte
+immaginaria) e di conseguenza $\omega_{\pi} = (RC)^{-1}$, sostituendo $\omega \to 2\pi f$ si ottiene la
+frequenza di sfasamento $\pi$
+\begin{equation}
+  \label{eq:oscillatore-regolato-frequenza-pi}
+  \colorbox{blu}{\boxed{f_{\pi} = \frac{1}{2\pi RC}}}
+\end{equation}
+e il guadagno alla medesima pulsazione
+\begin{equation}
+  \label{eq:oscillatore-regolato-gain-1}
+  \colorbox{blu}{\boxed{G(\omega_{\pi}) = \left|\frac{5j}{(1 + j)^2}\right| = \left|\frac{5j}{2j}\right| = \frac52}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (d)}
+    Assumendo (al momento) che i diodi siano interdetti, determinare $A_2$, guadagno in tensione
+    del secondo blocco, in termini di k (frazione della resistenza del trimmer verso terra),
+    verificando che $-1 < A_2 < 1$.
+  \end{minipage}
+}
+\subsection*{Risposta (d)}
+La tensione all'ingresso \underline{non}-invertente \'e quella di un partitore di tensione su
+$V_2$, il cui rapporto di partizione \'e controllabile da un fattore $k \in [0, 1]$
+\begin{equation*}
+  V_+ = \frac{kR}{(1-k)R + kR}V_2 = kV_2
+\end{equation*}
+nell'ipotesi in cui entrambi i diodi siano interdetti allora la tensione all'ingresso invertente
+\begin{equation*}
+  V_- = \frac{R}{R + R}V_2 + \frac{R}{R + R}V_3 = \frac12(V_2 + V_3)
+\end{equation*}
+nell'ipotesi di op-amp \textit{ideale} e in regime di operazione \textit{lineare} applicando il
+principio di corto-circuito virtuale si ricava l'espressione da cui calcolare il guadagno del
+blocco 2
+\begin{equation*}
+  kV_2 = \frac12(V_2 + V_3)
+\end{equation*}
+per cui
+\begin{equation}
+  \label{eq:oscillatore-regolato-tfunc-2}
+  \colorbox{blu}{\boxed{A_2 = (2k - 1)}}
+\end{equation}
+e come suggerito dalla richiesta $-1 < A_2 < 1$ (siccome $k \in [0, 1]$). \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (e)}
+    Calcolare per quale regolazione del trimmer (i.e. per quale valore di k) sia soddisfatta la
+    condizione di Barkhausen per l'anello.
+  \end{minipage}
+}
+\subsection*{Risposta (e)}
+La funzione di loop-gain
+\begin{equation}
+  \label{eq:oscillatore-regolato-loop-gain}
+  \colorbox{blu}{\boxed{L(s) \equiv H_1(s)A_2(s) = \frac{(5 - 10k)sRC}{(1 + sRC)^2}}}
+\end{equation}
+nell'ipotesi in cui la \textit{condizione di Barkhausen} possa essere soddisfatta, la frequenza di
+auto-oscillazione sar\'a $f_\pi$ da \ref{eq:oscillatore-regolato-frequenza-pi}, occorre regolare
+$k \in [0, 1]$ per ottenere guadagno unitario
+\begin{equation*}
+  L(s) \to L(j\omega) \implies L(j\omega_{\pi}) = \frac{(5 - 10k)j}{2j} = 1
+\end{equation*}
+da cui si ottiene l'impostazione del trimmer
+\begin{equation}
+  \label{eq:oscillatore-regolato-trimmer}
+  \colorbox{blu}{\boxed{k = 3/10}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (f)}
+    Stimare la d.d.p. ai capi dei diodi nelle condizioni di misura di cui al punto 3 e giustificare
+    qualitativamente il loro utilizzo.
+  \end{minipage}
+}
+\begin{equation*}
+  \Delta V = V_2/2 - V_3
+\end{equation*}
+dalla funzione di trasferimento, $V_3$ dipende da $k$ e $V_2$
+\begin{equation*}
+  \Delta V = \left(\frac32 - 2k\right)V_2
+\end{equation*}
+sostituendo $k \to 3/10$ trovato in \ref{eq:oscillatore-regolato-trimmer}
+\begin{equation*}
+  \colorbox{blu}{\boxed{\Delta V = \frac{9}{10}V_2}}
+\end{equation*}
+la differenza di potenziale ai capi del diodo dipendono dall'intensit\'a del segnale d'ingresso,
+seguendo lo schema di amplificazione del blocco 2, all'aumentare di $V_2$ diminuisce
+l'amplificazione, stabilizzando l'auto-oscillazione nella presenza di perturbazioni esterne.
+
