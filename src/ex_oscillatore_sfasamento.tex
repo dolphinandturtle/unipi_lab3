@@ -1,0 +1,146 @@
+\section*{Oscillatore Sfasamento}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (a)}
+    Descrivere qualitativamente la funzione di ciascuna delle due parti del circuito ($\text{A} \to \text{B}$ e
+    $\text{B} \to \text{OUT}$). Dire se si pu\'o applicare il principio di cortocircuito virtuale agli ingressi
+    dell'operazionale.
+  \end{minipage}
+}
+\subsection*{Risposta (a)}
+\paragraph{Ingresso A}
+La serie di partitori di tensione (ignorando gli effetti di accoppiamento) agiscono come un \textit{filtro passa alto}.
+\begin{itemize}
+\item
+  Ad \textit{bassissime} frequenze $f \to 0$ i rami con in condensatori si ``aprono'' non permettendo il passaggio di corrente.
+  \begin{equation*}
+    \colorbox{blu}{\boxed{V_B = 0}}
+  \end{equation*}
+\item
+  Ad \textit{altissime} frequenze $f \to \infty$ i rami con in condensatori ``corto-circuitano'' il nodo A con quello B.
+  \begin{equation}
+    \colorbox{blu}{\boxed{V_B = V_A}}
+  \end{equation}
+\end{itemize}
+
+\paragraph{Ingresso B}
+Non tenendo conto dell'azione dei diodi lo schema del circuito assume quello di \colorbox{blu}{\textit{amplificatore invertente con op-amp}}. \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (b)}
+    Per ciascuna parte ricavare analiticamente un'espressione per le rispettive funzioni di
+    trasferimento $\beta(s)$ ed $A(s)$, nell'ipotesi che l'operazionale sia ideale ed assumendo (al
+    momento) che i diodi siano interdetti.
+  \end{minipage}
+}
+\subsection*{Risposta (b)}
+\paragraph{Ingresso A}
+Invece di procedere direttamente con la \textit{KCL} facciamo un'osservazione \textit{globale} che
+va al di fuori dal circuito compreso fra A e B. Nell'ipotesi di op-amp ideale ed operazione in regime
+lineare, applicando il \textit{principio di corto-circuito virtuale} si scopre che la tensione al nodo che segue
+$R_3$ \'e $0 = V_- = V_+$. Quest'osservazione \'e cruciale perch\'e la conseguenza \'e il calcolo di un
+impedenza equivalente per tutti i nodi messi a terra, che rende l'identificazione di $V_B$ possibile
+attraverso uno sviluppo di \textit{partitori di tensione} che partono da $V_A$; procedendo si sostituisce
+$\xi \to sRC$ per semplificare i calcoli futuri (che a me sono gi\'a noti quando leggete questo)
+\begin{equation*}
+  \begin{gathered}
+    Z_{2\to B} \equiv Z_{R_3} \\
+    Z_{1\to 2} \equiv Z_{R_2}~||~(Z_{C_3} + Z_{2\to B}) \\
+    Z_{A\to 1} \equiv Z_{R_1}~||~(Z_{C_2} + Z_{1 \to 2})
+  \end{gathered}
+\end{equation*}
+(sebbene il calcolo \'e molto lungo, tuttavia \'e diretto e con pazienza si trova)
+risolvendo per $Z_{R_1} = Z_{R_2} = Z_{R_3} = R$ e $Z_{C_1} = Z_{C_2} = Z_{C_3} = R/\xi$
+\begin{equation*}
+  \begin{gathered}
+    Z_{2\to B} = R \\
+    Z_{1\to 2} = R\frac{1 + \xi}{1 + 2\xi} \\
+    Z_{A\to 1} = R\frac{1 + 3\xi + \xi^2}{1 + 4\xi + 3\xi^2}
+  \end{gathered}
+\end{equation*}
+ottenuto questo si calcola la funzione di trasferimento fra $V_A$ e la tensione
+che segue $C_1$ mediante il rapporto di partizione fra il condensatore $C_1$ e
+l'impedenza equivalente $Z_{A\to 1}$, poi fra $V_1$ e la tensione che segue $C_2$
+mediante il rapporto di partizione fra il condensatore $C_2$ e l'impedenza
+equivalente $Z_{1\to 2}$, poi... (si procede induttivamente del circuito da cui sostituendo $Z_{C_1} = (sC)^{-1}$)
+\begin{equation}
+  \begin{gathered}
+    V_1/V_A = \frac{Z_{A\to 1}}{Z_{C_1} + Z_{A\to 1}} = \frac{\xi + 3\xi^2 + \xi^3}{1 + 5\xi + 6\xi^2 + \xi^3} \\
+    V_2/V_1 = \frac{Z_{1\to 2}}{Z_{C_2} + Z_{1\to 2}} = \frac{\xi(\xi + 1)}{1 + 3\xi + \xi^2} \\
+    V_B/V_2 = \frac{Z_{2\to B}}{Z_{C_3} + Z_{2\to B}} = \frac{\xi}{1 + \xi}
+  \end{gathered}
+\end{equation}
+dal risultato precedente si ottiene la funzione di trasferimento complessiva $\beta(s) \equiv V_B/V_A$
+\begin{equation}
+  \label{eq:oscillatore-sfasamento-beta}
+  \colorbox{blu}{\boxed{\beta(s) = \frac{V_B}{V_2}\frac{V_2}{V_1}\frac{V_1}{V_A} = \frac{(sRC)^3}{1 + 5sRC + 6(sRC)^2 + (sRC)^3}}}
+\end{equation}
+
+\paragraph{Ingresso B}
+Nell'ipotesi in cui i diodi siano interdetti e l'op-amp \'e ideale ed opera in regime lineare la
+funzione di trasferimento di un \textit{amplificatore invertente con op-amp} \'e ben nota
+\begin{equation}
+  \label{eq:oscillatore-sfasamento-amp}
+  \colorbox{blu}{\boxed{A = -\frac{R + 20R + 10R}{R} = -31}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (c)}
+    Calcolare la frequenza di oscillazione aspettata e confrontarla con quanto misurato.
+  \end{minipage}
+}
+\subsection*{Risposta (c)}
+La frequenza dell'oscillatore si studia attraverso il \textit{loop-gain}
+\begin{equation}
+  \label{eq:oscillatore-sfasamento-loop-gain}
+  L(s) \equiv -31\frac{(sRC)^3}{1 + 5sRC + 6(sRC)^2 + (sRC)^3}
+\end{equation}
+Il fattore di sfasamento deve essere un multiplo di $2\pi$, dunque \ref{eq:oscillatore-sfasamento-beta}
+deve essere \textit{reale positivo} nella restrizione all'asse immaginari $u = RC\omega$, $ju \to s$
+\begin{equation*}
+  \beta(ju) = \frac{ju^3}{(1 - 6u^2) + ju(5 - u^2)}
+\end{equation*}
+di conseguenza la condizione vincolante \'e l'annullamente della parte reale a denominatore per cui
+sostituendo $RC\omega \to u$ e successivamente $\omega \to 2\pi f$ si ottiene la frequenza di oscillazione
+\begin{equation}
+  \label{eq:oscillatore-sfasamento-frequenza}
+  \colorbox{blu}{\boxed{f = \frac{1}{2\pi\sqrt6 RC} \approx 2953~\text{Hz}}}
+\end{equation}
+(confrontando questo risultato con il circuito simulato su \textit{falstad} si nota qualitativamente che
+il risultato \'e compatibile). \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (d)}
+    Discutere la funzione dei diodi.
+  \end{minipage}
+}
+\subsection*{Risposta (d)}
+I diodi stabilizzano l'operazione dell'opamp. Agiscono da resistenze dinamiche che rimangono interdette
+quando l'op-amp opera in regime di auto-oscillazione.
+\begin{itemize}
+\item
+  Lo schema dei diodi \'e dovuto al fatto che durante la semi-onda negativa un diodo solo verrebbe
+  interdetto a prescindere dai valori di tensione e dunque per avere stabilizzazione su entrambi le
+  semi-onde occorre usare questo schema (tuttavia non ci sar\'a mai pi\'u di un solo diodo in conduzione)
+\item
+  Quando la tensione in retroazione \'e in \textit{eccesso} i rami dei diodi iniziano a condurre e di conseguenza
+  si attenua il fattore di amplificazione. Invece quando la tensione di retro-azione \'e in \textit{difetto} i rami
+  dei diodi rimangono comunque interdetti, l'impedenza non cambia e l'auto-oscillazione muore (tuttavia
+  questo non accade per motivi di costruzione che ora si approfondiscono).
+\end{itemize}
+riprendendo la funzione di trasferimento \ref{eq:oscillatore-sfasamento-beta}, alla frequenza di
+auto-oscillazione si nota che la rete di sfasamento non ha guadagno unitario
+\begin{equation*}
+  u_{\pi} = 1/\sqrt6 \implies \beta(u_{\pi}) = -1/29
+\end{equation*}
+di conseguenza il \textit{loop-gain} non \'e nemmeno esso unitario
+\begin{equation*}
+  L = -31\left(-\frac{1}{29}\right) > 1
+\end{equation*}
+ma questo \'e un design intelligente perch\'e risolve il problema della retro-azione in difetto, i rami dei
+diodi dunque saranno in conduzione in regime di auto-oscillazione e nel caso la tensione in retro-azione \'e in
+difetto chiudendosi non faranno muorire l'auto-oscillazione.
