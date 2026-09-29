@@ -1,0 +1,152 @@
+\section*{Multivibratore a Doppio Derivatore}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (a)}
+    Descrivere il funzionamento del circuito sia qualitativamente (riconoscendo quale noto
+    circuito realizzino i blocchi 1 e 2) che quantitativamente, scrivendo la trasformata di Laplace
+    delle funzioni di trasferimento $A_1(s)$ dei singoli blocchi e loop-gain $A_2$ = $A_1^2$. A tale scopo si
+    considerino gli operazionali siano ideali ed $R_1=R_3=R$, $R_2=R_4=2R$ e $C_1=C_2=C$.
+  \end{minipage}
+}
+\subsection*{Risposta (a)}
+\paragraph{Analisi qualitativa}
+Isolando un singolo blocco (scegliendo ad esempio il primo senza perdita di generalit\'a) si studia
+il comportamento a frequenze estremali
+\begin{itemize}
+\item
+  Per $f \to 0$ il ramo da $V_S$ all'ingresso invertente $V_-$ dell'op-amp viene ``aperto''; la resistenza
+  nel ramo di retro-azione si assume piccola rispetto alla resistenza invertente.
+  Di conseguenza la funzione di trasferimento dell'op-amp in regime di operazione lineare
+  \begin{equation*}
+    \colorbox{blu}{\boxed{V_{OUT} = A_d(0 - V_{OUT}) \implies V_{OUT} = \frac{A_d}{1 + A_d}0 = 0}}
+  \end{equation*}
+\item
+  Per $f \to \infty$ il ramo da $V_S$ all'ingresso invertente $V_-$ dell'op-amp viene ``corto-circuitato''.
+  L'op-amp ideale non assorbe corrente dall'ingresso invertente $V_-$ e dunque la tensione si calcola come
+  un rapporto di partizione fra le resistenze $R_1$ e $R_2$
+  \begin{equation*}
+    V_- = \frac23 V_S + \frac13 V_{OUT}
+  \end{equation*}
+  la funzione di trasferimento dell'op-amp in regime di operazione lineare
+  \begin{equation*}
+    \begin{gathered}
+      V_{OUT} = A_d\left(0 - \left(\frac23 V_S + \frac13 V_{OUT}\right)\right) \\ \implies
+      \colorbox{blu}{\boxed{V_{OUT} = -\frac{2A_d}{3 + A_d}V_S}}
+    \end{gathered}
+  \end{equation*}
+\end{itemize}
+
+\paragraph{Analisi quantitativa}
+Entrambi i circuiti sono dei \textit{derivatori reali con op-amp}, le singole funzioni di trasferimento sono
+note
+\begin{equation*}
+  H_1(s) = H_2(s) = -\frac{Z_{R_2}}{Z_{R_1} + Z_{C_2}}
+\end{equation*}
+risolvendo per i valori di questo circuito
+\begin{equation}
+  \label{eq:multivibratore-doppio-derivatore-tfunc}
+  \colorbox{blu}{\boxed{H_1(s) = H_2(s) = -\frac{2sRC}{1 + sRC}}}
+\end{equation}
+di conseguenza il loop-gain \'e il prodotto fra le due funzioni di trasferimento uguali, ovvero il quadrato
+di una fra esse
+\begin{equation}
+  \label{eq:multivibratore-doppio-derivatore-loop-gain}
+  \colorbox{blu}{\boxed{L(s) \equiv H_1(s)H_2(s) = \frac{4s^2R^2C^2}{(1 + sRC)^2}}}
+\end{equation}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (b)}
+    Dalle precedenti funzioni estrarre le caratteristiche dei corrispondenti blocchi (guadagno,
+    frequenza di taglio e pendenza asintotica a basse frequenze) e metterle in relazione ai valori
+    misurati ai punti 1b e 1d.
+  \end{minipage}
+}
+\subsection*{Risposta (b)}
+Il modulo del guadagno dei singoli blocchi si ottiene mediante la \ref{eq:da-tfunc-a-gain}
+\begin{equation}
+  \label{eq:multivibratore-doppio-derivatore-gain}
+  \colorbox{blu}{\boxed{G(\omega) = \frac{2RC\omega}{\sqrt{1 + R^2C^2\omega^2}}}}
+\end{equation}
+il guadagno massimo si ricava esprimendo la funzione di guadagno appena ottenuta dividendo numeratore
+e denominatore per $RC\omega$ (nell'ipotesi in cui $\omega \neq 0$)
+\begin{equation*}
+  G(\omega) = \frac{2}{\sqrt{1 + \frac{1}{R^2C^2\omega^2}}}
+\end{equation*}
+il massimo del reciproco \'e il minimo dell'argomento che a sua volta \'e funzione di un reciproco dunque
+il massimo di $R^2C^2\omega^2$, dunque
+\begin{equation}
+  \label{eq:multivibratore-doppio-derivatore-gain-max}
+  \colorbox{blu}{\boxed{\max_{\omega \in [0, +\infty)} G(\omega) = \lim_{\omega \to \infty} G(\omega) = 2}}
+\end{equation}
+ora si pu\'o ottenere la pulsazione di taglio per cui il quadrato del guadagno \'e pari alla met\'a del
+quadrato del massimo
+\begin{equation*}
+  \begin{gathered}
+    \left(\frac{2RC\omega}{\sqrt{1 + R^2C^2\omega^2}}\right)^2 = \frac{\max G(\omega)^2}{2} \\ \implies
+    \omega = \frac{1}{RC}
+  \end{gathered}
+\end{equation*}
+dunque la frequenza di taglio \'e ottenuta sostituendo $\omega \to 2\pi f$
+\begin{equation}
+  \label{eq:multivibratore-doppio-derivatore-frequenza-taglio}
+  \colorbox{blu}{\boxed{f = \frac{1}{2\pi RC} \approx 339~\text{Hz}}}
+\end{equation}
+la pendenza asintotica \'e una misura che ha senso quando si tratta il guadagno nella scala \textit{decibel}
+\begin{equation*}
+  A_{\text{dB}}(\omega) = 20\log_{10}G(\omega) = 20\left[\log_{10}2RC + \log_{10}\omega - \frac12\log_{10}(1 + R^2C^2\omega^2)\right]
+\end{equation*}
+la pendenza asintotica nel limite di basse frequenze di conseguenza
+\begin{equation}
+  \label{eq:multivibratore-doppio-derivatore-db}
+  \colorbox{blu}{\boxed{m_0 = \lim_{\omega \to 0}\frac{A_{\text{dB}}(\omega)}{\log_{10}(\omega)} = 20\text{dB}/\text{dec}}}
+\end{equation}
+Attraverso la simulazione del circuito su \textit{falstad} si nota che ad alte frequenze il guadagno \'e circa di 2, in accordo
+con quanto ottenuto dal modello teorico \ref{eq:multivibratore-doppio-derivatore-gain-max}. \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (c)}
+    Dalle caratteristiche analitiche di $A_2$ dedurre che l'amplificatore realizzato mediante
+    connessione ad anello dei blocchi 1 e 2 non pu\'o essere stabile (o, facoltativamente, che non
+    potrebbe esserlo in generale se $R_2 = R_4 > R_1 = R_3$).
+  \end{minipage}
+}
+\subsection*{Risposta (c)}
+La stabilit\'a si deduce dallo studio della funzione di trasferimento ad anello chiuso
+\begin{equation*}
+  \begin{gathered}
+    V_{IN} = V_S + H_1(V_{OUT}) \\
+    V_{OUT} = H_2(V_{IN}) \implies V_{OUT} = H_2(V_S + H_1(V_{OUT})) \\ \implies
+    H(s) = \frac{H_2(s)}{1 - L(s)}
+  \end{gathered}
+\end{equation*}
+Sostituendo si studiano i suoi poli, ovvero gli zeri nel denominatore; per ridurre il numero di conti sostituisco $\xi \to sRC$
+\begin{equation*}
+  \begin{gathered}
+    H(s) = \frac{H_2(s)}{1 - L(s)} = \frac{-\frac{2\xi}{1 + \xi}}{1 - \frac{4\xi^2}{(1 + \xi)^2}} = -\frac{2\xi(1 + \xi)}{1 + 2\xi - 3\xi^2} \\
+    \Delta = 2^2 - 4(1)(-3) = 16 > 0 \implies \xi = \frac{1 \mp 2}{3} \in \colorbox{blu}{\boxed{\left\{-\frac13, 1\right\} = P}}
+  \end{gathered}
+\end{equation*}
+sono presenti poli con parte reale positiva, di conseguenza l'instabilit\'a porter\'a in tempo finito gli op-amp
+fuori dal loro regime di operazione lineare. \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (d)}
+    Mostrare che i livelli di $V_1$ e $V_2$ non possono essere stabili e di segno concorde, in accordo
+    con quanto osservato al punto 2a.
+  \end{minipage}
+}
+\subsection*{Risposta (d)}
+I singoli blocchi invertono la fase dell'onda, di conseguenza durante il periodo di semi-onda positivo in uno dei
+blocchi neccessariamente nel secondo blocco la semi-onda sar\'a negativa. \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (e)}
+    Determinare un'espressione del periodo di $V_1$, $V_2$ nell'ipotesi che i livelli di saturazione siano
+    simmetrici ($V_{OH} = -V_{OL}$) e confrontarla con quanto misurato al punto 2b.
+  \end{minipage}
+}
