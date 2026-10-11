@@ -1,0 +1,98 @@
+\section*{Multivibratore PWM}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (a)}
+    Descrivere qualitativamente il funzionamento del circuito, eventualmente individuando nel
+    circuito alcune strutture gi\'a note e mostrando che per $V_M = 0$ si comporti come un
+    multivibratore astabile e con $\text{duty-cycle}=50\%$ (nell'ipotesi che i livelli di
+    saturazione siano simmetrici).
+  \end{minipage}
+}
+\subsection*{Risposta (a)}
+\begin{equation*}
+  \frac{V_{OUT} - V_-}{Z_{R_3}} = \frac{V_- - V_M}{Z_{R_4}} + \frac{V_-}{Z_{C_1}}
+\end{equation*}
+sostituendo con i valori del circuito
+\begin{equation*}
+  V_- = \frac{V_{OUT} + V_M}{2 + sRC}
+\end{equation*}
+nell'ipotesi in cui l'op-amp sia ideale, l'ingresso \underline{non}-invertente non assorbe corrente
+dunque la tensione \'e quella del partitore di tensione $Z_{R_1}-Z_{R_2}$
+\begin{equation*}
+  V_+ = \frac{1}{101}V_{OUT}
+\end{equation*}
+Si studia l'instabilit\'a del circuito mediante il fattore di retro-azione derivabile dalla tensione
+d'ingresso (differenziale)
+\begin{equation*}
+  V_d = V_+ - V_-
+\end{equation*}
+\begin{equation*}
+  V_{d} = \left(\frac{sRC - 99}{101(2 + sRC)}\right)V_{OUT} - \frac{V_M}{2 + sRC}
+\end{equation*}
+\begin{equation*}
+  \beta(s) \equiv \frac{sRC - 99}{101(2 + sRC)}
+\end{equation*}
+\begin{itemize}
+\item
+  Quando il condensatore \'e completamente scarico il suo ramo ``corto-circuita'' la terra
+  \begin{equation*}
+    V_d = \frac{1}{101}V_{OUT}
+  \end{equation*}
+  dunque il fattore di retro-azione \'e positivo e di conseguenza il circuito non \'e lineare
+\item
+  Quando il condensatore \'e pienamente carico il suo ramo si ``apre''
+  \begin{equation*}
+    V_d = -\frac{99}{202}V_{OUT} - \frac12 V_M
+  \end{equation*}
+  dunque il fattore di retro-azione \'e negativo e di conseguenza il circuito pu\'o essere lineare.
+\end{itemize}
+Durante il regime di linearit\'a
+\begin{equation*}
+  V_{OUT} = -\frac{101}{99 - sRC}V_M
+\end{equation*}
+
+\begin{equation*}
+  \begin{gathered}
+    \frac{V_{OUT} - V_-}{100R} = \frac{V_- - V_M}{100R} + 100C\dot{V}_- \\
+    V_{OUT} - V_- = V_- - V_M + 10^4RC\dot{V}_-
+  \end{gathered}
+\end{equation*}
+
+\paragraph{Regime non-lineare}
+\begin{equation*}
+  V_d > 0 \implies \frac{1}{101}V_{OH} > 0
+\end{equation*}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (b)}
+    Nell'ipotesi di idealit\'a dell'operazionale, determinare l'andamento temporale del segnale $V_-$
+    in funzione di $V_M$ e per ciascuno stato di $V_{OUT}$ (suggerimento: per i processi di carica/scarica
+    di $C_1$ si sostituisca la rete costituita dal partitore $V_{OUT}-R_3-R_4-V_M$ con il suo equivalente di
+    Th\'evenin visto dai terminali del condensatore; si consideri inoltre che $R_2 \ll R_1 \iff |V_+|\ll V_{OH}$,
+    per cui i termini esponenziali possono essere approssimati al primo ordine in serie di Taylor
+    come …).
+  \end{minipage}
+}
+\subsection*{Risposta (b)}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (c)}
+    In funzione di $V_M$ (oppure di $V_M/V_{OH}$) determinare la durata degli stati di $V_{OUT}$ e ricavare
+    frequenza e duty-cycle dello stesso segnale, confrontandoli con quanto misurato al punto 2a.
+  \end{minipage}
+}
+\subsection*{Risposta (c)}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (d)}
+    Discutere gli effetti delle caratteristiche non ideali dell'operazionale, ed in
+    particolare del suo slew-rate, sul funzionamento del circuito, ad esempio evidenziando i suoi
+    effetti sulle forme d'onda misurate.
+  \end{minipage}
+}
+\subsection*{Risposta (d)}
+
