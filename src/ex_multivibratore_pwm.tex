@@ -10,59 +10,18 @@
   \end{minipage}
 }
 \subsection*{Risposta (a)}
-\begin{equation*}
-  \frac{V_{OUT} - V_-}{Z_{R_3}} = \frac{V_- - V_M}{Z_{R_4}} + \frac{V_-}{Z_{C_1}}
-\end{equation*}
-sostituendo con i valori del circuito
-\begin{equation*}
-  V_- = \frac{V_{OUT} + V_M}{2 + sRC}
-\end{equation*}
-nell'ipotesi in cui l'op-amp sia ideale, l'ingresso \underline{non}-invertente non assorbe corrente
-dunque la tensione \'e quella del partitore di tensione $Z_{R_1}-Z_{R_2}$
-\begin{equation*}
-  V_+ = \frac{1}{101}V_{OUT}
-\end{equation*}
-Si studia l'instabilit\'a del circuito mediante il fattore di retro-azione derivabile dalla tensione
-d'ingresso (differenziale)
-\begin{equation*}
-  V_d = V_+ - V_-
-\end{equation*}
-\begin{equation*}
-  V_{d} = \left(\frac{sRC - 99}{101(2 + sRC)}\right)V_{OUT} - \frac{V_M}{2 + sRC}
-\end{equation*}
-\begin{equation*}
-  \beta(s) \equiv \frac{sRC - 99}{101(2 + sRC)}
-\end{equation*}
-\begin{itemize}
-\item
-  Quando il condensatore \'e completamente scarico il suo ramo ``corto-circuita'' la terra
-  \begin{equation*}
-    V_d = \frac{1}{101}V_{OUT}
-  \end{equation*}
-  dunque il fattore di retro-azione \'e positivo e di conseguenza il circuito non \'e lineare
-\item
-  Quando il condensatore \'e pienamente carico il suo ramo si ``apre''
-  \begin{equation*}
-    V_d = -\frac{99}{202}V_{OUT} - \frac12 V_M
-  \end{equation*}
-  dunque il fattore di retro-azione \'e negativo e di conseguenza il circuito pu\'o essere lineare.
-\end{itemize}
-Durante il regime di linearit\'a
-\begin{equation*}
-  V_{OUT} = -\frac{101}{99 - sRC}V_M
-\end{equation*}
+\paragraph{\colorbox{blu}{Condensatore scarico}}
+Durante questa fase l'ingresso invertente \'e messo a terra, l'op-amp si comporta come un \textit{trigger di Schmitt \underline{non}-invertente}.
+La tensione rimane nel livello di saturazione.
 
-\begin{equation*}
-  \begin{gathered}
-    \frac{V_{OUT} - V_-}{100R} = \frac{V_- - V_M}{100R} + 100C\dot{V}_- \\
-    V_{OUT} - V_- = V_- - V_M + 10^4RC\dot{V}_-
-  \end{gathered}
-\end{equation*}
+\paragraph{\colorbox{blu}{Transizione}}
+Appena il condensatore riceve abbastanza carica cos\'i che $V_+ = V_-$\footnotemark
+\footnotetext{Si parla della differenza di potenziale ma siccome entrambi gli ingressi sono collegati a terra...}
+allora l'op-amp inizia ad entrare in regime di operazione lineare e si comporta da \textit{amplificatore \underline{invertente}}.
 
-\paragraph{Regime non-lineare}
-\begin{equation*}
-  V_d > 0 \implies \frac{1}{101}V_{OH} > 0
-\end{equation*}
+\paragraph{\colorbox{blu}{Condensatore carico}}
+Durante il regime di amplificazione invertente, la tensione si ``capovolge'' e l'op-amp inizia a scaricarsi fino a
+ri-attraversare la fase di transizione per tornare nella regione di operazione non-lineare come un \textit{trigger di Schmitt \underline{non}-invertente}. \\
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
@@ -76,6 +35,28 @@ Durante il regime di linearit\'a
   \end{minipage}
 }
 \subsection*{Risposta (b)}
+La tensione equivalente di Th\'evenin
+\begin{equation*}
+  \begin{gathered}
+    \frac{V_{OUT} - V_-}{Z_{R_3}} = \frac{V_- - V_M}{Z_{R_4}} \\ \implies
+    V_- = \frac{V_{OUT} + V_M}{2}
+  \end{gathered}
+\end{equation*}
+l'impedenza equivalente di Th\'evenin
+\begin{equation*}
+  Z_{th} = Z_{R_3} || Z_{R_4} = 50R
+\end{equation*}
+la legge oraria della tensione $V_-$
+\begin{equation*}
+  \begin{gathered}
+    Z_{C_1}i_{C_1} = \frac{V_{th} - V_-}{Z_{th}} \\ \implies
+    C\dot{V}_- = \frac{V_{th} - V_-}{50 R} \\ \implies
+    \tau\dot{V}_- + V_- = V_{th} \quad \tau \equiv 50RC \\ \implies
+    V_-(t) = V_{th} + [V_-(t_0) - V_{th}]\exp\left(-\frac{t - t_0}{\tau}\right) \\
+    V_-(t) = \frac{V_{OH} + V_M}{2} + \left[V_{thr-} - \frac{V_{OH} + V_M}{2}\right]\exp\left(-\frac{t - t_0}{\tau}\right) \\
+    V_-(t) = \frac{V_{OL} + V_M}{2} + \left[V_{thr+} - \frac{V_{OL} + V_M}{2}\right]\exp\left(-\frac{t - t_0}{\tau}\right) \\
+  \end{gathered}
+\end{equation*}
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
@@ -85,6 +66,31 @@ Durante il regime di linearit\'a
   \end{minipage}
 }
 \subsection*{Risposta (c)}
+il semi-periodo
+\begin{equation*}
+  \begin{gathered}
+    t_L = \tau\ln\left(\frac{V_{thr+} - V_{Th,-}}{V_{thr-} - V_{Th,-}}\right) \\
+    t_H = \tau\ln\left(\frac{V_{Th,+} - V_{thr-}}{V_{Th,+} - V_{thr+}}\right)
+  \end{gathered}
+\end{equation*}
+approssimazione per Taylor siccome $R_2 \ll R_1$
+\begin{equation*}
+  \begin{gathered}
+    t_L =  \tau\ln\left(1 + \frac{V_{thr+} - V_{thr-}}{V_{thr-} - V_{Th,-}}\right) \approx \tau\frac{V_{thr+} - V_{thr-}}{V_{thr-} - V_{Th,-}} \\
+    t_H =  \tau\ln\left(1 + \frac{V_{thr+} - V_{thr-}}{V_{Th,+} - V_{thr+}}\right) \approx \tau\frac{V_{thr+} - V_{thr-}}{V_{Th,+} - V_{thr+}}
+  \end{gathered}
+\end{equation*}
+sotto ipotesi di simmetria nelle tensione di saturazione
+\begin{equation*}
+  \begin{gathered}
+    t_L = \tau\frac{2V_{thr}}{V_{thr} - V_{Th,-}} = \tau\frac{2\beta}{\beta - V_{Th,-}/V_{OH}} = \tau\frac{4\beta}{1 - 2\beta - V_M/V_{OH}} \\
+    t_H = \tau\frac{2V_{thr}}{V_{Th,+} - V_{thr}} = \tau\frac{4\beta}{1 + V_M/V_{OH} - 2\beta}
+  \end{gathered}
+\end{equation*}
+il duty cycle
+\begin{equation*}
+  D = \frac{1}{1 + \frac{(1 - 2\beta) - V_M/V_{OH}}{(1 - 2\beta) + V_M/V_{OH}}}
+\end{equation*}
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
@@ -95,4 +101,5 @@ Durante il regime di linearit\'a
   \end{minipage}
 }
 \subsection*{Risposta (d)}
-
+Lo slew-rate del circuito fa si che la tensione in uscita dall'op-amp non commuti istantaneamente
+dalla tensione di saturazione bassa $V_{OL}$ alla tensione di saturazione alta $V_{OH}$.
