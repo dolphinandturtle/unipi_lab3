@@ -1,0 +1,146 @@
+\section*{Multivibratore Triangolare}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (blocco 1, a)}
+    Dalle caratteristiche dei segnali osservazioni ai punti 1a, 1d, 1e, descrivere la funzione
+    svolta della prima parte del circuito (blocco 1 in figura, ingresso $V_1$, uscita $V_{TR}$).
+  \end{minipage}
+}
+\subsection*{Risposta (blocco 1, a)}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (blocco 1, b)}
+    Determinare analiticamente la funzione di trasferimento ed individuarne le
+    caratteristiche (poli, zeri) nell'ipotesi di idealit\'a di $U_1$.
+  \end{minipage}
+}
+\subsection*{Risposta (blocco 1, b)}
+L'ingresso \textit{invertente} ideale avendo impedenza ``grande'' \'e soggetto alla tensione
+del \textit{partitore di tensione} $R_1R_2$
+\begin{equation*}
+  V_+ = V_{TR}/2
+\end{equation*}
+L'ingresso \textit{\underline{non}-invertente} ideale avendo impedenza ``grande'' \'e soggetto alla
+tensione compatibile con la KCL 
+\begin{equation*}
+  \begin{gathered}
+    \frac{V_1 - V_-}{Z_{R_3}} = \frac{V_-}{Z_{C_1}} + \frac{V_- - V_{TR}}{Z_{R_4}} \\ \implies
+    V_- = \frac{V_1 + V_{TR}}{2 + sRC}
+  \end{gathered}
+\end{equation*}
+sott'ipotesi di op-amp ideale (con guadagno differenziale ``grande'' e regime di operazione lineare)
+applico il \textit{principio di corto-circuito virtuale}
+\begin{equation*}
+  \begin{gathered}
+    V_+ = V_- \\ \implies
+    \frac{V_{TR}}{2} = \frac{V_1 + V_{TR}}{2 + sRC}
+  \end{gathered}
+\end{equation*}
+la funzione di trasferimento complessa si ottiene dal rapporto $V_{TR}/V_1$
+\begin{equation*}
+  \colorbox{blu}{\boxed{H_1(s) = \frac{2}{sRC}}}
+\end{equation*}
+non ci sono \textit{zeri} ma c\'e un unico \textit{polo} per $s = 0$. \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (blocco 1, c)}
+    Sulla base di quanto ottenuto al punto precedente, discutere la risposta dello stesso
+    blocco nel dominio del tempo; di che tipo di circuito si tratta?
+  \end{minipage}
+}
+\subsection*{Risposta (blocco 1, c)}
+La funzione di trasferimento complessa per il circuito \'e quella di un'integratore con
+\textit{centro-banda} 0 e \textit{guadagno massimo} 2, nel dominio del tempo per mezzo
+della \textit{trasformata di laplace inversa} si ottiene
+\begin{equation*}
+  \colorbox{blu}{\boxed{V_{TR}(t) = \frac{2}{RC}\int_0^t V_1(t')~\text{d}t'}}
+\end{equation*}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (blocco 1, d)}
+    Dedurre una relazione quantitativa tra i livelli del segnale di ingresso ($V_{SQ}$) e la
+    pendenza dell'uscita ($V_{TR}$), confrontandola con quanto osservato/misurato ai precedenti
+    punti 1b, 1c.
+  \end{minipage}
+}
+\subsection*{Risposta (blocco 1, d)}
+Per $V_{SQ}$ segnale di un'onda quadra la tensione $V_1 \equiv \text{const.}$ e pu\'o essere portata
+fuori dall'integrale diventando cos\'i una funzione lineare la cui pendenza
+\begin{equation*}
+  \colorbox{blu}{\boxed{\frac{\text{d}}{\text{d}t}V_{TR} = \frac{2V_{SQ}}{RC}}}
+\end{equation*}
+
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (blocco 2, a)}
+    Descrivere qualitativamente la rete identificata in figura come blocco 2, eventualmente
+    riconducendola ad uno schema gi\'a noto.
+  \end{minipage}
+}
+\subsection*{Risposta (blocco 2, a)}
+Il secondo blocco costituisce un \textit{trigger di Schmitt}. \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (blocco 2, b)}
+    Verificato che $V_{SQ}$ si attesti sui livelli di saturazione di $U_2$, determinarne le soglie,
+    ovvero i valori del suo ingresso $V_{TR}$ in corrispondenza delle quali si verifica la
+    commutazione del suo stato d'uscita e confrontarli con l'ampiezza delle rampe di $V_{TR}$
+    misurata al punto 1c.
+  \end{minipage}
+}
+\subsection*{Risposta (blocco 2, b)}
+\begin{equation*}
+  \begin{gathered}
+    V_{thr-} = V_{OL}/2 \\
+    V_{thr+} = V_{OH}/2
+  \end{gathered}
+\end{equation*}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (blocco 2, c)}
+    Mostrare che, per effetto della connessione ad anello dei due blocchi, entrambi gli stati
+    di uscita di $V_{SQ}$ sono metastabili.
+  \end{minipage}
+}
+\subsection*{Risposta (blocco 2, c)}
+\begin{itemize}
+\item
+  Il segnale entrante nel primo blocco \'e un segnale costante, partendo da $t = 0$ esso
+  crescer\'a/decrescer\'a in base al segno del segnale d'entrata.
+\item
+  Il segnale crescer\'a/decrescer\'a fino a superare la soglia del secondo blocco, in
+  quell'istante il segnale in uscita dal secondo blocco e quindi entrante al primo cambier\'a
+  di segno.
+\end{itemize}
+L'azione di \textit{inversione} del segnale causata dal secondo blocco assieme alla \textit{crescita costante}
+(in modulo) del primo blocco fa s\'i che lo stato di entrambi i segnali commuti periodicamente. \\
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (blocco 2, d)}
+    Nell'ipotesi di idealità di $U_2$ e di simmetria dei suoi livelli di saturazione, calcolare il
+    periodo e confrontarlo con quanto misurato al punto 1c.
+  \end{minipage}
+}
+\subsection*{Risposta (blocco 2, d)}
+\begin{equation*}
+  \frac{V_{OH}}{2} = \frac{2V_{OH}}{RC}t - \frac{V_{OH}}{2} \implies t = RC/2
+\end{equation*}
+\begin{equation*}
+  \frac{V_{OL}}{2} = \frac{2V_{OL}}{RC}t - \frac{V_{OL}}{2}
+\end{equation*}
+se i livelli di saturazione sono simmetrici
+\begin{equation*}
+  -\frac{V_{OH}}{2} = -\frac{2V_{OH}}{RC}t + \frac{V_{OH}}{2} \implies t = RC/2
+\end{equation*}
+il periodo \'e dunque
+\begin{equation*}
+  \colorbox{blu}{\boxed{T = RC}}
+\end{equation*}
