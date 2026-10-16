@@ -1,11 +1,14 @@
-Si assumano tutti gli operazionali ideali ed operanti in regime lineare. Si considerino i valori
-delle resistenze pari a quelli nominali.
+\section*{Convertitore RMS-DC}
 
-\paragraph{Richiesta (a)}
-Mostrare sulla base di semplici argomenti che i diodi D1 e D2 non possono essere
-simultaneamente nello stesso stato di polarizzazione (se cioè uno è in conduzione l’altro deve
-essere interdetto e viceversa).
-\paragraph{Risposta (a)}
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (a)}
+    Mostrare sulla base di semplici argomenti che i diodi $D_1$ e $D_2$ non possono essere
+    simultaneamente nello stesso stato di polarizzazione (se cio\'e uno \'e in conduzione l'altro deve
+    essere interdetto e viceversa).
+  \end{minipage}
+}
+\subsection*{Risposta (a)}
 \begin{quote}
   ``Entrambi i diodi sono entrambi in conduzione?''
 \end{quote}
@@ -25,12 +28,16 @@ contraddizione (un argomento analogo viene fatto assumendo la tensione d'ingress
 Se si assumesse invece che nessuno dei diodi \'e in conduzione allora la tensione all'uscita
 dell'amplificatore \'e nulla, quindi nuovamente almeno uno fra i diodi entra in conduzione
 (perch\'e la tensione d'ingresso \'e non nulla), un'altra contraddizione.
-\textit{Almeno uno} dei diodi dovr\'a essere in conduzione.
+\textit{Almeno uno} dei diodi dovr\'a essere in conduzione. \\
 
-\paragraph{Richiesta (b)}
-Alla luce del precedente argomento si giustifichino le identità tra le semi-onde di VA, VB, VS
-di cui al punto 1b.
-\paragraph{Risposta (b)}
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (b)}
+    Alla luce del precedente argomento si giustifichino le identit\'a tra le semi-onde di $V_A$, $V_B$, $V_S$
+    di cui al punto 1b.
+  \end{minipage}
+}
+\subsection*{Risposta (b)}
 Siccome un diodo alla volta pu\'o entrare in conduzione le possibili tensioni all'uscite
 di $V_A$ e $V_B$ sono rispettivamente
 \begin{equation*}
@@ -62,20 +69,96 @@ ma forse meno leggibile)
   V_A = -\max\{V_S, 0\} \qquad V_B = -\min\{V_S, 0\} \qquad V_A + V_B = -V_S
 \end{equation*}
 
-\paragraph{Richiesta (c)}
-Determinare la funzione di trasferimento del secondo stadio del circuito (con ingressi VA e
-VB ed uscita VOUT, verificando che si tratti di un amplificatore differenziale a guadagno
-complesso).
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (c)}
+    Determinare la funzione di trasferimento del secondo stadio del circuito (con ingressi $V_A$ e
+    $V_B$ ed uscita $V_{OUT}$, verificando che si tratti di un amplificatore differenziale a guadagno
+    complesso).
+  \end{minipage}
+}
+\subsection*{Risposta (c)}
+Studio la stabilit\'a del circuito
+\begin{equation*}
+  \begin{gathered}
+    V_{OUT}^{(n+1)} = \epsilon A_d(\beta(s)V_B - (\beta(s)V_A + \overline{\beta}(s)V_{OUT}^{(n)})) + (1 - \epsilon)V_{OUT}^{(n)} \\
+    V_{OUT}^{(n+1)} = ... + [1 - \epsilon(1 + A_d\overline{\beta}(s))]V_{OUT}^{(n)}
+  \end{gathered}
+\end{equation*}
+siccome $\forall A_d \exists \epsilon > 0 \colon |1 - \epsilon(1 + A_d\beta(s))| < 1$ allora
+il circuito \'e \textit{lineare/stabile} e dunque $V_{OUT} \equiv V_{OUT}^{(n+1)} = V_{OUT}^{(n)}$
+converger\'a ad un qualche valore finito.
+\begin{equation*}
+  V_{OUT} = \frac{A_d(\beta(s)(V_B - V_A))}{1 + A_d\overline{\beta}(s)}
+\end{equation*}
+nell'ipotesi di idealit\'a dell'op-amp in termini di guadagno differenziale si ottiene
+\begin{equation*}
+  V_{OUT} = \frac{\beta(s)}{\overline{\beta}(s)}(V_B - V_A) = \frac{Z}{R}(V_B - V_A) = \frac{1.1}{1 + 11sRC}(V_B - V_A)
+\end{equation*}
+il guadagno di modo differenziale del circuito \'e proprio il fattore davanti alla tensione differenziale
+\begin{equation*}
+  \colorbox{blu}{\boxed{H_d(s) \equiv \frac{1.1}{1 + 11sRC}}}
+\end{equation*}
 
-\paragraph{Richiesta (d)}
-Calcolare il modulo del guadagno di modo differenziale atteso nel limite di continua ($f\to 0$)
-e ad 1kHz.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (d)}
+    Calcolare il modulo del guadagno di modo differenziale atteso nel limite di continua ($f\to 0$)
+    e ad $1~\text{kHz}$.
+  \end{minipage}
+}
+\subsection*{Risposta (d)}
+Il guadagno di modo differenziale si ottiene da \ref{eq:da-tfunc-a-gain}
+\begin{equation*}
+  G_d(f) = \frac{1.1}{\sqrt{1 + 484\pi^2R^2C^2f^2}}
+\end{equation*}
+per $f \to 0$ il guadagno tende a $\colorbox{blu}{\boxed{G_d = 1.1}}$ mentre per $f = 1~\text{kHz}$ il
+guadagno tende a $\colorbox{blu}{\boxed{G_d \approx 0.007}}$. \\
 
-\paragraph{Richiesta (e)}
-Calcolare il valore atteso per il rapporto tra il livello di continua di VOUT e l’ampiezza di VS
-e lo si confronti con la pendenza della retta di best-fit ottenuta al punto 1d.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (e)}
+    Calcolare il valore atteso per il rapporto tra il livello di continua di $V_{OUT}$ e l'ampiezza di $V_S$
+    e lo si confronti con la pendenza della retta di best-fit ottenuta al punto 1d.
+  \end{minipage}
+}
+\subsection*{Risposta (e)}
+Senza ulteriori calcoli per quanto osservato in precedenza:
+\begin{itemize}
+\item
+  Per $V_S > 0$ la tensione in $V_A = -V_S$ e $V_B = 0$ dunque la tensione di modo differenziale $V_B - V_A = V_S > 0$.
+\item
+  Per $V_S < 0$ la tensione in $V_A = 0$ e $V_B = -V_S$ dunque la tensione di modo differenziale $V_B - V_A = -V_S > 0$.
+\end{itemize}
+dunque la funzione di trasferimento di modo differenziale per i nodi A e B finisce per essere la funzione di trasferimento
+di $V_S$
+\begin{equation*}
+  \colorbox{blu}{\boxed{V_{OUT} = \frac{1.1}{1 + 11sRC}V_S}}
+\end{equation*}
 
-\paragraph{Richiesta (f)}
-Si dia una stima del valore atteso percentuale dell’ampiezza della prima
-armonica di VOUT, ovvero del rapporto tra la sua escursione ed il suo valor medio, e lo si
-metta in relazione con le misura di ripple di cui al punto 1b.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (f)}
+    Si dia una stima del valore atteso percentuale dell'ampiezza della prima
+    armonica di $V_{OUT}$, ovvero del rapporto tra la sua escursione ed il suo
+    valor medio, e lo si metta in relazione con le misura di ripple di cui al
+    punto 1b.
+  \end{minipage}
+}
+\subsection*{Risposta (f)}
+Nell'ipotesi in cui il segnale entrante di $v_S(t) = V_S|\sin(\omega t)|$. Il termine costante di \textit{offset} della
+\textit{serie di Fourier}
+\begin{equation*}
+  V_S^0 = \frac{1}{2\pi/\omega}\int_0^{2\pi/\omega}V_S|\sin(\omega t)| = \frac{V_S}{\pi/\omega}\int_0^{\pi/\omega}\sin(\omega t) = \frac{2}{\pi}V_S
+\end{equation*}
+nell'ipotesi in cui il modulo delle armoniche di bassa frequenza \textit{diminuiscono} con l'\textit{aumentare} della frequenza del segnale
+$v_S(t)$ allora il modulo dell'uscita \'e compreso nel seguente intervallo (per dare un intervallo concreto assumiamo $V_S = 2~\text{V}$)
+\begin{equation*}
+  \colorbox{blu}{\boxed{\frac{2}{\pi}V_S\cdot 1.1 \approx 1.4~\text{V} < |V_{OUT}| < V_S\cdot 1.1 \approx 2.2~\text{V}}}
+\end{equation*}
+\begin{itemize}
+\item
+  Nel limite di basse frequenze, $V_{OUT}$ tender\'a ad oscillare con un ampiezza massima di $1.1V_S$.
+\item
+  Nel limite di alte frequenze, $V_{OUT}$ tender\'a ad essere costante e di modulo $\frac{2.2}{\pi}V_S$.
+\end{itemize}
