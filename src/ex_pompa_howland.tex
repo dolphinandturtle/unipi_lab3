@@ -1,1 +1,110 @@
 \section*{Pompa Howland}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (a)}
+    Nell'ipotesi che l'operazionale sia ideale e la sua uscita lineare ed assunti i valori delle
+    resistenze pari a quelli nominali (e quindi $R_1=...=R_4=10~\text{kW}$), determinare l'impedenza
+    di ingresso del blocco tratteggiato in figura e verificare l'accordo con quanto ottenuto al
+    punto 1c.
+  \end{minipage}
+}
+\subsection*{Risposta (a)}
+Si studia la stabilit\'a del circuito
+\begin{equation*}
+  \begin{gathered}
+    V_B^{(n+1)} = \epsilon A_d(V_A - V_B^{(n)}/2) + (1 - \epsilon)V_B^{(n)} \\ \implies
+    V_B^{(n+1)} = \epsilon A_dV_A + \boxed{[1 - \epsilon(1 + A_d/2)]}V_B^{(n)}
+  \end{gathered}
+\end{equation*}
+siccome $\forall A_d \exists \epsilon > 0 \colon 1 - \epsilon(1 + A_d/2) < 1$ allora
+il circuito \'e \textit{lineare/stabile} e dunque $V_B \equiv V_B^{(n+1)} = V_B^{(n)}$
+converger\'a ad un qualche valore finito.
+\begin{equation*}
+  \begin{gathered}
+    V_B = \epsilon A_dV_A + [1 - \epsilon(1 + A_d/2)]V_B \\ \implies
+    V_B = \frac{A_dV_A}{(1 + A_d/2)}
+  \end{gathered}
+\end{equation*}
+nell'ipotesi di idealit\'a dell'op-amp in termini di guadagno differenziale si ottiene
+\begin{equation*}
+  \boxed{V_B = 2V_A}
+\end{equation*}
+dunque si calcola la corrente che scorre attraverso $R_2$ (in funzione di $V_A$) ed infine
+l'impedenza equivalente
+\begin{equation*}
+  I_A = \frac{V_A - V_B}{R} \implies \colorbox{blu}{\boxed{Z_{eq} \equiv \frac{V_A}{I_A} = -R}}
+\end{equation*}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (b)}
+    Ottenere un'espressione per $V_A$ e $V_B$ ed i valori attesi per $V_S=1~\text{V}$ ed $R_L=10~\text{k}\Omega$,
+    confrontandoli con le misure di cui al punto 1b.
+  \end{minipage}
+}
+\subsection*{Risposta (b)}
+Si calcola $V_A$ sostituendo il blocco con un resistore equivalente con \textit{resistenza negativa} da cui
+si ricava l'espressione in funzione di $V_S$ e $R_L$ attraverso la KCL
+\begin{equation*}
+  \begin{gathered}
+    \frac{V_S - V_A}{R} = \frac{V_A}{R_L} + \frac{V_A}{-R} \\ \implies
+    \colorbox{blu}{\boxed{V_A = \frac{R_L}{R}V_S}}
+  \end{gathered}
+\end{equation*}
+la relazione fra $V_A$ e $V_B$ \'e nota da prima, dunque
+\begin{equation*}
+  \colorbox{blu}{\boxed{V_B = 2\frac{R_L}{R}V_S}}
+\end{equation*}
+i valori attesi di conseguenza
+\begin{equation*}
+  \colorbox{blu}{\boxed{
+    \begin{gathered}
+      V_A = 1~\text{V} \\
+      V_B = 2~\text{V}
+    \end{gathered}
+  }}
+\end{equation*}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (c)}
+    Dalle precedenti espressioni determinare un valore atteso per la transconduttanza
+    dell'amplificatore in termini dei componenti circuitali, verificando che sia compatibile con
+    quanto ottenuto al punto 1e ed indipendente dalla resistenza di carico come mostrato
+    sperimentalmente al punto 1f.
+  \end{minipage}
+}
+\subsection*{Risposta (c)}
+La definizione di \textit{transconduttanza} riportata nella scheda completa dell'esercizio \'e la
+seguente
+\begin{equation*}
+  G_m = \frac{I_{OUT}}{V_S}
+\end{equation*}
+la corrente \'e banale da calcolare siccome si ha un'espressione di $V_A$ e di conseguenza anche
+la transconduttanza
+\begin{equation*}
+  I_{OUT} = \frac{V_A}{R_L} \implies \colorbox{blu}{\boxed{G_m = \frac{1}{R}}}
+\end{equation*}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (d)}
+    Nelle stesse ipotesi di cui al punto 2a determinare, a partire dalla sua definizione, l'impedenza
+    di uscita del circuito (N.B. i terminali di uscita devono essere identificati con quelli del
+    carico).
+  \end{minipage}
+}
+\subsection*{Risposta (d)}
+\begin{equation*}
+  Z_{out} = \left(\frac{1}{R_1} + \frac{1}{-R_2}\right)^{-1} = \frac{R_1R_2}{R_1 - R_2}
+\end{equation*}
+
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (e)}
+    Discutere come il risultato ottenuto al punto precedente sia correlato con l'indipendenza di
+    $I_{OUT}$ da $R_L$.
+  \end{minipage}
+}
+\subsection*{Risposta (e)}
