@@ -1,22 +1,114 @@
-Si assuma l'operazionale ideale con VOUT in regime lineare. Si considerino i valori delle
-resistenze pari a quelli nominali (in particolare R1=R2). Si assuma inoltre per semplicit\'a
-Vg=0.
+\section*{Raddrizzatore}
+Si assuma l’operazionale ideale con $V_{OUT}$ in regime lineare. Si considerino i valori delle
+resistenze pari a quelli nominali (in particolare $R_1=R_2$). Si assuma inoltre per semplicit\'a
+$V_\gamma=0$. \\
 
-\paragraph{Richiesta (a)}
-Si discuta lo stato di polarizzazione del diodo in corrispondenza di ciascuna semi-onda di VS
-e si commenti l'andamento osservato in V+.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (a)}
+    Si discuta lo stato di polarizzazione del diodo in corrispondenza di ciascuna semi-onda di $V_S$
+    e si commenti l'andamento osservato in $V_+$.
+  \end{minipage}
+}
+\subsection*{Risposta (a)}
+\paragraph{Semi-onda positiva}
+Il diodo \'e in interdizione, il ramo a terra \'e agisce da ``aperto''. La tensione all'ingresso non
+invertente vale
+\begin{equation*}
+  \colorbox{blu}{\boxed{V_+ = V_S}}
+\end{equation*}
+\paragraph{Semi-onda negativa}
+Il diodo \'e in conduzione, il ramo a terra \'e agisce da ``corto-circuito''. La tensione all'ingresso non
+invertente vale
+\begin{equation*}
+  \colorbox{blu}{\boxed{V_+ = 0}}
+\end{equation*}
+il circuito diventa un \textit{amplificatore invertente}. \\
 
-\paragraph{Richiesta (b)}
-Per ciascuno dei due stati si determini la relazione tra VOUT e VS e si giustifichi l'andamento
-osservato per VOUT al punto 1a. Di che tipo di circuito si tratta?
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (b)}
+    Per ciascuno dei due stati si determini la relazione tra $V_{OUT}$ e $V_S$ e si giustifichi l'andamento
+    osservato per $V_{OUT}$ al punto 1a. Di che tipo di circuito si tratta?
+  \end{minipage}
+}
+\subsection*{Risposta (b)}
+Si ottiene la tensione all'ingresso invertente usando la KCL fra il nodo di $V_S$ e il nodo di $V_{OUT}$
+\begin{equation*}
+  V_- = \frac12 V_S + \frac12 V_{OUT}
+\end{equation*}
+nell'ipotesi di idealit\'a dell'op-amp e di operazione in regime lineare per il
+\textit{principio di corto-circuito virtuale} si ottiene
+\begin{itemize}
+\item
+  Durante la fase di semi-onda positiva $V_S > 0$
+  \begin{equation*}
+    \begin{gathered}
+      V_S = \frac12 V_S + \frac12 V_{OUT} \\ \implies
+      V_{OUT} = V_S
+    \end{gathered}
+  \end{equation*}
+\item
+  Durante la fase di semi-onda negativa $V_S < 0$
+  \begin{equation*}
+    \begin{gathered}
+      0 = \frac12 V_S + \frac12 V_{OUT} \\ \implies
+      V_{OUT} = -V_S
+    \end{gathered}
+  \end{equation*}
+\end{itemize}
+un modo \textit{elegante} di esprimere il tutto
+\begin{equation*}
+  \colorbox{blu}{\boxed{V_{OUT} = |V_S|}}
+\end{equation*}
 
-\paragraph{Richiesta (c)}
-Si discuta il tipo di filtro operato da R4-C1 e le caratteristiche del segnale in VM.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (c)}
+    Si discuta il tipo di filtro operato da $R_4$-$C_1$ e le caratteristiche del segnale in $V_M$.
+  \end{minipage}
+}
+\subsection*{Risposta (c)}
+Si tratta di un \textit{filtro passa basso (passivo)} descritto dalla funzione di trasferimento
+\begin{equation*}
+  H_M(s) = \frac{1}{1 + sRC}
+\end{equation*}
+Esprimendo il segnale in una \textit{serie di Fourier}, la componente continua (di \textit{offset})
+rimane inalterata dal filtro mentre le componenti di alta frequenza vengono attenuate. \\
 
-\paragraph{Richiesta (d)}
-Si calcoli il valore atteso per il rapporto tra il livello di continua di VM e l'ampiezza di VS e
-lo si confronti con la pendenza della retta di best-fit ottenuta al punto 1d.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (d)}
+    Si calcoli il valore atteso per il rapporto tra il livello di continua di $V_M$ e l'ampiezza di $V_S$ e
+    lo si confronti con la pendenza della retta di best-fit ottenuta al punto 1d.
+  \end{minipage}
+}
+\subsection*{Risposta (d)}
+Nell'ipotesi in cui all'aumentare della frequenza di $V_S$ tutte le componenti di bassa frequenza, al di fuori
+della componente continua, di $|V_S|$ diminuiscono di intensit\'a allora dall'azione del filtro
+\begin{equation*}
+  \frac{V_M}{V_S} = \frac{1}{2\pi V_S}\int_0^{2\pi}|V_S\sin(t)|~\text{dt} = \frac{1}{\pi}\int_0^{\pi}\sin(t)~\text{dt} = \colorbox{blu}{\boxed{\frac{2}{\pi}}}
+\end{equation*}
 
-\paragraph{Richiesta (e)}
-Si dia una stima del valore atteso percentuale del ripple di VM, ovvero del
-rapporto tra la sua escursione ed il suo valor medio.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (e)}
+    Si dia una stima del valore atteso percentuale del ripple di $V_M$, ovvero del
+    rapporto tra la sua escursione ed il suo valor medio.
+  \end{minipage}
+}
+\subsection*{Risposta (e)}
+Calcoliamo il primo coefficiente di Fourier non nullo
+\begin{equation*}
+  \begin{gathered}
+    a_1 = \frac{2}{\pi}\int_0^{\pi}\sin t \cos t~\text{d}t = 0 \\
+    a_2 = \frac{2}{\pi}\int_0^{\pi}\sin t \cos t~\text{d}t = -\frac{4}{3\pi}
+  \end{gathered}
+\end{equation*}
+\begin{equation*}
+  \text{Ripple\%} = \frac{2\frac{4}{3\pi\sqrt{1 + R^2C^2(2\omega)^2}}}{2/\pi}\cdot 100 = \frac{400}{3\sqrt{1 + 16\pi^2R^2C^2f^2}}
+\end{equation*}
+nel limite di alte frequenze
+\begin{equation*}
+  \text{Ripple\%} = \frac{2\frac{4}{3\pi\sqrt{1 + 2R^2C^2\omega^2}}}{2/\pi}\cdot 100 = \frac{100}{3\pi RC f}
+\end{equation*}
