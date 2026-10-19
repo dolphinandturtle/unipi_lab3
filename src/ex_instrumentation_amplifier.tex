@@ -1,22 +1,75 @@
 \section*{Instrumentation Amplifier}
 Si assumano gli operazionali ideali e le loro uscite
 lineari. Si considerino inoltre i valori delle resistenze
-pari a quelli nominali (e quindi R1=…=R4=R=10 kW).
+pari a quelli nominali (e quindi $R_1=...=R_4=R=10~\text{k}\Omega$). \\
 
-\paragraph{Richiesta (a)}
-Nell'ipotesi che il ramo di RG sia aperto, si calcoli il guadagno di modo differenziale
-dell'amplificatore e se ne verifichi l'accordo con quanto ottenuto al punto 1b (suggerimento:
-si consiglia di sfruttare la validità dei teoremi per le reti lineari e/o ricondurre il circuito ad
-uno schema a blocchi di funzioni già note).
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (a)}
+    Nell'ipotesi che il ramo di $R_G$ sia aperto, si calcoli il guadagno di modo differenziale
+    dell'amplificatore e se ne verifichi l'accordo con quanto ottenuto al punto 1b (suggerimento:
+    si consiglia di sfruttare la validit\'a dei teoremi per le reti lineari e/o ricondurre il circuito ad
+    uno schema a blocchi di funzioni gi\'a note).
+  \end{minipage}
+}
+\subsection*{Risposta (a)}
+Nell'ipotesi di idealit\'a degli op-amp e di operazione nel regime lineare \'e valido il
+\textit{principio di corto-circuito virtuale} per cui
+\begin{equation*}
+  \begin{gathered}
+    V_{-U2} = V_2 \\
+    V_{-U1} = V_1
+  \end{gathered}
+\end{equation*}
+successivamente applicando la KCL si trova la relazione fra $V_1, V_2$ e $V_{OUT}$
+\begin{equation*}
+  \begin{gathered}
+    \frac{V_{U1} - V_1}{R} = \frac{V_1}{R} \\
+    \frac{V_{OUT} - V_2}{R} = \frac{V_2 - V_{U1}}{R} \\ \implies
+    \colorbox{blu}{\boxed{V_{OUT} = 2(V_2 - V_1)}}
+  \end{gathered}
+\end{equation*}
 
-\paragraph{Richiesta (b)}
-Si mostri che per ogni RG si abbia VOUT=0 se V1=V2, ovvero che il valore atteso per il
-guadagno di modo comune Ac sia nullo.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (b)}
+    Si mostri che per ogni $R_G$ si abbia $V_{OUT}=0$ se $V_1=V_2$, ovvero che il valore atteso per il
+    guadagno di modo comune $A_c$ sia nullo.
+  \end{minipage}
+}
+\subsection*{Risposta (b)}
+Sempre il virt\'u della KCL, se $V_1 = V_2$ allora non essendoci caduta di potenziale attraverso il
+carico $R_G$, l'espressione precedente non cambia ovvero il guadagno di modo comune rimane \textit{zero}. \\
 
-\paragraph{Richiesta (c)}
-Si calcoli più in generale l'espressione del guadagno di modo differenziale per valori finiti
-di RG esplicitandone la dipendenza dal rapporto adimensionale $k=R/RG$.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (c)}
+    Si calcoli pi\'u in generale l'espressione del guadagno di modo differenziale per valori finiti
+    di $R_G$ esplicitandone la dipendenza dal rapporto adimensionale $k=R/R_G$.
+  \end{minipage}
+}
+\subsection*{Risposta (c)}
+Nelle stesse ipotesi iniziali della prima risposta, modificando la KCL si ottiene
+\begin{equation*}
+  \begin{gathered}
+    \frac{V_{U1} - V_1}{R} = \frac{V_1 - V_2}{R_G} + \frac{V_1}{R} \\
+    \frac{V_{OUT} - V_2}{R} = \frac{V_2 - V_1}{R_G} + \frac{V_2 - V_{U1}}{R} \\ \implies
+    \colorbox{blu}{\boxed{V_{OUT} = 2\left(1 + \frac{R}{R_G}\right)(V_2 - V_1)}}
+  \end{gathered}
+\end{equation*}
 
-\paragraph{Richiesta (d)}
-Si calcoli quindi il valore atteso di Ad per RG=10, 5kW ($\implies k=1,2$) e lo si confronti con
-quanto ottenuto al punto 2b.
+\noindent\colorbox{orange}{
+  \begin{minipage}{1.0\linewidth}
+    \subsection*{Richiesta (d)}
+    Si calcoli quindi il valore atteso di $A_d$ per $R_G=10,5~\text{k}\Omega$ ($\implies k=1,2$) e lo si confronti con
+    quanto ottenuto al punto 2b.
+  \end{minipage}
+}
+\subsection*{Risposta (d)}
+I valori attesi sono
+\begin{equation*}
+  \begin{gathered}
+    \colorbox{blu}{\boxed{V_{OUT} = 4(V_2 - V_1)}} \\
+    \colorbox{blu}{\boxed{V_{OUT} = 6(V_2 - V_1)}}
+  \end{gathered}
+\end{equation*}
