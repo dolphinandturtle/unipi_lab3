@@ -15,6 +15,18 @@
   \end{minipage}
 }
 \subsection*{Risposta (a)}
+Nell'ipotesi di idealit\'a degli op-amp e di operazione nel regime lineare \'e valido il \textit{principio di corto-circuito virtuale}
+\begin{equation*}
+  V_- = 0
+\end{equation*}
+applicando la KCL si ottiene la relazione fra $V_S$ e $I_{OUT}$ che permette di ottenere $g_m$
+\begin{equation*}
+  \begin{gathered}
+    \frac{V_S}{R} = -\frac{V}{R} \\
+    -\frac{V}{R} = -I_{OUT} + \frac{V}{R/10} \\ \implies
+    \colorbox{blu}{\boxed{g_m = -\frac{11}{R}}}
+  \end{gathered}
+\end{equation*}
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
@@ -25,6 +37,28 @@
   \end{minipage}
 }
 \subsection*{Risposta (b)}
+Nell'ipotesi di idealit\'a dell'op-amp ed operazione in regime lineare, da quanto visto in precedenza
+la corrente entrante per definizione
+\begin{equation*}
+  I_{in} = \frac{V_S - 0}{R}
+\end{equation*}
+di conseguenza l'impedenza d'ingresso
+\begin{equation*}
+  \colorbox{blu}{\boxed{Z_{in} \equiv \frac{V_S}{I_{in}} = R}}
+\end{equation*}
+Passivando il generatore di $V_S$ e aprendo il ramo di carico $R_L$, la corrente entrante da $V_{U1}$
+deve essere uguale a quella uscente da $V$, tuttavia siccome
+\begin{equation*}
+  \frac{V - 0}{R} = \frac{0 - 0}{R} \implies V = 0
+\end{equation*}
+per la KCL vale
+\begin{equation*}
+  I_{U_1} = \frac{V - 0}{R} + \frac{V - 0}{R/10} \implies I_{U_1} = 0
+\end{equation*}
+di conseguenza
+\begin{equation*}
+  \colorbox{blu}{\boxed{Z_{out} \equiv \frac{V_t}{I_t} = \frac{V_{U_1} - V}{I_{U_1}} \to \infty}}
+\end{equation*}
 
 \noindent\colorbox{orange}{
   \begin{minipage}{1.0\linewidth}
@@ -36,3 +70,9 @@
   \end{minipage}
 }
 \subsection*{Risposta (c)}
+\begin{equation*}
+  V_{OUT} = R_Lg_mV_S = -11\frac{R_L}{R}V_S
+\end{equation*}
+\begin{equation*}
+  -3.5~\text{V} = -11\frac{R_L}{10^4}~\text{V} \implies \colorbox{blu}{\boxed{R_L = \frac{35}{11}~\text{k}\Omega}}
+\end{equation*}
