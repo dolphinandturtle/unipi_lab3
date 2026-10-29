@@ -1,105 +1,109 @@
 \section*{Multivibratore PWM}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{src/images/pwm.png}
+\end{figure}
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (a)}
-    Descrivere qualitativamente il funzionamento del circuito, eventualmente individuando nel
-    circuito alcune strutture gi\'a note e mostrando che per $V_M = 0$ si comporti come un
-    multivibratore astabile e con $\text{duty-cycle}=50\%$ (nell'ipotesi che i livelli di
-    saturazione siano simmetrici).
-  \end{minipage}
-}
-\subsection*{Risposta (a)}
-\paragraph{\colorbox{blu}{Condensatore scarico}}
-Durante questa fase l'ingresso invertente \'e messo a terra, l'op-amp si comporta come un \textit{trigger di Schmitt \underline{non}-invertente}.
-La tensione rimane nel livello di saturazione.
+\begin{multicols}{2}
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (a)}
+      Descrivere qualitativamente il funzionamento del circuito, eventualmente individuando nel
+      circuito alcune strutture gi\'a note e mostrando che per $V_M = 0$ si comporti come un
+      multivibratore astabile e con $\text{duty-cycle}=50\%$ (nell'ipotesi che i livelli di
+      saturazione siano simmetrici).
+    \end{minipage}
+  }
+  \subsection*{Risposta (a)}
+  \paragraph{Condensatore scarico}
+  Durante questa fase l'ingresso invertente \'e messo a terra, l'op-amp si comporta come un \textit{trigger di Schmitt \underline{non}-invertente}.
+  La tensione rimane nel livello di saturazione.
 
-\paragraph{\colorbox{blu}{Transizione}}
-Appena il condensatore riceve abbastanza carica cos\'i che $V_+ = V_-$\footnotemark
-\footnotetext{Si parla della differenza di potenziale ma siccome entrambi gli ingressi sono collegati a terra...}
-allora l'op-amp inizia ad entrare in regime di operazione lineare e si comporta da \textit{amplificatore \underline{invertente}}.
+  \paragraph{Transizione}
+  Appena il condensatore riceve abbastanza carica cos\'i che $V_+ = V_-$\footnotemark
+  \footnotetext{Si parla della differenza di potenziale ma siccome entrambi gli ingressi sono collegati a terra...}
+  allora l'op-amp inizia ad entrare in regime di operazione lineare e si comporta da \textit{amplificatore \underline{invertente}}.
 
-\paragraph{\colorbox{blu}{Condensatore carico}}
-Durante il regime di amplificazione invertente, la tensione si ``capovolge'' e l'op-amp inizia a scaricarsi fino a
-ri-attraversare la fase di transizione per tornare nella regione di operazione non-lineare come un \textit{trigger di Schmitt \underline{non}-invertente}. \\
+  \paragraph{Condensatore carico}
+  Durante il regime di amplificazione invertente, la tensione si ``capovolge'' e l'op-amp inizia a scaricarsi fino a
+  ri-attraversare la fase di transizione per tornare nella regione di operazione non-lineare come un \textit{trigger di Schmitt \underline{non}-invertente}. \\
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (b)}
-    Nell'ipotesi di idealit\'a dell'operazionale, determinare l'andamento temporale del segnale $V_-$
-    in funzione di $V_M$ e per ciascuno stato di $V_{OUT}$ (suggerimento: per i processi di carica/scarica
-    di $C_1$ si sostituisca la rete costituita dal partitore $V_{OUT}-R_3-R_4-V_M$ con il suo equivalente di
-    Th\'evenin visto dai terminali del condensatore; si consideri inoltre che $R_2 \ll R_1 \iff |V_+|\ll V_{OH}$,
-    per cui i termini esponenziali possono essere approssimati al primo ordine in serie di Taylor
-    come …).
-  \end{minipage}
-}
-\subsection*{Risposta (b)}
-La tensione equivalente di Th\'evenin
-\begin{equation*}
-  \begin{gathered}
-    \frac{V_{OUT} - V_-}{Z_{R_3}} = \frac{V_- - V_M}{Z_{R_4}} \\ \implies
-    V_- = \frac{V_{OUT} + V_M}{2}
-  \end{gathered}
-\end{equation*}
-l'impedenza equivalente di Th\'evenin
-\begin{equation*}
-  Z_{th} = Z_{R_3} || Z_{R_4} = 50R
-\end{equation*}
-la legge oraria della tensione $V_-$
-\begin{equation*}
-  \begin{gathered}
-    Z_{C_1}i_{C_1} = \frac{V_{th} - V_-}{Z_{th}} \\ \implies
-    C\dot{V}_- = \frac{V_{th} - V_-}{50 R} \\ \implies
-    \tau\dot{V}_- + V_- = V_{th} \quad \tau \equiv 50RC \\ \implies
-    V_-(t) = V_{th} + [V_-(t_0) - V_{th}]\exp\left(-\frac{t - t_0}{\tau}\right) \\
-    V_-(t) = \frac{V_{OH} + V_M}{2} + \left[V_{thr-} - \frac{V_{OH} + V_M}{2}\right]\exp\left(-\frac{t - t_0}{\tau}\right) \\
-    V_-(t) = \frac{V_{OL} + V_M}{2} + \left[V_{thr+} - \frac{V_{OL} + V_M}{2}\right]\exp\left(-\frac{t - t_0}{\tau}\right) \\
-  \end{gathered}
-\end{equation*}
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (b)}
+      Nell'ipotesi di idealit\'a dell'operazionale, determinare l'andamento temporale del segnale $V_-$
+      in funzione di $V_M$ e per ciascuno stato di $V_{OUT}$ (suggerimento: per i processi di carica/scarica
+      di $C_1$ si sostituisca la rete costituita dal partitore $V_{OUT}-R_3-R_4-V_M$ con il suo equivalente di
+      Th\'evenin visto dai terminali del condensatore; si consideri inoltre che $R_2 \ll R_1 \iff |V_+|\ll V_{OH}$,
+      per cui i termini esponenziali possono essere approssimati al primo ordine in serie di Taylor
+      come …).
+    \end{minipage}
+  }
+  \subsection*{Risposta (b)}
+  La tensione equivalente di Th\'evenin
+  \begin{equation*}
+    \begin{gathered}
+      \frac{V_{OUT} - V_-}{Z_{R_3}} = \frac{V_- - V_M}{Z_{R_4}} \\ \implies
+      V_- = \frac{V_{OUT} + V_M}{2}
+    \end{gathered}
+  \end{equation*}
+  l'impedenza equivalente di Th\'evenin
+  \begin{equation*}
+    Z_{th} = Z_{R_3} || Z_{R_4} = 50R
+  \end{equation*}
+  la legge oraria della tensione $V_-$
+  \begin{equation*}
+    \begin{gathered}
+      Z_{C_1}i_{C_1} = \frac{V_{th} - V_-}{Z_{th}} \\ \implies
+      C\dot{V}_- = \frac{V_{th} - V_-}{50 R} \\ \implies
+      \tau\dot{V}_- + V_- = V_{th} \quad \tau \equiv 50RC \\ \implies
+      V_-(t) = V_{th} + [V_-(t_0) - V_{th}]\exp\left(-\frac{t - t_0}{\tau}\right)
+    \end{gathered}
+  \end{equation*}
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (c)}
-    In funzione di $V_M$ (oppure di $V_M/V_{OH}$) determinare la durata degli stati di $V_{OUT}$ e ricavare
-    frequenza e duty-cycle dello stesso segnale, confrontandoli con quanto misurato al punto 2a.
-  \end{minipage}
-}
-\subsection*{Risposta (c)}
-il semi-periodo
-\begin{equation*}
-  \begin{gathered}
-    t_L = \tau\ln\left(\frac{V_{thr+} - V_{Th,-}}{V_{thr-} - V_{Th,-}}\right) \\
-    t_H = \tau\ln\left(\frac{V_{Th,+} - V_{thr-}}{V_{Th,+} - V_{thr+}}\right)
-  \end{gathered}
-\end{equation*}
-approssimazione per Taylor siccome $R_2 \ll R_1$
-\begin{equation*}
-  \begin{gathered}
-    t_L =  \tau\ln\left(1 + \frac{V_{thr+} - V_{thr-}}{V_{thr-} - V_{Th,-}}\right) \approx \tau\frac{V_{thr+} - V_{thr-}}{V_{thr-} - V_{Th,-}} \\
-    t_H =  \tau\ln\left(1 + \frac{V_{thr+} - V_{thr-}}{V_{Th,+} - V_{thr+}}\right) \approx \tau\frac{V_{thr+} - V_{thr-}}{V_{Th,+} - V_{thr+}}
-  \end{gathered}
-\end{equation*}
-sotto ipotesi di simmetria nelle tensione di saturazione
-\begin{equation*}
-  \begin{gathered}
-    t_L = \tau\frac{2V_{thr}}{V_{thr} - V_{Th,-}} = \tau\frac{2\beta}{\beta - V_{Th,-}/V_{OH}} = \tau\frac{4\beta}{1 - 2\beta - V_M/V_{OH}} \\
-    t_H = \tau\frac{2V_{thr}}{V_{Th,+} - V_{thr}} = \tau\frac{4\beta}{1 + V_M/V_{OH} - 2\beta}
-  \end{gathered}
-\end{equation*}
-il duty cycle
-\begin{equation*}
-  D = \frac{1}{1 + \frac{(1 - 2\beta) - V_M/V_{OH}}{(1 - 2\beta) + V_M/V_{OH}}}
-\end{equation*}
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (c)}
+      In funzione di $V_M$ (oppure di $V_M/V_{OH}$) determinare la durata degli stati di $V_{OUT}$ e ricavare
+      frequenza e duty-cycle dello stesso segnale, confrontandoli con quanto misurato al punto 2a.
+    \end{minipage}
+  }
+  \subsection*{Risposta (c)}
+  il semi-periodo
+  \begin{equation*}
+    \begin{gathered}
+      t_L = \tau\ln\left(\frac{V_{thr+} - V_{Th,-}}{V_{thr-} - V_{Th,-}}\right) \\
+      t_H = \tau\ln\left(\frac{V_{Th,+} - V_{thr-}}{V_{Th,+} - V_{thr+}}\right)
+    \end{gathered}
+  \end{equation*}
+  approssimazione per Taylor siccome $R_2 \ll R_1$
+  \begin{equation*}
+    \begin{gathered}
+      t_L =  \tau\ln\left(1 + \frac{V_{thr+} - V_{thr-}}{V_{thr-} - V_{Th,-}}\right) \approx \tau\frac{V_{thr+} - V_{thr-}}{V_{thr-} - V_{Th,-}} \\
+      t_H =  \tau\ln\left(1 + \frac{V_{thr+} - V_{thr-}}{V_{Th,+} - V_{thr+}}\right) \approx \tau\frac{V_{thr+} - V_{thr-}}{V_{Th,+} - V_{thr+}}
+    \end{gathered}
+  \end{equation*}
+  sotto ipotesi di simmetria nelle tensione di saturazione
+  \begin{equation*}
+    \begin{gathered}
+      t_L = \tau\frac{2V_{thr}}{V_{thr} - V_{Th,-}} = \tau\frac{2\beta}{\beta - V_{Th,-}/V_{OH}} = \tau\frac{4\beta}{1 - 2\beta - V_M/V_{OH}} \\
+      t_H = \tau\frac{2V_{thr}}{V_{Th,+} - V_{thr}} = \tau\frac{4\beta}{1 + V_M/V_{OH} - 2\beta}
+    \end{gathered}
+  \end{equation*}
+  il duty cycle
+  \begin{equation*}
+    D = \frac{1}{1 + \frac{(1 - 2\beta) - V_M/V_{OH}}{(1 - 2\beta) + V_M/V_{OH}}}
+  \end{equation*}
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (d)}
-    Discutere gli effetti delle caratteristiche non ideali dell'operazionale, ed in
-    particolare del suo slew-rate, sul funzionamento del circuito, ad esempio evidenziando i suoi
-    effetti sulle forme d'onda misurate.
-  \end{minipage}
-}
-\subsection*{Risposta (d)}
-Lo slew-rate del circuito fa si che la tensione in uscita dall'op-amp non commuti istantaneamente
-dalla tensione di saturazione bassa $V_{OL}$ alla tensione di saturazione alta $V_{OH}$.
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (d)}
+      Discutere gli effetti delle caratteristiche non ideali dell'operazionale, ed in
+      particolare del suo slew-rate, sul funzionamento del circuito, ad esempio evidenziando i suoi
+      effetti sulle forme d'onda misurate.
+    \end{minipage}
+  }
+  \subsection*{Risposta (d)}
+  Lo slew-rate del circuito fa si che la tensione in uscita dall'op-amp non commuti istantaneamente
+  dalla tensione di saturazione bassa $V_{OL}$ alla tensione di saturazione alta $V_{OH}$.
+\end{multicols}

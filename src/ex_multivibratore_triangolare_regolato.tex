@@ -1,112 +1,133 @@
 \section*{Multivibratore Triangolare Regolato}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{src/images/triangolare-regolato.png}
+\end{figure}
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (a)}
-    Descrivere qualitativamente il funzionamento del circuito, mostrando che gli stati di $V_2$ siano
-    quelli di un multivibratore astabile.
-  \end{minipage}
-}
-\subsection*{Risposta (a)}
-Il circuito \'e formato da due blocchi fra cui
-\begin{itemize}
-\item Il primo blocco \'e un circuito \textit{sommatore invertente}.
-\item Il secondo blocco \'e un circuito \textit{trigger di Schmitt}.
-\end{itemize}
-Il segnale prodotto dal secondo blocco \'e uno fra due stati di saturazione,
-tale segnale attraversa il primo blocco, al caricarsi del condensatore la tensione
-d'uscita aumenta fino ad attraversare la soglia di commutazione del trigger di Schmitt
-ribaltando lo stato di saturazione (il segno), iniziando il processo di scarica del
-condensatore su uno dei piatti caricando il rimanente per poi ripetere il processo. \\
+\begin{multicols}{2}
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (a)}
+      Descrivere qualitativamente il funzionamento del circuito, mostrando che gli stati di $V_2$ siano
+      quelli di un multivibratore astabile.
+    \end{minipage}
+  }
+  \subsection*{Risposta (a)}
+  Il circuito \'e formato da due blocchi fra cui
+  \begin{itemize}
+  \item Il primo blocco \'e un circuito \textit{sommatore invertente}.
+  \item Il secondo blocco \'e un circuito \textit{trigger di Schmitt}.
+  \end{itemize}
+  Il segnale prodotto dal secondo blocco \'e uno fra due stati di saturazione,
+  tale segnale attraversa il primo blocco, al caricarsi del condensatore la tensione
+  d'uscita aumenta fino ad attraversare la soglia di commutazione del trigger di Schmitt
+  ribaltando lo stato di saturazione (il segno), iniziando il processo di scarica del
+  condensatore su uno dei piatti caricando il rimanente per poi ripetere il processo. \\
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (b)}
-    Calcolare le soglie del trigger di Schmitt che pilota l'uscita dell'astabile, ovvero i valori di
-    $V_1$ in corrispondenza dei quali ha luogo la commutazione di $V_2$.
-  \end{minipage}
-}
-\subsection*{Risposta (b)}
-\begin{equation*}
-  \begin{gathered}
-    V_{thr+} = 3V_{OH} \\
-    V_{thr-} = 3V_{OL}
-  \end{gathered}
-\end{equation*}
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (b)}
+      Calcolare le soglie del trigger di Schmitt che pilota l'uscita dell'astabile, ovvero i valori di
+      $V_1$ in corrispondenza dei quali ha luogo la commutazione di $V_2$.
+    \end{minipage}
+  }
+  \subsection*{Risposta (b)}
+  Il raggiungimento della saturazione superiore (senza perdita di generalit\'a)
+  del trigger comporta l'uscita dalla regione di linearit\'a
+  \begin{equation*}
+    \begin{gathered}
+      V_2 = V_{OH} \implies V_+ - V_- > 0
+    \end{gathered}
+  \end{equation*}
+  per il \textit{principio di sovvraposizione} e per la formula del \textit{partitore di tensione}
+  \begin{equation*}
+    \frac23 V_1 + \frac13 V_{OH} > 0
+  \end{equation*}
+  la soglia inferiore del trigger
+  \begin{equation*}
+    \colorbox{blu}{\boxed{V_{thr-} = -\frac12 V_{OH}}}
+  \end{equation*}
+  in maniera del tutto analoga (saturazione negativa) si ottiene
+  \begin{equation*}
+    \colorbox{blu}{\boxed{V_{thr+} = -\frac12 V_{OL}}}
+  \end{equation*}
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (c)}
-    Calcolare la pendenza del segnale $V_1$ in termini degli stati ($V_{OH}$, $V_{OL}$) di $V_2$ e del livello di
-    $V_R$.
-  \end{minipage}
-}
-\subsection*{Risposta (c)}
-Si calcola la funzione di trasferimento del primo blocco. L'ingresso \textit{\underline{non}-invertente} \'e
-messo a terra.
-\begin{equation*}
-  V_+ = 0
-\end{equation*}
-L'ingresso \textit{invertente}.
-\begin{equation*}
-  \begin{gathered}
-    \frac{V_S - V_-}{Z_{R_1}} = \frac{V_- - V_R}{Z_{R_4}} + \frac{V_- - V_1}{Z_{C_1}} \\ \implies
-    V_- = \frac{V_S + V_R + sRCV_1}{2 + sRC}
-  \end{gathered}
-\end{equation*}
-nell'ipotesi che l'op-amp sia ideale e in regime di operazione lineare per il \textit{principio di corto-circuito virtuale}
-\begin{equation*}
-  \begin{gathered}
-    V_+ = V_- \\ \implies
-    \frac{V_S + V_R + sRCV_1}{2 + sRC} = 0
-  \end{gathered}
-\end{equation*}
-la tensione in uscita dal blocco 1 \'e dunque
-\begin{equation*}
-  \colorbox{blu}{\boxed{V_1 = -\frac{V_2 + V_R}{sRC}}}
-\end{equation*}
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (c)}
+      Calcolare la pendenza del segnale $V_1$ in termini degli stati ($V_{OH}$, $V_{OL}$) di $V_2$ e del livello di
+      $V_R$.
+    \end{minipage}
+  }
+  \subsection*{Risposta (c)}
+  Si calcola la funzione di trasferimento del primo blocco. L'ingresso \textit{\underline{non}-invertente} \'e
+  messo a terra.
+  \begin{equation*}
+    V_+ = 0
+  \end{equation*}
+  L'ingresso \textit{invertente}.
+  \begin{equation*}
+    \begin{gathered}
+      \frac{V_S - V_-}{Z_{R_1}} = \frac{V_- - V_R}{Z_{R_4}} + \frac{V_- - V_1}{Z_{C_1}} \\ \implies
+      V_- = \frac{V_S + V_R + sRCV_1}{2 + sRC}
+    \end{gathered}
+  \end{equation*}
+  nell'ipotesi che l'op-amp sia ideale e in regime di operazione lineare per il \textit{principio di corto-circuito virtuale}
+  \begin{equation*}
+    \begin{gathered}
+      V_+ = V_- \\ \implies
+      \frac{V_S + V_R + sRCV_1}{2 + sRC} = 0
+    \end{gathered}
+  \end{equation*}
+  la tensione in uscita dal blocco 1 \'e dunque
+  \begin{equation*}
+    \colorbox{blu}{\boxed{V_1 = -\frac{V_2 + V_R}{sRC}}}
+  \end{equation*}
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (d)}
-    In funzione di $V_R$, determinare la durata degli stati di $V_2$ assumendo per semplicit\'a che gli
-    stati di saturazione degli operazionali siano uguali ed opposti (ovvero che $V_{OL} = -V_{OH}$).
-  \end{minipage}
-}
-\subsection*{Risposta (d)}
-La \textit{legge oraria} pu\'o essere utile, la si ottiene mediante la \textit{trasfromata di Laplace inversa}
-\begin{equation*}
-  V_1(t) = -\frac{1}{RC} \int_0^t V_2(t') + V_R(t') ~\text{d}t'
-\end{equation*}
-nell'ipotesi in cui i segnali siano costanti nel tempo al di fuori delle commutazioni
-\begin{equation*}
-  V_1(t) = -\frac{V_2 + V_R}{RC}t
-\end{equation*}
-da cui
-\begin{equation*}
-  \begin{gathered}
-    -3V_{sat} = -\frac{V_{sat} + V_R}{RC}t_+ + 3V_{sat} \implies \colorbox{blu}{\boxed{t_+ = \frac{6RCV_{sat}}{V_{sat} + V_R}}} \\
-    3V_{sat} = -\frac{-V_{sat} + V_R}{RC}t_- - 3V_{sat} \implies \colorbox{blu}{\boxed{t_- = \frac{6RCV_{sat}}{V_{sat} - V_R}}}
-  \end{gathered}
-\end{equation*}
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (d)}
+      In funzione di $V_R$, determinare la durata degli stati di $V_2$ assumendo per semplicit\'a che gli
+      stati di saturazione degli operazionali siano uguali ed opposti (ovvero che $V_{OL} = -V_{OH}$).
+    \end{minipage}
+  }
+  \subsection*{Risposta (d)}
+  La \textit{legge oraria} pu\'o essere utile, la si ottiene mediante la \textit{trasfromata di Laplace inversa}
+  \begin{equation*}
+    V_1(t) = -\frac{1}{RC} \int_0^t V_2(t') + V_R(t') ~\text{d}t'
+  \end{equation*}
+  nell'ipotesi in cui i segnali siano costanti nel tempo al di fuori delle commutazioni
+  \begin{equation*}
+    V_1(t) = -\frac{V_2 + V_R}{RC}t
+  \end{equation*}
+  da cui
+  \begin{equation*}
+    \begin{gathered}
+      -3V_{sat} = -\frac{V_{sat} + V_R}{RC}t_+ + 3V_{sat} \\ \implies
+      \colorbox{blu}{\boxed{t_+ = \frac{6RCV_{sat}}{V_{sat} + V_R}}} \\
+      3V_{sat} = -\frac{-V_{sat} + V_R}{RC}t_- - 3V_{sat} \\ \implies
+      \colorbox{blu}{\boxed{t_- = \frac{6RCV_{sat}}{V_{sat} - V_R}}}
+    \end{gathered}
+  \end{equation*}
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (e)}
-    Ricavare la dipendenza della frequenza e del duty-cycle dello stesso segnale da $V_R$ (in
-    particolare dal rapporto adimensionale $V_R/V_{OH}$) verificandone la compatibilit\'a con quanto
-    misurato ai punti 2a, 2b.
-  \end{minipage}
-}
-\subsection*{Risposta (e)}
-il periodo finale
-\begin{equation*}
-  T = t_+ + t_- = \frac{6RCV_{sat}}{V_{sat} + V_R} + \frac{6RCV_{sat}}{V_{sat} - V_R} = \frac{12RC}{1 - \left(\frac{V_R}{V_{sat}}\right)^2}
-\end{equation*}
-\begin{equation*}
-  \colorbox{blu}{\boxed{f = \frac{1 - \left(\frac{V_R}{V_{sat}}\right)^2}{24\pi RC}}}
-\end{equation*}
-il duty cycle
-\begin{equation*}
-  \colorbox{blu}{\boxed{D = \frac{t_+}{t_+ + t_-} = \frac{1 - \frac{V_R}{V_{sat}}}{2}}}
-\end{equation*}
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (e)}
+      Ricavare la dipendenza della frequenza e del duty-cycle dello stesso segnale da $V_R$ (in
+      particolare dal rapporto adimensionale $V_R/V_{OH}$) verificandone la compatibilit\'a con quanto
+      misurato ai punti 2a, 2b.
+    \end{minipage}
+  }
+  \subsection*{Risposta (e)}
+  il periodo finale
+  \begin{equation*}
+    T = t_+ + t_- = \frac{12RC}{1 - \left(\frac{V_R}{V_{sat}}\right)^2}
+  \end{equation*}
+  \begin{equation*}
+    \colorbox{blu}{\boxed{f = \frac{1 - \left(\frac{V_R}{V_{sat}}\right)^2}{24\pi RC}}}
+  \end{equation*}
+  il duty cycle
+  \begin{equation*}
+    \colorbox{blu}{\boxed{D = \frac{t_+}{t_+ + t_-} = \frac{1 - \frac{V_R}{V_{sat}}}{2}}}
+  \end{equation*}
+\end{multicols}

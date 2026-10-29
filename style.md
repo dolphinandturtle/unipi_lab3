@@ -1,0 +1,2 @@
+- Questions are bounded by an orange box
+- Analitical answers are bounded by a blue box

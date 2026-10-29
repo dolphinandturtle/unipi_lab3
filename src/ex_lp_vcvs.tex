@@ -1,7 +1,12 @@
 \section*{Lowpass VCVS}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{src/images/LP-VCVS.png}
+\end{figure}
+
 \noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Richiesta (a)}
+  \begin{minipage}{0.9\linewidth}
+    \subsection*{Richiesta (a)}
     Dimostrare, sulla base di semplici argomenti di natura qualitativa (ovvero prescindendo
     dall’espressione analitica della funzione di trasferimento) che il circuito proposto svolga
     effettivamente la funzione di filtro passa-basso, discutendone la risposta ai limiti del dominio
@@ -9,8 +14,7 @@
     1c.
   \end{minipage}
 }
-
-\paragraph{Risposta (a)}
+\subsection*{Risposta (a)}
 \begin{itemize}
 \item
   Per $f \to 0$ i condensatori $C_1$ e $C_2$ aprono i loro rami. Il circuito opera
@@ -45,8 +49,8 @@
 \end{itemize}
 
 \noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Richiesta (b)}
+  \begin{minipage}{0.9\linewidth}
+    \subsection*{Richiesta (b)}
     Derivare analiticamente la trasformata di Laplace della funzione di trasferimento $A_v(s) =
     V_{OUT}(s)/V_S(s)$ nell’ipotesi che l’operazionale sia ideale ed i valori di resistenze e capacit\'a
     siano pari a quelli nominali, ovvero valgano le relazioni C1=C2=C, R1=R2=R, R3=2R,
@@ -56,7 +60,7 @@
   \end{minipage}
 }
 
-\paragraph{Risposta (b)}
+\subsection*{Risposta (b)}
 La richiesta porta con se un suggerimento, seguendolo per il nodo A vale
 \begin{equation*}
   \frac{V_S - V_A}{R} = \frac{V_A}{R} + \frac{V_A - V_B}{2R} + sC(V_A - V_{OUT})
@@ -107,14 +111,14 @@ l'espressione finale per la funzione di trasferimento complessa
 \end{equation}
 
 \noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Richiesta (c)}
+  \begin{minipage}{0.9\linewidth}
+    \subsection*{Richiesta (c)}
     Dalla funzione di trasferimento dedurre le caratteristiche del filtro osservate al punto 1)
     (guadagno a centro-banda, frequenza naturale, andamento di modulo/fase in funzione della
     frequenza) e confrontarli con quanto misurato ai punti 1c, 1d, 1e.
   \end{minipage}
 }
-\paragraph{Risposta (c)}
+\subsection*{Risposta (c)}
 Le parti reali e immaginarie del numeratore e denominatore
 \begin{equation*}
   \begin{cases}
@@ -175,8 +179,8 @@ e la sostituzione $\omega \to 2\pi f$
 \end{equation}
 
 \noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Richiesta (d)}
+  \begin{minipage}{0.9\linewidth}
+    \subsection*{Richiesta (d)}
     Dare un’interpretazione qualitativa e quantitativa delle caratteristiche del segnale di uscita
     osservato al punto 1f. Che tipo di segnale appare? A quale ampiezza?
   \end{minipage}

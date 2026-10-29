@@ -1,15 +1,18 @@
 \section*{Lowpass VCVS Butterworth}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{src/images/LP-VCVS-Butterworth.png}
+\end{figure}
 
 \noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Richiesta (a)}
+  \begin{minipage}{0.9\linewidth}
+    \subsection*{Richiesta (a)}
     Dimostrare, sulla base di semplici argomenti di natura qualitativa, che il circuito proposto
     svolga effettivamente la funzione di filtro passa-basso, discutendone la risposta ai limiti
     del dominio delle frequenze reali.
   \end{minipage}
 }
-
-\paragraph{Risposta (a)}
+\subsection*{Risposta (a)}
 \begin{itemize}
 \item Per $f \to 0$
   i condensatori agiscono da rami aperti, le resistenze hanno impedenze infinite che vengono
@@ -24,8 +27,8 @@
 
 
 \noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Richiesta (b)}
+  \begin{minipage}{0.9\linewidth}
+    \subsection*{Richiesta (b)}
     Derivare analiticamente la funzione di trasferimento complessa $A_v(s)=V_{OUT}(s)/V_S(s)$
     nell’ipotesi che l’operazionale sia ideale (suggerimento: si determini la tensione nel nodo
     A del circuito in termini di $V_S$ e $V_{OUT}$; quindi si esprima $V_A$ in termini di $V_{OUT}$ assumendo
@@ -36,7 +39,7 @@
   \end{minipage}
 }
 
-\paragraph{Risposta (b)}
+\subsection*{Risposta (b)}
 Ipotesi: l'operazionale \'e ideale ed opera in regime lineare.
 \begin{itemize}
 \item
@@ -66,15 +69,15 @@ da cui
 \end{equation}
 
 \noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Richiesta (c)}
+  \begin{minipage}{0.9\linewidth}
+    \subsection*{Richiesta (c)}
     Dalla funzione di trasferimento dedurre le caratteristiche del filtro osservate al punto 1)
     (guadagno a centro-banda, frequenza di taglio, andamento di modulo/fase in funzione
     della frequenza) e confrontarle con quanto misurato ai punti 1c, 1d, 1e.
   \end{minipage}
 }
 
-\paragraph{Risposta (c)}
+\subsection*{Risposta (c)}
 il guadagno \'e ottenuto per mezzo dell'esspressione \ref{eq:da-tfunc-a-gain}
 \begin{equation*}
   \begin{gathered}
@@ -110,6 +113,6 @@ Frequenza di taglio.
   \colorbox{blu}{\boxed{f = \frac{1}{2\pi\sqrt2\cdot RC}}}
 \end{equation}
 
-\paragraph{Richiesta (d)}
+\subsection*{Richiesta (d)}
 Dare un’interpretazione qualitativa (e se possibile quantitativa) delle caratteristiche del
 segnale di uscita osservato al punto 1f. Che tipo di segnale appare? A quale ampiezza?

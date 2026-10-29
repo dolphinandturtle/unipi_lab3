@@ -1,14 +1,18 @@
 \section*{Highpass VCVS Butterworth}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{src/images/HP-VCVS-Butterworth.png}
+\end{figure}
+
 \noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Richiesta (a)}
+  \begin{minipage}{0.9\linewidth}
+    \subsection*{Richiesta (a)}
     Dimostrare, discutendone la risposta ai limiti del dominio delle frequenze reali sulla base
     di semplici argomenti di natura qualitativa, che il circuito proposto svolga effettivamente
     la funzione di filtro passa-alto.
   \end{minipage}
 }
-
-\paragraph{Risposta (a)}
+\subsection*{Risposta (a)}
 \begin{itemize}
 \item
   Per $f \to 0$ il condensatore $C_1$ apre il ramo dunque $V_+ = 0$. Se l'opamp
@@ -28,14 +32,14 @@
 \end{itemize}
 
 \noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Richiesta (b)}
+  \begin{minipage}{0.9\linewidth}
+    \subsection*{Richiesta (b)}
     Nell’ipotesi di idealit\'a dell’operazionale ed assumendo C1 = C2 = C e R1=2, R2=2R,
     derivare analiticamente un’espressione della trasformata di Laplace della funzione di
     trasferimento $A_v(s)=V_{OUT}(s)/V_S(s)$.
   \end{minipage}
 }
-\paragraph{Risposta (b)}
+\subsection*{Risposta (b)}
 \begin{itemize}
 \item
   Tra $V_-$ e $V_{OUT}$ i rami sono corto-circuiti, di conseguenza $V_- = V_{OUT}$.
@@ -65,13 +69,13 @@ da cui
 \end{equation}
 
 \noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Richiesta (c)}
+  \begin{minipage}{0.9\linewidth}
+    \subsection*{Richiesta (c)}
     Descrivere le propriet\'a analitiche di $A_v(s)$ (ovvero calcolarne zeri e poli) e da queste
     dedurre la stabilit\'a del filtro.
   \end{minipage}
 }
-\paragraph{Risposta (c)}
+\subsection*{Risposta (c)}
 Per studiare gli zero della funzione di trasferimento complessa si studiano
 le radici del numeratore della forma canonica.
 \begin{equation*}
@@ -99,14 +103,14 @@ In questo sono presenti due poli del secondo ordine
 il filtro \'e \textbf{stabile} perch\'e entrambi i suoi poli hanno parte reale negativa. \\
 
 \noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \paragraph{Richiesta (d)}
+  \begin{minipage}{0.9\linewidth}
+    \subsection*{Richiesta (d)}
     Dalla funzione di trasferimento determinare i valori attesi per le caratteristiche del filtro
     (guadagno massimo, frequenza di taglio, andamento di modulo/fase in funzione della
     frequenza) e confrontarli con quanto misurato al punto 1c.
   \end{minipage}
 }
-\paragraph{Risposta (d)}
+\subsection*{Risposta (d)}
 Il guadagno si ottiene mediante \ref{eq:da-tfunc-a-gain}, calcolando le parti reali ed immaginarie del
 numeratore e denominatore della forma canonica della funzione di trasferimento $H(s)$ si ottiene
 \begin{equation*}
@@ -161,6 +165,6 @@ met\'a del massimo (appena trovato)
   \colorbox{blu}{\boxed{f = \frac{1}{2\sqrt{2}\pi RC}}}
 \end{equation}
 
-\paragraph{Richiesta (e)}
+\subsection*{Richiesta (e)}
 Dare un’interpretazione qualitativa (e se possibile quantitativa) delle caratteristiche del
 segnale di uscita osservato ai punti 1d, 1e.

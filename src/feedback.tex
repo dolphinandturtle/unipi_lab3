@@ -1,155 +1,157 @@
 \section*{Feedback}
-La modalit\'a di \textit{feedback} (in italiano detta \textit{retroazione}) nell'op-amp
-\'e innescata quando la tensione in uscita regola la tensione agli ingressi.
+\begin{multicols}{2}
+  La modalit\'a di \textit{feedback} (in italiano detta \textit{retroazione}) nell'op-amp
+  \'e innescata quando la tensione in uscita regola la tensione agli ingressi.
 
-\subsection*{Ricorsivo (n\"aif/matematico)}
-Con abbastanza \textit{spensieratezza} risolviamo il circuito dell'op-amp nel suo schema
-non-invertente. In prima battuta nell'ipotesi di op-amp con \textit{impedenze ideali}
-la tensione nell'ingresso invertente \'e quella del partitore di tensione realizzato
-da $R_1R_2$
-\begin{equation*}
-  V_- = \frac{R_1}{R_1 + R_2}V_{OUT} \equiv \beta V_{OUT}
-\end{equation*}
-ora distinguendo la tensione \textit{corrente} da quella \textit{successiva},
-rispettivamente $V_{OUT}^{(n)}$ e $V_{OUT}^{(n+1)}$, si ottiene l'equazione ricorsiva finale
-\begin{equation*}
-  \begin{gathered}
-    \boxed{V_{OUT}^{(n+1)} = A_d(V_S - \beta V_{OUT}^{(n)})}
-  \end{gathered}
-\end{equation*}
-(per sintesi d'ora in poi fino alla fine di questo esercizio indicher\'o $V_{OUT}^{(n)} \to a_n$)
-\begin{equation*}
-  \begin{gathered}
-    a_0 = 0 \\
-    a_1 = A_dV_S \\
-    a_2 = A_d(V_S - \beta A_dV_S) = A_dV_S - \beta A_d^2V_S \\
-    a_3 = A_d(V_S - \beta A_d(V_S - \beta A_dV_S)) = A_dV_S - \beta A_d^2V_S + \beta^2A_d^3 V_S \\
-    a_n = \left(\sum_{k=0}^n (-\beta A_d)^k\right)A_dV_S
-  \end{gathered}
-\end{equation*}
-all'interno si vede la rinomata \textit{serie geometrica}, si conosce l'espressione chiusa nel limite
-di $n \to \infty$ e si scrive il risultato finale
-\begin{equation*}
-  V_{OUT} = \lim_{n \to \infty} a_n = \frac{A_dV_S}{1 + \beta A_d}
-\end{equation*}
-il risultato \'e compatibile con quello che ci si aspetta, \textbf{tuttavia} questo risultato richiede
-una condizione inusuale per quanto visto fino ad ora: il \textit{criterio di convergenza} per la serie
-geometrica richiede che
-\begin{equation*}
-  \boxed{\beta A_d < 1}
-\end{equation*}
+  \subsection*{Ricorsivo (n\"aif/matematico)}
+  Con abbastanza \textit{spensieratezza} risolviamo il circuito dell'op-amp nel suo schema
+  non-invertente. In prima battuta nell'ipotesi di op-amp con \textit{impedenze ideali}
+  la tensione nell'ingresso invertente \'e quella del partitore di tensione realizzato
+  da $R_1R_2$
+  \begin{equation*}
+    V_- = \frac{R_1}{R_1 + R_2}V_{OUT} \equiv \beta V_{OUT}
+  \end{equation*}
+  ora distinguendo la tensione \textit{corrente} da quella \textit{successiva},
+  rispettivamente $V_{OUT}^{(n)}$ e $V_{OUT}^{(n+1)}$, si ottiene l'equazione ricorsiva finale
+  \begin{equation*}
+    \begin{gathered}
+      \boxed{V_{OUT}^{(n+1)} = A_d(V_S - \beta V_{OUT}^{(n)})}
+    \end{gathered}
+  \end{equation*}
+  (per sintesi d'ora in poi fino alla fine di questo esercizio indicher\'o $V_{OUT}^{(n)} \to a_n$)
+  \begin{equation*}
+    \begin{gathered}
+      a_0 = 0 \\
+      a_1 = A_dV_S \\
+      a_2 = A_d(V_S - \beta A_dV_S) = A_dV_S - \beta A_d^2V_S \\
+      a_3 = A_d(V_S - \beta A_d(V_S - \beta A_dV_S)) = A_dV_S - \beta A_d^2V_S + \beta^2A_d^3 V_S \\
+      a_n = \left(\sum_{k=0}^n (-\beta A_d)^k\right)A_dV_S
+    \end{gathered}
+  \end{equation*}
+  all'interno si vede la rinomata \textit{serie geometrica}, si conosce l'espressione chiusa nel limite
+  di $n \to \infty$ e si scrive il risultato finale
+  \begin{equation*}
+    V_{OUT} = \lim_{n \to \infty} a_n = \frac{A_dV_S}{1 + \beta A_d}
+  \end{equation*}
+  il risultato \'e compatibile con quello che ci si aspetta, \textbf{tuttavia} questo risultato richiede
+  una condizione inusuale per quanto visto fino ad ora: il \textit{criterio di convergenza} per la serie
+  geometrica richiede che
+  \begin{equation*}
+    \boxed{\beta A_d < 1}
+  \end{equation*}
 
-\paragraph{Incompatibilit\'a}
-La condizione \'e allarmante, nella pratica l'amplificatore non-invertente non sarebbe
-stabile per comuni configurazioni di resistenze siccome $\beta \in (0, 1]$ e $A_d \gg 1$
-(valori tipici per $\beta$ sono entro $\sim 10^{-1}$). A maggior raggione nelle nostre
-usuali ipotesi di \textit{op-amp ideale} con guadagno pressoch\'e infinito, questa
-condizione non ha senso.
+  \paragraph{Incompatibilit\'a}
+  La condizione \'e allarmante, nella pratica l'amplificatore non-invertente non sarebbe
+  stabile per comuni configurazioni di resistenze siccome $\beta \in (0, 1]$ e $A_d \gg 1$
+  (valori tipici per $\beta$ sono entro $\sim 10^{-1}$). A maggior raggione nelle nostre
+  usuali ipotesi di \textit{op-amp ideale} con guadagno pressoch\'e infinito, questa
+  condizione non ha senso.
 
-\subsection*{Ricorsivo (fisico)}
-Il problema precedente sorge dal fatto che siamo stati troppo spensierati e non abbiamo
-tenuto in considerazione il significato fisico dell'\textit{iterazione} che si vuole essere
-affine a quella di \textit{iterzione nel tempo}
-\begin{equation*}
-  V^{(n)}, V^{(m)} \colon n < m \implies t^{(n)} < t^{(m)}
-\end{equation*}
-in un sistema fisico l'informazione si propaga in tempo non nullo, ma dal modello ricorsivo
-precedente si nota di gi\'a che la variazione infinitesima fra $a_0$ e $a_1$ \'e tutt'altro che
-finita.
-Se si volesse dare significato fisico all'iterazione della successione bisogna tenere in
-considerazione la \textit{variazione finita} di un sistema fisico e come ogni successiva
-iterazione dipenda sullo stato precedente
-\begin{equation}
-  \label{eq:feedback-fisico}
-  \boxed{V_{OUT}^{(n+1)} = \lim_{\epsilon \to 0^+} \left[\epsilon A_d(V_+ - V_-) + (1-\epsilon)V_{OUT}^{(n)}\right]}
-\end{equation}
-(per sintesi d'ora in poi $V_{OUT}^{n} \to a_n$)
+  \subsection*{Ricorsivo (fisico)}
+  Il problema precedente sorge dal fatto che siamo stati troppo spensierati e non abbiamo
+  tenuto in considerazione il significato fisico dell'\textit{iterazione} che si vuole essere
+  affine a quella di \textit{iterzione nel tempo}
+  \begin{equation*}
+    V^{(n)}, V^{(m)} \colon n < m \implies t^{(n)} < t^{(m)}
+  \end{equation*}
+  in un sistema fisico l'informazione si propaga in tempo non nullo, ma dal modello ricorsivo
+  precedente si nota di gi\'a che la variazione infinitesima fra $a_0$ e $a_1$ \'e tutt'altro che
+  finita.
+  Se si volesse dare significato fisico all'iterazione della successione bisogna tenere in
+  considerazione la \textit{variazione finita} di un sistema fisico e come ogni successiva
+  iterazione dipenda sullo stato precedente
+  \begin{equation}
+    \label{eq:feedback-fisico}
+    \boxed{V_{OUT}^{(n+1)} = \lim_{\epsilon \to 0^+} \left[\epsilon A_d(V_+ - V_-) + (1-\epsilon)V_{OUT}^{(n)}\right]}
+  \end{equation}
+  (per sintesi d'ora in poi $V_{OUT}^{n} \to a_n$)
 
-\paragraph{Amplificatore non-invertente}
-\begin{equation*}
-  a_{n+1} = \epsilon A_d(V_S - \beta a_n) + (1 - \epsilon)a_n
-\end{equation*}
-\begin{equation*}
-  a_{n+1} = \epsilon A_dV_S + (1 - \epsilon(1 + \beta A_d))a_n
-\end{equation*}
-\begin{equation*}
-  \begin{gathered}
-    K \equiv (1 + \beta A_d) \\
-    a_1 = (1 -\epsilon K)a_0 + \epsilon A_d V_S \\
-    a_2 = (1 - \epsilon K)\left[(1 - \epsilon K)a_0 + \epsilon A_d V_S\right] + \epsilon A_d V_S \\=
-    (1 - \epsilon K)^2a_0 + (1 - \epsilon K)\epsilon A_d V_S + \epsilon A_d V_S
-  \end{gathered}
-\end{equation*}
-\begin{equation*}
-  a_n = (1 - \epsilon K)^na_0 + \sum_{k=0}^{n-1}(1 - \epsilon K)^k\epsilon A_dV_S
-\end{equation*}
-questa \'e una \textit{serie geometrica}, dunque converge se $|1 - \epsilon K| < 1$ ovvero
-$0 < \epsilon < 2/K$
-\begin{equation*}
-  \begin{gathered}
-    a = \lim_{n\to +\infty} \left[(1 - \epsilon K)^na_0 + \sum_{k=0}^{n-1}(1 - \epsilon K)^k\epsilon A_dV_S\right] \\
-    a = \sum_{k=0}^{\infty}(1 - \epsilon K)^k\epsilon A_dV_S = \frac{\epsilon A_d V_S}{1 - (1 - \epsilon K)} = \frac{A_d V_S}{1 + \beta A_d}
-  \end{gathered}
-\end{equation*}
-questo \'e quello che ci si aspetta.
+  \paragraph{Amplificatore non-invertente}
+  \begin{equation*}
+    a_{n+1} = \epsilon A_d(V_S - \beta a_n) + (1 - \epsilon)a_n
+  \end{equation*}
+  \begin{equation*}
+    a_{n+1} = \epsilon A_dV_S + (1 - \epsilon(1 + \beta A_d))a_n
+  \end{equation*}
+  \begin{equation*}
+    \begin{gathered}
+      K \equiv (1 + \beta A_d) \\
+      a_1 = (1 -\epsilon K)a_0 + \epsilon A_d V_S \\
+      a_2 = (1 - \epsilon K)\left[(1 - \epsilon K)a_0 + \epsilon A_d V_S\right] + \epsilon A_d V_S \\=
+      (1 - \epsilon K)^2a_0 + (1 - \epsilon K)\epsilon A_d V_S + \epsilon A_d V_S
+    \end{gathered}
+  \end{equation*}
+  \begin{equation*}
+    a_n = (1 - \epsilon K)^na_0 + \sum_{k=0}^{n-1}(1 - \epsilon K)^k\epsilon A_dV_S
+  \end{equation*}
+  questa \'e una \textit{serie geometrica}, dunque converge se $|1 - \epsilon K| < 1$ ovvero
+  $0 < \epsilon < 2/K$
+  \begin{equation*}
+    \begin{gathered}
+      a = \lim_{n\to +\infty} \left[(1 - \epsilon K)^na_0 + \sum_{k=0}^{n-1}(1 - \epsilon K)^k\epsilon A_dV_S\right] \\
+      a = \sum_{k=0}^{\infty}(1 - \epsilon K)^k\epsilon A_dV_S = \frac{\epsilon A_d V_S}{1 - (1 - \epsilon K)} = \frac{A_d V_S}{1 + \beta A_d}
+    \end{gathered}
+  \end{equation*}
+  questo \'e quello che ci si aspetta.
 
-\paragraph{Trigger di Schmitt}
-\begin{equation*}
-  a_{n+1} = \epsilon A_d(\beta a_n - V_S) + a_n
-\end{equation*}
-\begin{equation*}
-  a_{n+1} = -\epsilon A_dV_S + (1 + \beta\epsilon A_d)a_n
-\end{equation*}
-\begin{equation*}
-  \begin{gathered}
-    a_0 = 0 \\
-    a_1 = -\epsilon A_d V_S \\
-    a_2 = -(1 + \beta \epsilon A_d)\epsilon A_d V_S - \epsilon A_d V_S \\
-    a_3 = (1 + \beta \epsilon A_d)\left[-(1 + \beta \epsilon A_d)\epsilon A_d V_S - \epsilon A_d V_S\right] - \epsilon A_d V_S \\=
-    -(1 + \beta\epsilon A_d)^2\epsilon A_d V_S - (1 + \beta\epsilon A_d)\epsilon A_d V_S - \epsilon A_d V_S
-  \end{gathered}
-\end{equation*}
-\begin{equation*}
-  a_n = -\sum_{k=0}^n(1 + \beta\epsilon A_d)^k\epsilon A_dV_S
-\end{equation*}
-questa \'e una \textit{serie geometrica}, dunque converge se $|(1 + \beta\epsilon A_d)| < 1$, ma questo non
-pu\'o mai accadere siccome $\beta\epsilon A_d > 0$, di conseguenza il dispositivo aumenta (in senso assoluto)
-la sua tensione fino a raggiungere uno dei livelli di saturazione (in questo caso negativo, come ci si aspetta
-da trigger di Schmitt).
+  \paragraph{Trigger di Schmitt}
+  \begin{equation*}
+    a_{n+1} = \epsilon A_d(\beta a_n - V_S) + a_n
+  \end{equation*}
+  \begin{equation*}
+    a_{n+1} = -\epsilon A_dV_S + (1 + \beta\epsilon A_d)a_n
+  \end{equation*}
+  \begin{equation*}
+    \begin{gathered}
+      a_0 = 0 \\
+      a_1 = -\epsilon A_d V_S \\
+      a_2 = -(1 + \beta \epsilon A_d)\epsilon A_d V_S - \epsilon A_d V_S \\
+      a_3 = (1 + \beta \epsilon A_d)\left[-(1 + \beta \epsilon A_d)\epsilon A_d V_S - \epsilon A_d V_S\right] - \epsilon A_d V_S \\=
+      -(1 + \beta\epsilon A_d)^2\epsilon A_d V_S - (1 + \beta\epsilon A_d)\epsilon A_d V_S - \epsilon A_d V_S
+    \end{gathered}
+  \end{equation*}
+  \begin{equation*}
+    a_n = -\sum_{k=0}^n(1 + \beta\epsilon A_d)^k\epsilon A_dV_S
+  \end{equation*}
+  questa \'e una \textit{serie geometrica}, dunque converge se $|(1 + \beta\epsilon A_d)| < 1$, ma questo non
+  pu\'o mai accadere siccome $\beta\epsilon A_d > 0$, di conseguenza il dispositivo aumenta (in senso assoluto)
+  la sua tensione fino a raggiungere uno dei livelli di saturazione (in questo caso negativo, come ci si aspetta
+  da trigger di Schmitt).
 
-\subsection*{Criterio di stabilit\'a}
-\begin{enumerate}
-\item Portare l'espressione ricorsiva in forma canonica $a_{n+1} = f(a_n)$
-\item Derivare rispetto ad $a_n$
-\item Se $\lim_{\epsilon \to 0} |\partial_{a_n} a_{n+1}| < 1$ la successione converge, altrimenti
-  diverge (attenzione: notare che la minorazione \'e stretta).
-\end{enumerate}
+  \subsection*{Criterio di stabilit\'a}
+  \begin{enumerate}
+  \item Portare l'espressione ricorsiva in forma canonica $a_{n+1} = f(a_n)$
+  \item Derivare rispetto ad $a_n$
+  \item Se $\lim_{\epsilon \to 0} |\partial_{a_n} a_{n+1}| < 1$ la successione converge, altrimenti
+    diverge (attenzione: notare che la minorazione \'e stretta).
+  \end{enumerate}
 
-\paragraph{Amplificatore invertente}
-\begin{equation*}
-  a_{n+1} = \epsilon A_d(V_S - \beta a_n) + a_n
-\end{equation*}
-\begin{equation*}
-  a_{n+1} = \epsilon A_dV_S + (1 - \beta\epsilon A_d)a_n
-\end{equation*}
-\begin{equation*}
-  |f'| = |1 - \beta\epsilon A_d| < 1
-\end{equation*}
-siccome $\epsilon > 0$ ed arbitrariamente piccolo allora il circuito \'e stabile
-\begin{equation*}
-  a = \epsilon A_dV_S + (1 - \beta\epsilon A_d)a \implies a = V_S/\beta
-\end{equation*}
+  \paragraph{Amplificatore invertente}
+  \begin{equation*}
+    a_{n+1} = \epsilon A_d(V_S - \beta a_n) + a_n
+  \end{equation*}
+  \begin{equation*}
+    a_{n+1} = \epsilon A_dV_S + (1 - \beta\epsilon A_d)a_n
+  \end{equation*}
+  \begin{equation*}
+    |f'| = |1 - \beta\epsilon A_d| < 1
+  \end{equation*}
+  siccome $\epsilon > 0$ ed arbitrariamente piccolo allora il circuito \'e stabile
+  \begin{equation*}
+    a = \epsilon A_dV_S + (1 - \beta\epsilon A_d)a \implies a = V_S/\beta
+  \end{equation*}
 
-\paragraph{Trigger di Schmitt}
-\begin{equation*}
-  a_{n+1} = \epsilon A_d(\beta a_n - V_S) + a_n
-\end{equation*}
-\begin{equation*}
-  a_{n+1} = -\epsilon A_dV_S + (1 + \beta\epsilon A_d)a_n
-\end{equation*}
-\begin{equation*}
-  |f'| = |1 + \beta\epsilon A_d| < 1
-\end{equation*}
-siccome $\epsilon > 0$ allora $|f'| > 1$ allora il circuito \'e instabile.
-Questo circuito dipende dal punto di operazione (isteresi), se ad esempio
-$a_0 = 0$ allora va in saturazione negativa.
+  \paragraph{Trigger di Schmitt}
+  \begin{equation*}
+    a_{n+1} = \epsilon A_d(\beta a_n - V_S) + a_n
+  \end{equation*}
+  \begin{equation*}
+    a_{n+1} = -\epsilon A_dV_S + (1 + \beta\epsilon A_d)a_n
+  \end{equation*}
+  \begin{equation*}
+    |f'| = |1 + \beta\epsilon A_d| < 1
+  \end{equation*}
+  siccome $\epsilon > 0$ allora $|f'| > 1$ allora il circuito \'e instabile.
+  Questo circuito dipende dal punto di operazione (isteresi), se ad esempio
+  $a_0 = 0$ allora va in saturazione negativa.
+\end{multicols}

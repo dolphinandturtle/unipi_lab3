@@ -1,123 +1,137 @@
 \section*{Giratore Antoniou}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{src/images/antoniou.png}
+\end{figure}
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (a)}
-    Sulla base delle ipotesi di idealit\'a degli operazionali e di linearit\'a del circuito
-    (quest'ultima verificata dalle misure precedenti), derivare un'espressione analitica
-    dell'impedenza di ingresso del giratore (\textit{si suggerisce di procedere attraverso i seguenti
-      passi, immaginando di scollegare la rete dal precedente circuito e di collegarla ad un
-      generatore di tensione $V_{in}$ al suo ingresso A: in termini di $V_{in}$ determinare le correnti $I_4$
-      ed $I_C$; quindi determinare $I_3$ ed $I_2$ considerando che i nodi B e C sono collegati agli
-      ingressi dell'operazionale $U_2$; quindi determinare $I_1$ iterando lo stesso ragionamento per
-      i nodi A e B collegati agli ingressi di $U_1$}).
-  \end{minipage}
-}
-\subsection*{Risposta (a)}
-Seguendo i suggerimenti, si calcola $I_4$, nell'ipotesi di idealit\'a dell'op-amp e operazione in regime
-di linearit\'a, si applica il \textit{principio del corto-circuito virtuale}, per cui le tensioni ai nodi B e C
-sono entrambi $V_{in}$ e da cui
-\begin{equation*}
-  I_4 = \frac{V_{in}}{R}
-\end{equation*}
-sempre per ipotesi di idealit\'a dell'op-amp gli ingressi invertenti non erogando corrente
-\begin{equation*}
-  I_3 = I_4
-\end{equation*}
-da cui si ottiene la tensione del nodo in comune con l'uscita dell'op-amp $U_1$ mediante la KCL
-\begin{equation*}
-  \begin{gathered}
-    sC(V_{U_1} - V_{in}) = I_3 = I_4 = \frac{V_{in}}{R} \\ \implies
-    V_{U_1} = \frac{1 + sRC}{sRC}V_{in}
-  \end{gathered}
-\end{equation*}
-da cui si ottiene la corrente $I_3$
-\begin{equation*}
-  I_3 = \frac{V_{in} - V_{U_1}}{R}
-\end{equation*}
-sempre per ipotesi di idealit\'a dell'op-amp gli ingressi invertenti non erogando corrente
-\begin{equation*}
-  I_2 = I_3
-\end{equation*}
-da cui si ottiene la tensione del nodo in comune con l'uscita dell'op-amp $U_2$ mediante la KCL
-\begin{equation*}
-  \begin{gathered}
-    \frac{V_{U_2} - V_{in}}{R} = I_2 = I_3 = \frac{V_{in} - V_{U_1}}{R} \\ \implies
-    V_{U_2} = -\frac{1 - sRC}{sRC}V_{in}
-  \end{gathered}
-\end{equation*}
-da cui si ottiene la corrente $I_1$, quindi finalmente anche l'impedenza d'ingresso $Z_{in}$
-\begin{equation*}
-  I_1 = \frac{V_{in} - V_{U_2}}{R} \implies \colorbox{blu}{\boxed{Z_{in} \equiv \frac{V_{in}}{I_1} = sR^2C}}
-\end{equation*}
+\begin{multicols}{2}
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (a)}
+      Sulla base delle ipotesi di idealit\'a degli operazionali e di linearit\'a del circuito
+      (quest'ultima verificata dalle misure precedenti), derivare un'espressione analitica
+      dell'impedenza di ingresso del giratore (\textit{si suggerisce di procedere attraverso i seguenti
+        passi, immaginando di scollegare la rete dal precedente circuito e di collegarla ad un
+        generatore di tensione $V_{in}$ al suo ingresso A: in termini di $V_{in}$ determinare le correnti $I_4$
+        ed $I_C$; quindi determinare $I_3$ ed $I_2$ considerando che i nodi B e C sono collegati agli
+        ingressi dell'operazionale $U_2$; quindi determinare $I_1$ iterando lo stesso ragionamento per
+        i nodi A e B collegati agli ingressi di $U_1$}).
+    \end{minipage}
+  }
+  \subsection*{Risposta (a)}
+  Seguendo i suggerimenti, si calcola $I_4$, nell'ipotesi di idealit\'a dell'op-amp e operazione in regime
+  di linearit\'a, si applica il \textit{principio del corto-circuito virtuale}, per cui le tensioni ai nodi B e C
+  sono entrambi $V_{in}$ e da cui
+  \begin{equation*}
+    I_4 = \frac{V_{in}}{R}
+  \end{equation*}
+  sempre per ipotesi di idealit\'a dell'op-amp gli ingressi invertenti non erogando corrente
+  \begin{equation*}
+    I_C = I_4
+  \end{equation*}
+  da cui si ottiene la tensione del nodo in comune con l'uscita dell'op-amp $U_1$ mediante la KCL
+  \begin{equation*}
+    \begin{gathered}
+      sC(V_{U_1} - V_{in}) = I_C = I_4 = \frac{V_{in}}{R} \\ \implies
+      V_{U_1} = \frac{1 + sRC}{sRC}V_{in}
+    \end{gathered}
+  \end{equation*}
+  da cui si ottiene la corrente $I_3$
+  \begin{equation*}
+    I_3 = \frac{V_{in} - V_{U_1}}{R}
+  \end{equation*}
+  sempre per ipotesi di idealit\'a dell'op-amp gli ingressi invertenti non erogando corrente
+  \begin{equation*}
+    I_2 = I_3
+  \end{equation*}
+  da cui si ottiene la tensione del nodo in comune con l'uscita dell'op-amp $U_2$ mediante la KCL
+  \begin{equation*}
+    \begin{gathered}
+      \frac{V_{U_2} - V_{in}}{R} = I_2 = I_3 = \frac{V_{in} - V_{U_1}}{R} \\ \implies
+      V_{U_2} = -\frac{1 - sRC}{sRC}V_{in}
+    \end{gathered}
+  \end{equation*}
+  da cui si ottiene la corrente $I_1$, quindi finalmente anche l'impedenza d'ingresso $Z_{in}$
+  \begin{equation*}
+    I_1 = \frac{V_{in} - V_{U_2}}{R} \implies \colorbox{blu}{\boxed{Z_{in} \equiv \frac{V_{in}}{I_1} = sR^2C}}
+  \end{equation*}
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (b)}
-    Verificare che modulo ed argomento di detta impedenza siano in accordo con l'ipotesi di
-    cui al punto 1d.
-  \end{minipage}
-}
-\subsection*{Risposta (b)}
-\begin{equation*}
-  \begin{gathered}
-    |Z_{in}| = R^2C \\
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (b)}
+      Verificare che modulo ed argomento di detta impedenza siano in accordo con l'ipotesi di
+      cui al punto 1d.
+    \end{minipage}
+  }
+  \subsection*{Risposta (b)}
+  Il modulo dell'impedenza riflette il valore atteso dalla misura
+  \begin{equation*}
+    |Z_{in}| = R^2C \approx 1~\text{H}
+  \end{equation*}
+  cos\'i come per il fattore di sfasamento
+  \begin{equation*}
     \arg Z_{in} = \pi/2
-  \end{gathered}
-\end{equation*}
+  \end{equation*}
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (c)}
-    Sostituendo il giratore con l'induttanza equivalente e con $C_1$ connessa, determinare la
-    funzione di trasferimento del circuito $V_{OUT}/V_S$.
-  \end{minipage}
-}
-\subsection*{Risposta (c)}
-Sostituendo il contenuto del blocco con un induttore, in virt\'u della KCL
-\begin{equation*}
-  \frac{V_S - V_{OUT}}{R} = sCV_{OUT} + \frac{V_{OUT}}{sR^2C}
-\end{equation*}
-da cui si ottiene la funzione di trasferimento
-\begin{equation*}
-  \colorbox{blu}{\boxed{H(s) \equiv \frac{V_{OUT}}{V_S} = \frac{sRC}{1 + sRC + s^2R^2C^2}}}
-\end{equation*}
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (c)}
+      Sostituendo il giratore con l'induttanza equivalente e con $C_1$ connessa, determinare la
+      funzione di trasferimento del circuito $V_{OUT}/V_S$.
+    \end{minipage}
+  }
+  \subsection*{Risposta (c)}
+  Sostituendo il contenuto del blocco con un induttore, in virt\'u della KCL
+  \begin{equation*}
+    \frac{V_S - V_{OUT}}{R} = sCV_{OUT} + \frac{V_{OUT}}{sR^2C}
+  \end{equation*}
+  da cui si ottiene la funzione di trasferimento
+  \begin{equation*}
+    \colorbox{blu}{\boxed{H(s) \equiv \frac{V_{OUT}}{V_S} = \frac{sRC}{1 + sRC + s^2R^2C^2}}}
+  \end{equation*}
 
-\noindent\colorbox{orange}{
-  \begin{minipage}{1.0\linewidth}
-    \subsection*{Richiesta (d)}
-    Dall'espressione ottenuta dedurre i valori attesi per i parametri del filtro (frequenza
-    centrale, guadagno massimo e larghezza banda) e confrontarli con le misure di cui al
-    punto 1c.
-  \end{minipage}
-}
-\subsection*{Risposta (d)}
-Restringendo la funzione di trasferimento all'asse immaginaria
-\begin{equation*}
-  A(j\omega) = \frac{jRC\omega}{(1 - R^2C^2\omega^2) + j(RC\omega)}
-\end{equation*}
-mediante la \ref{eq:da-tfunc-a-gain} e dividendo numeratore e denominatore per $RC\omega$ si ottiene
-un'espressione per il guadagno che rende semplice l'identificazione del massimo
-\begin{equation*}
-  G(\omega) = \frac{1}{\sqrt{1 + \left(\frac{1 - R^2C^2\omega^2}{RC\omega}\right)^2}}
-\end{equation*}
-il massimo \'e un minimo del modulo del termine fra parentesi
-\begin{equation*}
-  \begin{gathered}
-    \colorbox{blu}{\boxed{\Omega = \frac{1}{RC}}} \\
-    \colorbox{blu}{\boxed{\max_{\omega}G(\omega) = G(\Omega) = 1}}
-  \end{gathered}
-\end{equation*}
-si determina la frequenza di taglio
-\begin{equation*}
-  \begin{gathered}
-    \frac{1}{1 + \left(\frac{1 - R^2C^2\omega^2}{RC\omega}\right)^2} = \frac12 \\ \implies
-    R^2C^2\omega^2 \pm RC\omega - 1 = 0 \\ \implies
-    \colorbox{blu}{\boxed{\omega = \frac{\sqrt5 \pm 1}{2RC}}}
-  \end{gathered}
-\end{equation*}
-dunque la larghezza di banda
-\begin{equation*}
-  \colorbox{blu}{\boxed{\Delta\omega = \frac{1}{RC}}}
-\end{equation*}
-
+  \noindent\colorbox{orange}{
+    \begin{minipage}{0.9\linewidth}
+      \subsection*{Richiesta (d)}
+      Dall'espressione ottenuta dedurre i valori attesi per i parametri del filtro (frequenza
+      centrale, guadagno massimo e larghezza banda) e confrontarli con le misure di cui al
+      punto 1c.
+    \end{minipage}
+  }
+  \subsection*{Risposta (d)}
+  Il guadagno si ottiene mediante la \ref{eq:da-tfunc-a-gain}
+  \begin{equation}
+    \label{eq:multivibratore-doppio-derivatore-gain}
+    \colorbox{blu}{\boxed{G(\omega) = \frac{RC\omega}{\sqrt{(1 - R^2C^2\omega^2)^2 + (RC\omega)^2}}}}
+  \end{equation}
+  nell'ipotesi in cui $\omega \neq 0$, dividendo numeratore e denominatore per $RC\omega$, si nota che
+  il guadagno \'e \textit{monotono decrescente} a meno del termine quadratico sotto radice
+  \begin{equation*}
+    G(\omega) = \frac{1}{\sqrt{1 + \left(\frac{1 - R^2C^2\omega^2}{RC\omega}\right)^2}}
+  \end{equation*}
+  perci\'o all'annulamento di quel termine il guadagno \'e massimo
+    \begin{equation*}
+    \begin{gathered}
+      \colorbox{blu}{\boxed{\Omega = \frac{1}{RC}}} \\
+      \colorbox{blu}{\boxed{\max_{\omega \in [0, +\infty)}G(\omega) = G(\Omega) = 1}}
+    \end{gathered}
+  \end{equation*}
+  si calcola la pulsazione di taglio
+  \begin{equation*}
+    \begin{gathered}
+      \left(\frac{RC\omega}{\sqrt{1 + R^2C^2\omega^2}}\right)^2 = \frac{\max G(\omega)^2}{2} \\ \implies
+      R^2C^2\omega^2 \pm RC\omega - 1 = 0 \\ \implies
+      \colorbox{blu}{\boxed{\omega = \frac{\sqrt5 \pm 1}{2RC}}}
+    \end{gathered}
+  \end{equation*}
+  dunque la larghezza di banda
+  \begin{equation*}
+    \colorbox{blu}{\boxed{\Delta\omega = \frac{1}{RC}}}
+  \end{equation*}
+  In termini di frequenza
+  \begin{itemize}
+  \item La \textit{frequenza di taglio sinistra}: $\sim 984~\text{Hz}$
+  \item La \textit{frequenza centrale}: $\sim 1591~\text{Hz}$
+  \item La \textit{frequenza di taglio destra}: $\sim 2575~\text{Hz}$
+  \end{itemize}
+\end{multicols}
